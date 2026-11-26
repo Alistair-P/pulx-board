@@ -18,6 +18,7 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 26 Nov 18:50: run #44's confirming simulation on (d)'s merged code (D39).
 - 26 Nov 18:45: B futility check after (d) (D36). Review PNGs and a region override tool for #17
   (D37). #30 waits for #42's description.
 - 26 Nov 18:41: Alistair confirmed D24 and D22 (b), (c) in the merge terminal.
@@ -154,6 +155,11 @@ The next overseer wake acts on them.
   but strong-Doppler binaries reach 50%/95% at 1.63/3.02 × a50 against no arm's 3.25/13.5. The
   record supports wander only up to about 0.3 rad, so the case rests on binaries. Condition: the
   +0.71 applies only above 120 ks.
+
+- **D39** (26 Nov, Alistair): run #44's confirming simulation for (d) once (d) is on main, using the
+  merged code, so it also tests the implementation end to end. Approved: a pilot of about 3
+  core-h, then 55–110 core-h billed, with the decision rule of §15.230 (11) fixed before any draw.
+  Ask again if the pilot's price comes out above 110.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and

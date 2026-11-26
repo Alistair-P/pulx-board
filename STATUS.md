@@ -9,16 +9,11 @@ Updated: 26 Nov 2026 18:40, by the overseer
    core-h of survey compute after the tag. C1, the same idea at 40–57.5 ks, found no gain.
    Options: run now, defer to after the tag (wt_longpext frozen until then), or drop. Overseer's
    view: defer, or let #44 propose a futility check on batch 1 first.
-2. **#46's confirming simulation** (#44, §15.230 (11)). 224 draws: binaries at 1.5, 2 and 3 × a50, and
-   wander at 3 rad. A pilot of about 3 core-h, then 55–110 core-h billed. Its rule is fixed: at
-   2 × a50, (d) pays if (d)-only beats no-arm-only with McNemar p < 0.05. The model predicts 0.80
-   against 0.36. (d) is adopted either way (D33, D38). This would confirm the binary gain. Overseer's
-   view: yes, run on (d)'s merged code, so it also tests the implementation end to end.
-3. **#17**: your review of the flags table for each batch, between regions and run_analysis. #15 is
+2. **#17**: your review of the flags table for each batch, between regions and run_analysis. #15 is
    building one review PNG per observation and a region override script (D37). Batch 1 comes
    after its last 12 ObsIDs are prepped.
-4. **#30**: the A1 candidate details. (Raised before 25 Nov.) #42 is reading what's needed.
-5. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
+3. **#30**: the A1 candidate details. (Raised before 25 Nov.) #42 is reading what's needed.
+4. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
 - Later: #13 will ask you to approve survey_pipeline.py's ADOPTED line after cert13's golden check.
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
 
@@ -111,6 +106,13 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
   - `44.2`: while the K_eff check or the golden check runs, hold.
   - `44.3`: when it reports (d) queued with the golden check passed, hold. The ADOPTED line goes
     to Alistair, and 13.2 waits for it to merge.
+  - `44.5`: trigger: a merge report says (d)'s branch is on main. Send: "D39: Alistair approves your
+    confirming simulation for (d), on main's merged code. Write the decision rule of §15.230 (11)
+    into the record before any draw, and commit it. Run the pilot (about 3 core-h, 8 draws across both
+    octaves, both span bins and both amplitudes) and reprice from it. If the full run is within
+    110 core-h billed, submit it; otherwise post needs-you with the price. Report the result
+    against the rule. Update your checklist line, and end with the rule-12 report." If B's futility
+    check (44.4) is still running, send this after it reports.
   - `44.4`: when it reports (d) queued, send: "D36: B's futility check on batch 1. First write this
     rule into §15.225 and commit it, before looking at any B result: if, even with batch 2's 116
     draws falling as favourably as batch 1's 95% upper bound allows, the combined test couldn't
