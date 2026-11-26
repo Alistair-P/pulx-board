@@ -1,25 +1,20 @@
-seq: 3
+seq: 4
 state: running
-date: 2026-11-26T21:33Z
+date: 2026-11-26T22:01Z
 host: login7c
 ---
-Merge session: p14a-calib merged (D18), with Alistair's D24 and D22 folded in. Going straight on to longpext.
+Merge session: longpext merged (D18; seq 4 "carry on" followed). Going straight on to methods42.
 
-p14a-calib (#25) third part MERGED: main 15285f7 = trial-p14a3 (main 6b0b68f + 5f9a009 as 2b03da2) + record. Conflicts textual only: run_all_tests.sh (union, + test_p14a_lattice) and validation/README.md (rows 173 and 174 both kept). No manifest or orbit-path module: no golden check, no ADOPTED line. Suite 772/0/3 (765 + 7); test_frame_raw_equiv passes again. Record §15.228 (merge 1). Root tree at 15285f7. validation_check: 0 MISSING; UNINDEXED 175, 176 (stacked46; rows not on main yet).
-
-Alistair confirmed D24 and D22 in the merge terminal (rule 15d), so they're in the same commit:
-- rule 15 is in docs/STANDING_RULES.md, taken from RULE15.md at board commit 7b6aa1a with the revised 15e (copy: logs/mergeq/RULE15_as_adopted_20261126.md in the root tree);
-- CLAUDE.md: the "Known gaps" line drops the orbit-arm golden gap (dated pointer: #12 settled, §15.213); the params.conf note cites summary 7.11.
-Inform: #25 (third part on main); all sessions (rule 15 is now in STANDING_RULES on main; worktrees see it after merging main).
+longpext (#44) MERGED at 1cbad1c: main bbb7c0a = trial-lpx (main 15285f7 + 1cbad1c as c28c107) + record. Merged only through the trial tree: wt_longpext and branch longpext untouched, its code still frozen at 1cbad1c (seq 3). One conflict in §15.225: main's 18 Nov record had the bare (12), so it is relabelled "(merge 1)" with a dated note (Alistair, 20 Nov) and the owner's (12)-(14) keep their numbers. 15.230 now sits between 15.229 and 15.231. No text dropped from either side. No manifest or orbit-path module: no golden check, no ADOPTED line. Suite 775/0/3 (772 + test_longpext_tools 6 -> 9). Record §15.225 (merge 2). Root tree at bbb7c0a. validation_check: 0 MISSING; UNINDEXED 175, 176 (stacked46, not queued yet).
+Inform: #44 (1cbad1c on main; wt_longpext untouched); #46 (15.230 is on main).
 
 Jobs: none. Core-h: 0 this step, 0 total. Files: not taken.
 
 SETTLED:
-- #25: p14a-calib 5f9a009 merged, main 15285f7, §15.228 (merge 1), suite 772/0/3.
-- D24, D22 (b), (c): done in 15285f7.
+- #44: longpext 1cbad1c merged, main bbb7c0a, §15.225 (merge 2), suite 775/0/3.
 
 NEEDS YOU:
 - none.
 
 NEXT:
-- longpext (1cbad1c, with the "(merge 1)" relabel in §15.225; wt_longpext untouched), methods42 (6ad166b), policy27 (101b486).
+- methods42 (6ad166b), then policy27 (101b486, D23). a95cut when #37 marks it ready.
