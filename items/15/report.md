@@ -1,37 +1,30 @@
 seq: 1
 state: running
-date: 2026-11-26T17:50Z
+date: 2026-11-26T18:30Z
 host: login7c
 ---
-#15 (intake): carrying out D9/D10. Batch 1's downloads are under way, and its first Slurm seed + prep job is submitted.
+#15 (intake): job 12436014 finished. All 26 ObsIDs are seeded and prepped ok. The second array waits for the last 3 downloads.
 
-**D9, downloads:**
-- logs/intake15/download_odfs.sh fetches the 14 ODFs one at a time on the login node.
-- A file goes into ODF_tarballs only if tar reads it back AND logs/intake15/check_xsa_tar.py finds the ODF complete against its own summary file list.
-- The checker reuses seed_odf's completeness test. The XSA puts the summary beside a <rev>_<obsid>.TAR that holds the rest of the ODF, and the checker counts both. test_intake15 passes 16/0/0.
-- Progress: 3 of 14 done, all complete. Source, UTC date, bytes and sha256 are recorded per file in stats/intake15/downloads_batch1.tsv. They go into INTAKE.md when all 14 are in.
+- **Job 12436014:** 26 of 26 COMPLETED, every per-task result "ok".
+  - Per ObsID: 3.6–21.5 min (seed + prep).
+  - Peak memory (MaxRSS): at most 9.6 GB across the array; the pilot peaked at 13.7 GB.
+  - Results: stats/intake15/batch1_slurm/, logs in logs/intake15/slurm/.
+- **Billed:** 13.2 core-h (elapsed × 3 CPUs). That is well under the 38–49 priced for all 38 ObsIDs; the compute nodes ran 2–3 times faster than batch 1's login times.
+- **Batch 1 now:** 34 of its 36 non-download ObsIDs are at prep (7 login + pilot + 26 Slurm), and the other 2 were already prepped (since 12 Oct).
+- **Downloads (D9):** 11 of 14 are in, all COMPLETE against their summary lists. My previous report said "3 of 14 done"; at that moment it was 2. 0884030101 is downloading now, then 0400560301 and 0028740201.
+- **Second array:** the 12 ObsIDs from the downloads, with the same script, --mem and throttle, submitted once the last download passes. Expected about 6–10 billed core-h, so the whole first job comes to about 20–25 against the D10 price of ≤ 49.
 
-**D10, the Slurm job:**
-- slurm/submit_intake_prep.sh runs one ObsID per array task on 1 CPU, through run_batch.py --only. Each task writes its own result files, uses an ObsID-specific SAS_RAND_SEED, and applies the 194,000 file stop.
-- The stale 0742490101 .part file is removed.
-- Pilot: job 12435948 seeded and prepped 0742490101 (100 ks) ok, in 20.3 min, with a peak memory (MaxRSS) of 13.7 GB. So --mem is 18000M, which bills 3 CPUs at cosma5's 6,000 MB per CPU.
-- Price, from batch 1's 8 measured runs (0.20–0.34 min per ks): 38 ObsIDs (24 unprepped + 14 downloads) come to 12.8–16.3 task-h, which is 38–49 billed core-h. Files: about +3,100 after, with a peak of about +8,000 at 8 concurrent, starting from 149,805. Both are within D10, so it's submitted.
-- Submitted: job 12436014, an array of the 26 ready ObsIDs (24 seed + prep, plus 2 downloads already complete), at most 8 running at once.
-- The 12 ObsIDs whose downloads are still running go in a second array once each passes the check. That array is inside the same price.
-- Batch 1's state is recorded in §15.229 (22), commit e8cea7e.
-
-Jobs: 12435948 (pilot, done), 12436014 (running).
-Core-h: about 1.0 billed this step so far (pilot: 20 min × 3 CPUs); up to 49 for the whole job; since the item began, the same (everything earlier ran on the login node).
-Files: 149,805 (26 Nov, before the job).
+Jobs: 12435948 (pilot, done), 12436014 (done), second array not yet submitted.
+Core-h: 14.2 billed so far (pilot 1.0 + job 13.2); the same since the item began.
+Files: 155,292 (26 Nov, after the job).
 
 SETTLED:
-- 8 of batch 1's 32 non-download ObsIDs are prepped: 7 from the login run and 1 from the pilot.
-- The completeness check works on the XSA layout, and every download so far is complete.
-- The first Slurm job is submitted within D10.
+- Batch 1's seed + prep on Slurm works: 27 of 27 ok, including the pilot.
+- The 11 downloads so far are complete and checked.
 
 NEEDS YOU:
 - None.
 
 NEXT:
-- Submit the second array for the 12 remaining downloads once they pass the check, and record all 14 in INTAKE.md.
-- When the job finishes: collect the per-task results, record billed core-h, the file count and any failures in §15.229, and post the report.
+- When the downloads finish: record all 14 (source, date, sha256) in INTAKE.md and submit the second array.
+- When it ends: record batch 1 in §15.229, post the report, and propose batch 2's job and price.
