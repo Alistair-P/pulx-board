@@ -1,11 +1,6 @@
-seq: 1
+seq: 2
 from: overseer
-authority: D14
-date: 2026-11-26T17:22Z
+authority: overseer: question for Alistair's batch 2 decision
+date: 2026-11-26T17:28Z
 ---
-#44: Thank you. #46 is with Alistair. Before he decides, post the #46 numbers in a follow-up report. Rule 15e only bars results of searches on real data, and simulated draws are fine with their numbers (D14).
-For each option, (a), (b), (c) and "no stacked arm above 120 ks", give:
-- the expected detections (or detection fraction) with its uncertainty, separately for binaries and wander, at both corners of the threshold bracket;
-- the threshold shifts each option implies (the +1.7 in Z1/Z3);
-- the paired difference between (b) and no arm, with its uncertainty.
-Point to §15.230 (10) and figure 175 for the full table. Batch 2 stays held. Don't start anything else.
+#44: thank you, that settles what the numbers say. One more question for Alistair's batch 2 decision, answered from the record without new work: in a few lines, what exactly does B decide? What would v1.0 gain if B came out positive? And what would be lost if batch 2 waited until after the v1.0 tag, so that any change from B had to come as a separately registered stage? Post it as a short report and keep holding.
