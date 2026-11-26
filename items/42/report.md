@@ -1,34 +1,32 @@
-seq: 1
+seq: 2
 state: idle
-date: 2026-11-26T17:25Z
+date: 2026-11-26T17:30Z
 host: login7c
 ---
-#42: wrote "Per-photon source probability" on methods42, as the board asked (seq 1, overseer). Committed, queue entry updated; waiting for the next subsection.
+#42: wrote "Weighted search statistic" on methods42, as the board asked (seq 2, plan 42.1). Committed, queue entry updated; waiting for the next subsection.
 
-Done (seq 1):
-- methods42 head 6ad166b, on top of 54d5a13. Docs only: docs/methods_section.md, no code, so no suite run.
-- The queue entry now names 6ad166b. Checklist: 4 of 8 subsections written, 4 TO WRITE (weighted search statistic, blind survey, sensitivity, validation).
+Done (seq 2):
+- methods42 head 4ff1e7c, on top of 6ad166b. Docs only: docs/methods_section.md, no code, so no suite run.
+- The queue entry now names 4ff1e7c. Checklist: 5 of 8 subsections written; 3 TO WRITE (the blind survey, sensitivity, validation).
 - The subsection is paper text in four parts:
-  - p_i and its ingredients: S, B, s(E) from the small region rescaled by the King encircled-energy ratio, the 2-D off-axis PSF on the live footprint, flat f_bkg.
-  - The two-component flare background: a 10-12 keV full-field monitor, per-CCD live time, low-live bins counted as quiet, 3/4 sigma split; why time-scrambled nulls are invalid.
-  - The wide 60-70" aperture, and the 20" radius for the HENDRICS arm.
-  - What p_i buys, from the ablation (15.220).
-  Sources are listed in the comment after it.
-- Every code detail was checked against radial_weighting.py and run_template_pipeline.py, not only the summary. One correction came of it: in the two-component model, bins under 30% live count as quiescent rather than being held at the mean (that is the single-phi path, 15.194).
-
-For Alistair or the overseer (no action needed now):
-- Stale CLAUDE.md pointer: the params.conf note cites "summary 7.10" for the timing radius, but it is 7.11. 7.10 is the blind-seed zoom window. The subsection cites 7.11. I didn't edit CLAUDE.md (rule 15c).
-- methods42 is off main d03bf93, and main may have moved since. Docs-only, so the merge should be textual.
+  - The weighted Z_n^2 and the event phases. Its normalisation gives mean 2n and makes it invariant under w -> cw. The weights that maximise expected Z^2 are p*a(E), with g as the population estimate of a's shape. The energy factor doesn't move a phase, and psi(E) uses p alone.
+  - The choice beta = 0.75: the efficiency eta(beta, gamma) on the 85 calibration observations, and the minimax regret (2.3% against 5.4% for beta 1 and 3.4% for beta 0.5). The gate and the production weighted search stay at beta 1, with the reason (15.196, 15.197).
+  - Exact folds, and Z_3 from matched frequency derivatives. The injection test (6/21 against 15/21) shows why summing the fdot-maximised spectrum at f, 2f, 3f fails (15.53 (b)).
+  - The single-fold null: chi^2_2 confirmed by 1e6 null trials (7.13). Search maxima are never read off a chi^2 table, and the survey subsection gives the measured thresholds.
+- Checked against the code: pulse_stack.weighted_z2 (normalisation, w = p a(E)) and n_eff. Two wording points fixed before committing:
+  - I had first said g leaves the phase in any energy bin unchanged. g varies within a bin, so the text now says g can't move a pulse whose phase is the same at all energies, and that psi(E) uses p alone.
+  - The harmonic test now states its detection criterion: above the 90th percentile of each method's own null.
+- No numbers from real-data searches are in this report. Those in the text come from simulations, nulls and injections, or are cited by summary section.
 
 Jobs: none.
 Core-h: 0 this step; 0 since #42 began.
 Files: no quota reading taken.
 
 SETTLED:
-- "Per-photon source probability" written and committed on methods42 (6ad166b); queue entry and checklist updated.
+- "Weighted search statistic" written and committed on methods42 (4ff1e7c); queue entry and checklist updated.
 
 NEEDS YOU:
 - Nothing.
 
 NEXT:
-- #42: the next subsection when the board sends it. In outline order that is "Weighted search statistic".
+- #42: the next subsection when the board sends it. In outline order that is "The blind survey". It is the largest of the remaining three: arms, octaves, thresholds, red noise, orbit arm, comb fill, refinement.
