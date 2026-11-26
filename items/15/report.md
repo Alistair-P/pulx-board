@@ -1,48 +1,46 @@
 seq: 2
-state: running
-date: 2026-11-26T21:33Z
+state: needs-you
+date: 2026-11-26T21:41Z
 host: login7c
 ---
-#15 (intake): batch 1's seed + prep is done (instruction seq 1 complete). Starting D37 (seq 2): review PNGs and a region-override script.
+#15 (intake): D37's two tools are built and queued. Batch 1's regions, and so its review PNGs, wait on a naming decision.
 
-**Batch 1:**
-- **At prep:** 45 of the 46 ObsIDs attempted (7 login, 1 pilot, 26 in job 12436014, 11 in job 12436619). 3 more have been at prep since 12 Oct. 0693760401 is skipped: it is the processed P13 calibration observation.
-- **Downloads (D9):** all 14 COMPLETE on the first attempt. Source, UTC date, bytes, sha256 and listed-file count are in data/survey_list_v1/INTAKE.md (ff2fc21).
-- **Billed:** 19.8 core-h in all (pilot 1.0 + 13.2 + 5.6), against the 38–49 priced. Compute tasks took 2.9–21.5 min each, with at most 9.6 GB memory.
-- **One failure, 0884030101:**
-  - Its ODF has two pn exposures (S001 and the unscheduled U002). The merge failed verification, and the fallback picked S001, which has no EXPOSU extensions; barycen then stopped on a missing TSTART.
-  - This is pn-exposure selection in preprocess.sh's resolve_pn_events / pick_pn_events, which is pipeline code, so I haven't touched it.
-  - Its folder ODFs/0884030101 is left as it stopped (703 files).
-- Recorded in §15.229 (23), commit 8f85d7c.
+**The tools (D37):**
+- **Where:** branch `regionreview`, worktree /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting_wt_regrev, commit f8cf10b. Queued. test_region_review passes 7/0/0 and is registered in run_all_tests.sh. Login-node only.
+- **One script, region_review.py:**
+  - `draw` writes stats/new_obs_regions/<obsid>/<name>/review.png with:
+    - a smoothed, log-scaled field image, wide enough for every background circle;
+    - the wide aperture, the 20" timing radius and the source core;
+    - backgrounds A and B, masked neighbours, and the other listed targets (from survey_list_v1 and the PULX archive);
+    - CCD outlines, with the chip gaps between them;
+    - a 3' zoom on the source;
+    - a caption with the counts, the flags row, and whether each region is automatic or an override.
+  - `add` records a correction in data/region_overrides.tsv: UTC date, ObsID, name, kind (src / core / bkg / bkg_alt / mask), action (set / add / remove / clear), centre, radius and reason. It refuses a row that cannot apply. It then reruns the field-of-view check (≥ 95% of each circle exposed), the P30 check (no listed target in a background circle) and the counts check (net ≥ 1,000), and redraws the PNG. result.json is never edited.
+  - `new_obs_regions --stage` applies the rows on top of the automatic regions and notes each one in the section.
+- **How Alistair uses them** (from the worktree above until the branch merges, then from main):
+  - **Draw PNGs:** `python3 region_review.py draw <obsid>`, or `draw --all`.
+  - **View on COSMA:** `eog` or `display` over X forwarding.
+  - **View on his own machine:** `rsync -a --include='*/' --include='review.png' --exclude='*' cosma:/cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting/stats/new_obs_regions/ ./regions_review/`
+  - **Correct a region:** e.g. `python3 region_review.py add 0764770101 NGC1313-X2 bkg remove --index 3 --reason "on a neighbour"`, or `... mask add --ra 49.59 --dec -66.60 --r 15 --reason "..."` (radius in arcsec).
+  - **See what's on record:** `python3 region_review.py list <obsid>`; `check <obsid> <name>` reruns the checks and redraws.
+- **First real PNG:** stats/new_obs_regions/0764770101/NGC1313-X2/review.png (all checks pass).
 
-**D37, plan:**
-- **Branch:** a new branch `regionreview` off main, in its own worktree, with tests. #18 can reuse it after merge.
-- **review_png.py:** one PNG per (ObsID, target) in stats/new_obs_regions/<obsid>/<name>/review.png. Contents:
-  - a smoothed log image wide enough for the background;
-  - the aperture and the 20" timing radius, backgrounds A and B, masks, other list targets, and CCD edges and chip gaps from the exposure map;
-  - a zoomed panel on the source;
-  - a caption with the counts, the flags row, and whether each region is automatic or a manual override.
-- **region_override.py:** writes rows (date, ObsID, target, region kind, centre, radius, reason) to a separate overrides file and never edits the automatic output. It reruns the field-of-view, P30 and counts checks, then redraws that PNG.
-- **Staging:** new_obs_regions --stage applies the overrides on top of the automatic regions, so both stay on record.
-- **Cost:** login-node work only, light, no Slurm.
+**Batch 1's regions:**
+- logs/intake15/run_regions.py runs the region picker unchanged on each ObsID's main (best-a95) target, using its catalogue position from the survey list.
+- Measured on 0764770101: 44 s and 0.33 GB per ObsID. The 48 ObsIDs would take about 45 min on the login node and add about 1,000 files.
+- Not run yet, because of NEEDS YOU 1–2 below.
 
-**Batch 1's regions are needed before its PNGs exist, and they aren't made yet:**
-- new_obs_regions.py takes target positions from xmm_pulx_archive.tsv. Batch 1's non-PULX survey targets need a small driver that reads survey_list_v1 instead.
-- That driver has to give each new source a params.conf name. I propose `<HOST>-<Jname of the catalogue position>`, which is the same for every observation of one SOURCE_ID. PULX targets keep their existing names (NGC1313-X2, ...).
-- I'll time one region run on the login node, then price the batch-1 run, about 46 ObsIDs, before starting it.
-
-Jobs: none running (12435948, 12436014, 12436619 done).
+Jobs: none.
 Core-h: 0 this step; 19.8 billed since the item began.
-Files: 160,001 (26 Nov).
+Files: about 160,000.
 
 SETTLED:
-- Batch 1 seed + prep: 45 of 46 at prep, 19.8 billed core-h.
-- All 14 downloads are complete and recorded in INTAKE.md.
+- The D37 tools are on the queued branch `regionreview`, with tests.
 
 NEEDS YOU:
-1. 0884030101: should I propose a fix to pn-exposure selection (a bug fix, so the overseer can approve it), or drop the ObsID from batch 1?
-2. The name for new survey sources in params.conf: `<HOST>-<Jname>`, as proposed above? It becomes the stacking key, which must be spelled identically for every observation of a source.
+1. **Main target vs. recovery target in the 15 NGC 1313 ObsIDs.** The best-a95 target is X-1 (DR14:201068601010001), so X-2, the blind recovery set's target, would be an [obsid:tag] target for #18. Should batch 1 also make X-2's regions now with the same tool (new_obs_regions --target obsid:tag), so its PNGs come with the batch?
+2. **The params.conf name for non-PULX survey targets.** This is the stacking key, spelled once per source. I propose `<HOST>-<Jname>` (e.g. NGC1313-J031819.9-662911). Literature targets would then get coordinate names, e.g. Holmberg IX X-1 → UGC05336-J095753.3+690348. Is that acceptable, or should LIT targets keep a literature-style name such as HolmbergIX-X1? One run of the regions per name, so it should be settled before the run.
+3. **0884030101's pn-exposure selection failure** (§15.229 (23)): should I propose a fix to the pn-exposure selection, or drop the ObsID?
 
 NEXT:
-- Build review_png.py and region_override.py with tests on the regionreview branch, trying them on existing region results, then queue the branch.
-- Time one batch-1 region run and price the rest. Then make batch 1's regions and PNGs and tell the board when they are ready for Alistair.
+- Once 1–2 are answered: run batch 1's regions (about 45 min on the login node), then `draw` for every result, then tell the board the PNGs are ready for Alistair's #17 review.
