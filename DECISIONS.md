@@ -18,6 +18,7 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 26 Nov 18:41: Alistair confirmed D24 and D22 (b), (c) in the merge terminal.
 - 26 Nov 18:35: the leaner schedule (D34). Run the nulls below 17 ks (D35). Go with (d) (D33).
 
 ## Standing decisions

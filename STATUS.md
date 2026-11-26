@@ -9,12 +9,9 @@ Updated: 26 Nov 2026 18:40, by the overseer
    core-h of survey compute after the tag. C1, the same idea at 40–57.5 ks, found no gain.
    Options: run now, defer to after the tag (wt_longpext frozen until then), or drop. Overseer's
    view: defer, or let #44 propose a futility check on batch 1 first.
-2. **Confirm in the merge terminal**: rule 15 into STANDING_RULES, with 15e as revised on the board
-   on 26 Nov (D24), and the two CLAUDE.md fixes (D22 (b), (c)). The merge session rightly refused
-   them from the board (rule 15c). One line from Alistair in its terminal is enough.
-3. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
-4. **#30**: the A1 candidate details. (Raised before 25 Nov.)
-5. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
+2. **#17**: your review of the flags table for each batch (regions, counts and flags rows), between regions and run_analysis. Batch 1's regions come from #15 after its prep. #18's tags join later. #19 needs it.
+3. **#30**: the A1 candidate details. (Raised before 25 Nov.)
+4. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
 - Later: #13 will ask you to approve survey_pipeline.py's ADOPTED line after cert13's golden check.
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
 
@@ -25,7 +22,7 @@ Updated: 26 Nov 2026 18:40, by the overseer
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
-| merge | merge session | root tree | high | active | intake15 merged (6b0b68f, suite 765/0/3); now p14a-calib; D22/D24 wait for Alistair's terminal line | 26 Nov 18:25 |
+| merge | merge session | root tree | high | active | intake15 merged (6b0b68f); now p14a-calib; D22/D24 confirmed by Alistair in its terminal | 26 Nov 18:25 |
 | 11 | #18 (multi-target), was #11 | wt_mt | medium | active | #18 step 1, target table (D25); wt_mcseed retired | 26 Nov 18:02 |
 | 13 | certificate | wt_cert13 | high | waiting | v1.0 draft builder done (baa7e20, suite 751/0/5); waits for a95cut and #46 | 26 Nov 18:18 |
 | 15 | survey intake | wt_intake15 | medium | running | job 12436014: 26/26 ok, 13.2 core-h; downloads 11/14; second array next | 26 Nov 18:30 |
