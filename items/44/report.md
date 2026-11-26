@@ -1,49 +1,36 @@
-seq: 5
-state: needs-you
-date: 2026-11-26T18:42Z
+seq: 7
+state: running
+date: 2026-11-26T21:46Z
 host: login7c
 ---
-Doing: #46 option (d), D29's three post-hoc steps. Full numbers: summary 15.230 (11), figure 176 (175 for (a)-(c)), stats/longpext/stacked46d_*.json. wt_longpext's frozen code is untouched: I only added new scripts.
+Doing: #46 option (d) per seq 7 (D29, D31, D33). Steps 1-3 were posted already (my report answering instruction 5; 15.230 (11), figure 176); not redone. Now step 4 (union check) is running, and step 5 has started on a new branch.
 
-STEP 1, MEASURED (164 batch-1 draws; window [0, 120 ks]; 3 min on the login node):
-- The window arm alone crosses its threshold on 0 / 164.
-- (i) R0 (Z1 +1.71, Z3 +0.27):
-  - Binaries 0.129 vs no arm 0.161 ((d)-only 0, no-arm-only 3; diff -0.032, 95% -0.075 to 0; p 0.25).
-  - Wander 0.297 for both.
-  - Isolated 5/7 vs 6/7.
-  - All: 36 vs 40 (diff -0.024, 95% -0.049 to -0.006, p 0.125). Stacked-only 0.
-- (ii) Add-on (+0.71 on every arm): identical to no arm in every class (40 vs 40, 0 discordant).
-- Harness check: "no stacked candidate in the window" means a sub-threshold signal, not a matching fault. Strong injections match within 4/T. Plateau centres can sit about 2 resolution elements off, so near-threshold stacked detections may be slightly undercounted, in (10) too.
+BUDGETING (seq 7: "the budgeting that scores better in step 1"): the ADD-ON. Under R0 (d) scored 36 vs 40 against no arm, 95% interval entirely below zero (-0.049 to -0.006). As an add-on it scored 40 vs 40. So the allocation is "R1W":
+- The window's share 0.004275 joins R1's non-orbit budget, and all non-orbit shares are multiplied by 0.6897, so the total stays 0.01. The orbit share is unchanged.
+- The rf model then gives Z1 +0.77, Z3 +0.83, and the window row +0.86-0.90 over the 120 ks R0 stacked row.
 
-STEP 2, SEMI-ANALYTIC (no runs):
-- Model: coherent Z1 is a noncentral chi^2 at each draw's real threshold, with the real eta (50% at 1x a50), and retention computed from the actual walks and orbits. The window arm is 4 segment maxima against its real 120 ks threshold.
-- Validation: the coherent part matches batch 1 (binaries 0.141 predicted vs 0.151 measured; 1 rad wander 0.18 vs 0.25). The stacked efficiency had to be FITTED (0.75, range 0.70-0.80, from small counts).
-- Amplitude (x a50) for 50% / 95%, no arm | (d) R0 (add-on within 0.01):
-  - steady: 1.00/1.23 | 1.01/1.24
-  - wander 1 rad: 1.43/1.85 | 1.41/1.72
-  - wander 3 rad: 2.39/3.80 | 1.76/2.26
-  - wander 10 rad: 4.48/7.23 | 2.25/3.59
-  - binaries (93): 3.25/13.5 | 1.63/3.02
-- Z3 and the orbit arm are left out of the model; measured, they decided 0 and 1 of the 164.
-- Where (d) reaches what no arm cannot at plausible amplitude: strong-Doppler binaries (half of B's prior has coherent retention < 0.1; no arm needs more than 4-13x a50) and wander of 3 rad or more. Nowhere for steady pulsars or wander up to 1 rad. B's binary prior is a design prior, not a population estimate.
-- Wander in the record: 15.22 (P13, NGC 5907 ULX1; spans up to about 60 ks). The drift is a parabola (residual fdot). After an (f, fdot) refit it is consistent with zero at about 0.1-0.4 rad. That supports wander up to about 0.3 rad; nothing measures it over a day. 3 and 10 rad are far beyond anything measured, so the case for (d) rests on binaries.
+STEP 5 STARTED: branch stacked46d off main 6b0b68f, worktree wt_stacked46d (wt_longpext untouched, frozen at 1cbad1c).
+- octave_thresholds: the R1W window table above 120 ks. The window threshold travels as "stw"; the full-span "st" stays NaN, so a caller that doesn't know the window sees v1.0's gap. ZSQW_STACKED_WINDOW=0 restores v1.0.
+- Checked: tables at 17-120 ks, and above 120 ks with the switch off, are byte-identical to main's.
+- tests/test_stacked_window.py 4/0/0, registered. Commit e37a247. Summary 15.236 (1)-(2), 3290fd8.
+- Next: run_one's window rule, survey_sensitivity, the golden slot and its price. These wait until the union job has started, because the job imports from this worktree.
 
-STEP 3, PROPOSED, NOT RUN:
-- Draws: 64 binary draws (B's prior, new seeds) at each of m = 1.5, 2.0 and 3.0 x a50 in real-eta terms, plus 32 wander draws at 3 rad and m = 2 (report only): 224 draws.
-- Arms: Z1 on the injected octave (Z3 dropped), the short orbit arm, and the window arm. Each draw is judged under no arm, (d) R0 and (d) add-on.
-- Rule, fixed before any draw: at m = 2.0 for binaries, (d) PAYS under an allocation if (d)-only > no-arm-only with McNemar p < 0.05. The model predicts 0.36 vs 0.80 there.
-- Price: about 0.25 h per draw. Quoted 55-110 core-h billed, after a pilot of about 3 core-h (8 draws across both octaves, both span bins and both amplitudes; LESSONS 7). About 20 files.
-- Union (K_eff) check, needed only if (d) is adopted: 400 nulls at about 128 ks, about 19 core-h compute, quoted 20-40 billed (from measured null costs).
+STEP 4, UNION (K_eff) CHECK: pre-registered and SUBMITTED, job 12438600 (pending).
+- 600 null realisations at 128 ks: null_calibration.one's coherent arm plus M 4 on the first 120 ks, judged against the implementation's own R1W table.
+- Expected 5.70 non-orbit crossings. PASS if k <= 10 (Poisson p >= 0.05); otherwise a measured margin is needed.
+- Price: about 30 core-h billed, capped at 40 by --time 2:30 (D31). Hashes in logs/stacked46d/sha256_12438600.txt.
 
-Jobs: none. Core-h: this step about 0.05 (login node). Since #44 began, about 625.
-Files: not read this step.
+Jobs: 12438600 (pending).
+Core-h: this step 0 so far (cap 40). Since #44 began, about 625.
+Files: 160,947.
 
 SETTLED:
-- (d) scored post-hoc on batch 1, amplitude estimates made, and a simulation proposed (15.230 (11), fig 176, longpext 279ac5f). Checklist #46 updated.
+- Add-on budgeting chosen by step 1. The threshold change is implemented and tested, with byte-identity at 120 ks and below.
+- Union check pre-registered and submitted.
 
-NEEDS YOU (Alistair):
-- #46: run the confirming binary simulation (pilot about 3, then 55-110 core-h), or decide now between (b), (d) (R0 or add-on) and keeping the gap.
-- #44 batch 2: still held.
+NEEDS YOU:
+- Nothing now.
 
 NEXT:
-- Holding; nothing started. wt_longpext's code stays frozen at 1cbad1c.
+- When 12438600 ends: score it and post the step-4 report.
+- Meanwhile, once it has started: run_one window rule (first or last 120 ks by sum p^2, recorded in the JSON), survey_sensitivity, tests, then price the golden check (ask if above 50 core-h). Then queue ahead of #13. No ADOPTED line.
