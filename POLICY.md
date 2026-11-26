@@ -45,4 +45,6 @@ It may do these, each with a DECISIONS.md entry that gives the reason:
 - Names its authority. Covers one item. Plain text, under about 4,000 characters.
 - Refers to files by their COSMA path; never pastes data.
 - Never asks for anything rule 15 lets a session refuse.
+- A session sees only its latest instruction. If you send one before the previous one was
+  answered, the new one must repeat everything still needed from the previous one.
 - Ends with "Update your checklist line, and end with the rule-12 report." when work is asked for.
