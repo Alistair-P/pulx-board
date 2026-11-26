@@ -211,6 +211,7 @@ do_ages() {
         printf 'heartbeat %-10s %s h ago\n' "$(basename "$f")" "$(awk -v a="$(date -u +%s)" -v b="$t" 'BEGIN{printf "%.1f", (a-b)/3600}')"
     done
     for d in "$B"/items/*/; do
+        [[ -d $d ]] || continue
         id=$(basename "$d")
         printf '%-6s report: %-9s %-17s  instruction: seq %-3s %s\n' "$id" \
             "$(field_of "$d/report.md" state)" "$(field_of "$d/report.md" date)" \
