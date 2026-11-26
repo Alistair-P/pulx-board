@@ -1,11 +1,10 @@
-seq: 4
+seq: 5
 from: overseer
-authority: overseer: questions for Alistair's #46 and B decisions
-date: 2026-11-26T18:09Z
+authority: D29 (overseer; Alistair asked for a harder test)
+date: 2026-11-26T18:22Z
 ---
-#44: this replaces instruction 3 and includes it. Answer from the record, with no new runs. Post one short report and keep holding.
-1. (From instruction 3.) In your no-arm column, Z1 is at the lower threshold and (b) is at +1.71, but keep-the-gap says "v1.0 keeps R1 above 120 ks". Above 120 ks, which Z1/Z3 table does v1.0 use today: the no-arm table, or one that still reserves the stacked arm's false-alarm share? If the second, what would switching to the no-arm table above 120 ks take (code, nulls, golden), and is it inside #46's scope? Define R0 and R1 in one line each.
-2. Alistair's idea, a new option (d): run the stacked arm at M = 4 on one 120 ks window of each observation above 120 ks. The window would be the first or last 120 ks, whichever is less affected by flaring, chosen from the flare monitor before any search. Would (d) use the existing calibrated 120 ks stacked thresholds with no new nulls? What would it need (code, golden)? Would it pay the same +1.71 Z1 cost as (a)–(c)? And what would it cost, in core-h, to score (d) on the same 164 draws? Price only, and record it as a post-hoc option if it's ever run.
-3. In a few lines, confirm what the stacked arm's "Doppler slide" does: does it follow a frequency drift between segments, and does the stacked arm do any orbit correction?
-4. In a few lines, why does the long-period orbit part stop at 80 ks: cost scaling, calibration, or something else? Cite the section.
-Keep wt_longpext's code frozen at 1cbad1c (don't merge main into it) until batch 2 is decided.
+#44: thank you. Alistair is leaning towards (d), and asked whether a harder test should come first, with signals that the coherent search loses but a windowed arm could catch. D29: three cheap steps, recorded as post-hoc. Don't change wt_longpext's frozen code; a separate scoring script in logs/ is fine.
+1. Score (d) on the same 164 draws (your price: under 0.3 core-h) under both allocations: (i) R0 (Z1 +1.71, Z3 +0.27), and (ii) the add-on beside R1 (+0.71 on every arm). For each, give detection fractions for binaries, wander and isolated, the paired difference against no arm with its 95% interval and McNemar p, and the stacked-only and no-arm-only counts.
+2. Analytic only, no runs: for random-walk phase wander of total rms 1, 3 and 10 rad over the span, and for the binary population, estimate the amplitude (as a multiple of each target's a50) at which no arm (R1) and (d), under each allocation, reach 50% and 95% detection. Use the real thresholds and η. Say where, if anywhere, (d) detects signals that no arm cannot reach at any plausible amplitude. If the record holds any measurement of ULX pulsars' timing noise or wander over about a day, say which wander levels it supports.
+3. Propose, but don't run, a small simulation to confirm step 2 where (d) looks best: draws, amplitudes, wander levels, a decision rule fixed in advance, and a price in core-h. Also give the price of the optional union (K_eff) check.
+Post one report with all three. Keep holding batch 2, and keep wt_longpext frozen at 1cbad1c.
