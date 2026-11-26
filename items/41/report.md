@@ -1,32 +1,32 @@
-seq: 1
-state: idle
-date: 2026-11-26T17:26Z
+seq: 2
+state: done
+date: 2026-11-26T18:05Z
 host: login7c
 ---
-#41 (file quota): acted on overseer instruction seq 1. I ran the superseded check for archive/q41fix/ ahead of the deletion decision and am waiting on the board for quota41b's merge.
+#41 (file quota): carried out overseer instruction seq 2 (D21, plan 41.2): reran the superseded check, deleted archive/q41fix/, and recorded it.
 
-Instruction seq 1: received. No 25 Nov instruction was meant for #41 (noted). Rule 15e clarification read.
+Instruction seq 2: done in full. No terminal instruction from Alistair since the last report.
 
-CHECK (read-only, login, about 10 min): every folder in archive/q41fix/ is superseded by a rebuilt pack with matching checksums. For each of the 4 folders:
-- the archived tar + sums pair matches its recorded old sha256;
-- the live pair matches its recorded new sha256;
-- quota_pack.check on the live pack finds 0 problems;
-- the member names are the same;
-- every unchanged FILE entry is identical;
-- every old LINK entry (252 / 280 / 268 / 200) is now a FILE, with 0 LINK entries left;
-- a full extract test of the live tar finds 0 problems.
-Details: /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting_wt_q41/logs/q41/q41fix_superseded_20261126.txt. The archive holds 8 files in all. Nothing was deleted.
+- CHECK, rerun before deleting (MEASURED). Script logs/q41/q41fix_check.py; log /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting_wt_q41/logs/q41/q41fix_check_20261126.log. All 4 folders pass every check:
+  - the archived tar + sums match their recorded old sha256, and the live pair matches its recorded new sha256;
+  - quota_pack.check on the live pack is clean, and the member names are the same;
+  - unchanged FILE entries are identical;
+  - every old LINK entry (252 / 280 / 268 / 200) is a FILE in the live pack, with no LINK left;
+  - the full extract test is clean;
+  - each archive folder held only its tar + sums pair.
+- DELETED: the 4 folders in z_sq_weighting/archive/q41fix/ (8 files) and the empty parent: 13 inodes. Nothing outside #41 referred to them (git grep on main: only summary.txt). The rebuilt packs in ODFs/<folder>/ are now the only copies.
+- RECORDED as a dated addendum in 15.223 (14), with the check's log path: commit 26cca25 on quota41b, which was fast-forwarded to main 1399fad, so the branch is 1 commit ahead. Queued again under rule 14. Summary text + a read-only check script only, so no suite run. Backup: archive/summary.txt.pre_q41fixdel_20261126; diff: logs/q41/summary_q41fixdel.diff.
 
-Jobs: none.
-Core-h: 0 this step; 0 since the item began.
-Files: lfs quota 146,121 / 200,000 (26 Nov, before this check; the check writes no files).
+Jobs: none of #41's.
+Core-h: 0 this step; 0 since the item began (login only: the check took about 10 min, nice 10).
+Files: lfs quota 155,162 before the delete; 154,548 a minute after. The delete itself removes 13 inodes; the rest of the movement comes from other sessions' jobs (12 in squeue).
 
 SETTLED:
-- #41: archive/q41fix/ is confirmed superseded by the rebuilt packs, all checks pass (logs/q41/q41fix_superseded_20261126.txt; data check, not committed).
-- #41: earlier items unchanged: 15.223 (13)-(14), quota41b queued at dfa0244, suite 740/0/3.
+- #41: archive/q41fix/ deleted (13 inodes) after the rerun check passed on all four folders (15.223 (14) addendum, commit 26cca25, queued).
+- #41: checklist line set to settled.
 
 NEEDS YOU:
-1. (Alistair) Delete archive/q41fix/ (4 folders, 8 files) once quota41b merges? Recommend yes: the check above passes on all four.
+- none.
 
 NEXT:
-- Wait on the board. When told, delete archive/q41fix/, and record it as a dated addendum in 15.223 (14) once quota41b has merged. Nothing has been started.
+- Nothing left under #41 once 26cca25 merges. I'll wait on the board. Nothing has been started.
