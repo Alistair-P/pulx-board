@@ -7,7 +7,7 @@ entries by number, for example "D3". Never rewrite an entry; add a new one that 
 Alistair writes answers to "Needs Alistair" items here, or tells the overseer, which records them.
 The next overseer wake acts on them.
 
-- (none yet)
+- 26 Nov 17:06: keep #38's CLAUDE.md line under rule 9 (recorded as D6).
 
 ## Standing decisions
 - **D1** (≈19 Nov, Alistair): targets with spans under 17 ks are deferred to a later stage with
@@ -25,13 +25,18 @@ The next overseer wake acts on them.
   - the four NGC 2403 prep folders are kept for batch 4;
   - 0831790101's prep folder is deleted;
   - 0890710101 stays as a margin-band observation.
+- **D6** (26 Nov, Alistair): keep the line #38 added to CLAUDE.md under rule 9 on 25 Nov, saying
+  where a50 takes its sensitivity folder from. Reason: it documents #38's new a50 safeguard.
+- **D7** (26 Nov, overseer): #38 holds after queueing. Once rednoise is on main, the overseer
+  decides whether #38 or #37 rebuilds the production red-noise records and reruns a50 and the
+  list. Reason: both had it in their plans, and it must be done once.
 
 ## Sent 25 Nov (whether these reached each session is not yet confirmed)
 - **S1, merge**: yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and
   fast-forward. The order is mcseed, then quota41b, intake15, p14a-calib (5f9a009), longpext
   (1cbad1c, relabelled "(merge 1)") and methods42. Treat intake15 as ready. Add the rule-14
   "(merge n)" sentence with the first merge. Report when mcseed lands.
-- **S2, #38**: finish now (figure 174, RESULT part 2, TODO line, suite, commit, queue). Fix the
+- **S2, #38** (confirmed 26 Nov: both done, queued at 8828681): finish now (figure 174, RESULT part 2, TODO line, suite, commit, queue). Fix the
   a50.py default in code: refuse to run unless the sensitivity folder is given or is the current
   set, record the folder used, and add a test.
 - **S3, #15**: download the 14 batch-1 ODFs from the XSA. Check each tarball is complete against
