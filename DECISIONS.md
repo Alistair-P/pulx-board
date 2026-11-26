@@ -8,6 +8,10 @@ Alistair writes answers to "Needs Alistair" items here, or tells the overseer, w
 The next overseer wake acts on them.
 
 - 26 Nov 17:06: keep #38's CLAUDE.md line under rule 9 (recorded as D6).
+- 26 Nov 17:55: #18 yes, to #11's session (D19). Retire the merged worktrees (D20). Delete
+  archive/q41fix/ (D21). The three CLAUDE.md edits (D22). Merge policy27 after methods42 (D23).
+  Add rule 15 to STANDING_RULES (D24). #46 and #44 batch 2 are still open; Alistair asked for more
+  detail.
 
 ## Standing decisions
 - **D1** (≈19 Nov, Alistair): targets with spans under 17 ks are deferred to a later stage with
@@ -60,6 +64,21 @@ The next overseer wake acts on them.
   longpext, then methods42. a95cut follows once #37 marks it ready, and policy27 if Alistair
   approves. Reason: rednoise is on the v1.0 path (#38's rebuild, then #37's list rerun), and its
   merged-tree suite has already passed on main 2513b12.
+- **D19** (26 Nov, Alistair): start #18 (ULX-8 and the 138 multi-target ObsIDs), run by #11's
+  session. It reports first, with scope, plan and price, and changes nothing until then.
+- **D20** (26 Nov, Alistair): retire wt_mcseed now. Retire wt_mt once #11's session no longer
+  needs it, because its conversation lives there. No --force; check clean, merged, no ignored
+  files, no job and no session in it first.
+- **D21** (26 Nov, Alistair): delete archive/q41fix/ (4 folders, 8 files) now that quota41b is on
+  main (818b683). #41's check of 26 Nov shows all four superseded.
+- **D22** (26 Nov, Alistair): three CLAUDE.md edits. (a) #13's "Known gaps" change arrives with
+  cert13. (b) Fix the stale line saying the golden check doesn't cover the orbit arm. (c) The
+  params.conf note's timing-radius pointer becomes summary 7.11, not 7.10. The merge session
+  makes (b) and (c) with its next merge. (#38's D6 line arrives with rednoise.)
+- **D23** (26 Nov, Alistair): merge policy27 (#27's unsigned REV. 3 draft, docs only) after
+  methods42.
+- **D24** (26 Nov, Alistair): the merge session adds rule 15 to docs/STANDING_RULES.md with its
+  next merge, using RULE15.md's text from "15." to the end, as it now stands.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and

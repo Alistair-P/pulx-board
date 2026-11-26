@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 26 Nov 2026 17:50, by the dispatcher
+Updated: 26 Nov 2026 18:00, by the overseer
 
 ## Needs Alistair
 1. **#46: adopt (b), or keep v1.0's gap above 120 ks?** (#44, 26 Nov; numbers in §15.230 (10)(e).)
@@ -13,46 +13,26 @@ Updated: 26 Nov 2026 17:50, by the dispatcher
 2. **#44 batch 2** (116 draws, about 270–280 core-h billed, cap 448; above the 135–215 first
    approved). It isn't needed for v1.0. Overseer's view: defer it until after the tag, unless you
    want B for the methods paper.
-3. **#18: start it, run by #11's session?** It covers ULX-8 and the 138 multi-target ObsIDs, and
-   #19 needs it. #11's session wrote the multi-target code. Overseer's view: yes.
-4. **Retire merged worktrees.** wt_mcseed now, with wt_retire.sh. Keep wt_mt while #11's session
-   is in use, because its conversation was started there. Overseer's view: yes.
-5. **#41: delete archive/q41fix/ (4 folders, 8 files) after quota41b merges.** These are the old
-   project tar and sums pairs. #41 has checked that all four are superseded by rebuilt packs with
-   matching checksums, and that every old link is now a real file. Overseer's view: yes.
-6. **Three CLAUDE.md edits.** (a) #13's cert13 branch changes the "Known gaps" line. (b) The
-   stale line saying the golden check doesn't cover the orbit arm (#12 is settled). (c) #42: the
-   params.conf note cites summary 7.10 for the timing radius, but it is 7.11. Overseer's view: yes
-   to all three. (a) arrives with cert13, and the merge session makes (b) and (c) with its next
-   merge.
-7. **Merge policy27 to main after methods42?** It's #27's unsigned REV. 3 draft, docs only.
-   Overseer's view: yes. It keeps the draft safe on main, and signing is a separate step.
-8. **Add rule 15 to STANDING_RULES** with the merge session's next merge, using RULE15.md's text.
-   Overseer's view: yes.
-9. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
-10. **#30**: the A1 candidate details. (Raised before 25 Nov.)
-11. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
+3. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
+4. **#30**: the A1 candidate details. (Raised before 25 Nov.)
+5. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
 - Later: #13 will ask you to approve survey_pipeline.py's ADOPTED line after cert13's golden check.
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
 
 ## For overseer
-- #44's answer on what B decides is in (report seq 2, 17:30), for Needs Alistair item 2. It says
-  waiting means keeping wt_longpext frozen at 1cbad1c's code, unmerged into, until batch 2 runs
-  (otherwise batch 1 reruns, about 550 core-h). Worth checking against the longpext merge in D18.
-- quota41b is on main (818b683). Plan 41.2 held: DECISIONS.md has no Alistair approval yet for
-  deleting archive/q41fix/ (Needs Alistair item 5).
+- #44: which Z1/Z3 table v1.0 uses above 120 ks today (asked 18:00), for Needs Alistair item 1.
 
 ## Items
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
-| merge | merge session | root tree | high | active | quota41b merged (818b683); now rednoise (D18) | 26 Nov 17:29 |
-| 11 | MC seeding, multi-target | wt_mt | medium | settled (D8) | waiting on #18 decision | 26 Nov 17:25 |
+| merge | merge session | root tree | high | active | quota41b merged (818b683); now rednoise (D18); then D22–D24 | 26 Nov 17:29 |
+| 11 | MC seeding, multi-target; now #18 | wt_mt | medium | active | #18 scoping report (D19); retire wt_mcseed (D20) | 26 Nov 17:25 |
 | 13 | certificate | wt_cert13 | high | active | build_cert.py v1.0 draft (D15); waits for a95cut and #46 | 26 Nov 17:10 |
-| 15 | survey intake | wt_intake15 | medium | active | 14 downloads, then Slurm job for 39 ObsIDs (D9, D10) | 26 Nov 17:10 |
+| 15 | survey intake | wt_intake15 | medium | running | downloads 3/14; job 12436014 (26 ObsIDs), 38–49 core-h | 26 Nov 17:50 |
 | 25 | artefact battery rev3 | root tree | medium | waiting | p14a-calib (5f9a009) queued; needs a trial merge | 26 Nov 17:11 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | REV. 3 at 101b486, unchanged (D16); waits for C1–C4 | 26 Nov 17:30 |
-| 37 | a95 cut | root tree | high | active | a95cut golden check (D11) | 26 Nov 17:12 |
+| 37 | a95 cut | root tree | high | running | golden jobs 12436028/29/30 (D11) | 26 Nov 17:51 |
 | 38 | red noise | wt_rednoise | high | waiting | queued at 8828681; holds until rednoise is on main | 26 Nov 17:06 |
 | 41 | quota and packing | root tree | medium | waiting | quota41b on main (818b683); deletion waits for Alistair | 26 Nov 17:12 |
 | 42 | methods paper (#43, #45) | root tree | medium | active | "Weighted search statistic" done (4ff1e7c, 5 of 8); writing "The blind survey" | 26 Nov 17:30 |
@@ -68,7 +48,8 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     Also send the plan steps that merge triggers for other items.
   - Any failed suite, conflict it can't resolve, or golden difference: for overseer.
 - **11**:
-  - `11.1`: hold idle reports. #18 and the worktrees are with Alistair.
+  - `11.1`: when it reports wt_mcseed retired, hold.
+  - `11.2`: its #18 scoping report: for overseer.
 - **13**:
   - `13.1`: when it reports the build_cert.py draft committed, with no new NEEDS YOU, hold. It
     waits for a95cut and #46.
@@ -117,5 +98,6 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     update the queue entry, update your checklist line, post your report and wait."
   - When all five are written: for overseer.
 - **44**:
-  - `44.1`: when it posts the #46 numbers, for overseer.
-  - `44.2`: hold anything else until Alistair decides #46 and batch 2.
+  - `44.1`: its answer on the Z1/Z3 table above 120 ks: for overseer.
+  - `44.2`: hold anything else until Alistair decides #46 and batch 2. wt_longpext's code stays
+    frozen at 1cbad1c until batch 2 is decided.
