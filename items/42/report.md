@@ -1,50 +1,37 @@
-seq: 7
+seq: 8
 state: idle
-date: 2026-11-26T18:26Z
+date: 2026-11-26T21:31Z
 host: login7c
 ---
-#42: built the span-bin table from main's code, as the board asked (seq 7, the correction to 6; "Validation" not redone). Waiting.
+#42: read-only summary of three of Alistair's items, as the board asked (seq 8). Nothing changed. Sources: CHECKLIST.md, main's summary.txt and docs/TODO.md, the board's STATUS/BRIEF. No survey outputs, candidate files or verdicts opened (rule 1).
 
-Full table with sources and notes (ignored, not committed): /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting_wt_methods42/logs/methods42/span_bins.md
-Read from main 1399fad. Targets are #15's table, stats/intake15/survey_spans.csv (571 targets on 386 ObsIDs), binned on T_ks. Bin edges follow the code: (lo, hi], with 17-30 = [17, 30].
+#30 -- checklist line: "[ ] #30 A1, the NGC 6946 X-1 check :: Needs the user's candidate details."
+- Target: NGC 6946 X-1, ObsID 0401360301 (22.5 ks). Summary 15.213 (2)(a) names it "the target of checklist #30's candidate". The orbit-golden design kept it out of the golden set for that reason: running the orbit arm on it would be a survey-octave verdict on a non-PULX target (rule 1).
+- What "A1" means: NOT FOUND in main's summary.txt, TODO.md or the board files. The "A1"s there are other things: the 15.131 (A1) 19 ks nulls, and change A1 of the sweep speed-up (15.97 Q). I didn't search candidate or survey files for it, because that would mean reading blinded material.
+- Needed from Alistair: the candidate's details (presumably its frequency, fdot and epoch, and where it came from), and what "A1" refers to. Only he holds these.
+- Blocked on it: #30 itself (not started). No other checklist line names #30 as a dependency.
 
-span ks | targets (ObsIDs) | coherent Z1/Z3 | stacked | orbit short bank | long part | alloc
-<17 | 94 (71) | runs, all rows UNUSABLE (valid 17-136 ks) | M1: none | 0.01-1.7 Hz, M 1-2, <=16 ks segs | no | R1
-17-30 | 138 (101) | 0.0066-6.8 Hz, full span | M1: none | M2, 8.5-15 ks | no | R1
-30-57.5 | 124 (91) | full span | M2, 15-28.75 ks | M2-4, <=16 ks | no | R0
-57.5-60 | 16 (7) | full span | M2, 28.75-30 ks | M4 | yes | R0
-60-80 | 60 (35) | full span | M3, 20-26.7 ks | M4-5 | yes | R0
-80-90 | 8 (5) | full span | M3, 26.7-30 ks | M6 | no | R0
-90-120 | 68 (45) | full span | M4, 22.5-30 ks | M6-8 | no | R0
->120 | 63 (31) | full span (max 135.8 ks) | M5: UNUSABLE, share to Z1 | M8 on min(T, 128 ks); 21 targets use best 128 ks window | no | R1
+#35 -- checklist line: "[ ] #35 Frame-alignment note: the user's edit, and a venue :: Not started."
+- The note: docs/research_note_frame_times_DRAFT.md, "DRAFT research note, 1 Nov 2026. Not for circulation", on main since 6447fe1 (summary 15.192). It says frame-centre folding is the stock SAS option (barycentred TIME_RAW, bit for bit), measures the 1/r^2 = sinc^-2(pi f T_int) gain on real pulsations, and covers the three lattice artefacts and their fixes. Sources: 15.57, 15.93, 15.102, 15.137, 15.139 (5), 15.192; figures 1, 2, 52, 53, 93, 135.
+- Edit wanted: his edit of the draft, plus a venue (research note or short paper). The records give no specific edits.
+- Blocked on it: nothing else on the checklist. The methods paper's "Data and event times" (on methods42) already uses the same content.
 
-All rows:
-- Coherent fmax: 6.8 Hz, capped by the frame Nyquist (1.7 Hz in Extended Full Frame). fmin 0.01 Hz below 17 ks, else 0.0066 Hz.
-- Comb fill: octaves topping <= 0.2125 Hz at every span, in the coherent, stacked and orbit arms (comb_gti is passed to orbit_arm) and in refinement.
-- Long part: 57.5 < T <= 80 ks only, octaves 0.2125-0.425 and 0.425-0.85 Hz. Its templates join the short bank on the same 16 ks segments, refined in the full-span metric, with stage (iii) thresholds per M.
-- Orbit thresholds are measured for M1-M8, all 8 octaves usable.
-- Allocation: R0 iff the stacked arm is judged (M 2-4); R1 at M 1 or 5. Margins +1.4 / +1.1.
-
-Orbital periods: short bank P_orb 0.05-0.7 d (a sin i to a Roche-filling He donor). Long part 0.7 d to T/0.21, i.e. 3.2-4.4 d over 57.5-80 ks, a sin i to the 10 Msun ceiling. Published orbits are demodulated instead.
-
-Totals: 571; <17 ks 94 (no usable coherent threshold); 57.5-80 ks 76, where the long part runs; >120 ks 63, where the stacked arm is unusable.
-
-UNCONFIRMED:
-1. Whether #15's T_ks equals run_one's span (raw event-time range); a target near a bin edge could move.
-2. Which spans the orbit arm's M1 thresholds were measured at, i.e. whether an orbit search under 16 ks is inside its validated range.
-3. The cost guard's action per observation (dropping Z3, lowering fmax to no less than 1.7 Hz). It should not fire on this list (max 135.8 ks; memory binds from ~154 ks), but that wasn't checked per observation.
-
-Checked and confirmed on the way: the floor model's low Z1 octaves are valid at 17-136 ks (valid_T_coherent).
+#17 -- checklist line: "[ ] #17 The user's review of the flags table :: After #16."
+- What he reviews per batch: data/new_obs_flags.tsv, written by new_obs_regions.py --stage (15.141 (3)). One row per observation the region picker ran on, most REVIEW flags first. Columns: obsid, name, decision (staged / below gate / held), ulx_counts_full, recentred (src moved onto the eboxdetect source), n_review, review, warnings. TODO's region-tool flags: approximate exposure map, ULX not detected, chip gaps or CCD crossings, background contamination. Today's table has 41 rows from the earlier region runs.
+- Images: per observation and target, stats/new_obs_regions/<obsid>/<target>/regions.png, beside regions_{phys,fk5}.reg, result.json and params_section.conf (23 files per observation).
+- Where it sits (15.229 (7), TODO "#16 plan"): per batch, download -> prep_events -> new_obs_regions + flags table (#17) -> staged params sections -> run_analysis -> load check + quota_pack. Batches are at most 50 by the quota cap. After his review, the region cache may be packed from 23 files per observation to 2.
+- Time for a 50-ObsID batch: NOT RECORDED anywhere I found. Rough guess, INFERRED and not measured: about 1-3 minutes per ObsID to read its flags row and look at regions.png, longer for flagged rows. So roughly 1-2.5 hours per batch, mostly in the flagged rows at the top of the table.
+- Blocked on it: each batch's staging (the sections enter params.conf only after review), and the region-cache packing (quota).
 
 Jobs: none.
 Core-h: 0 this step; 0 since #42 began.
 Files: no quota reading taken.
 
 SETTLED:
-- Span-bin table posted; full version at the path above. No code or doc changed, nothing committed.
+- Read-only report on #30, #35 and #17 posted; nothing changed.
 
 NEEDS YOU:
-- Nothing.
+- Nothing from #42. For Alistair: "A1" in #30 isn't defined in any record I can read without opening blinded material, so its meaning has to come from him with the candidate details.
 
 NEXT:
-- #42: wait for the board (the survey-list fill-in once a95cut merges).
+- #42: wait for a95cut, then the one-line survey-list fill-in.
