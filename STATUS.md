@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 26 Nov 2026 17:30, by the overseer (first pass over the board reports)
+Updated: 26 Nov 2026 17:35, by the overseer
 
 ## Needs Alistair
 1. **#46: adopt (b), or keep v1.0's gap above 120 ks?** (Raised 26 Nov by #44.) By its
@@ -23,33 +23,38 @@ Updated: 26 Nov 2026 17:30, by the overseer (first pass over the board reports)
 5. **#41: delete archive/q41fix/ (4 folders) after quota41b merges.** These are the old project
    tar and sums pairs, superseded by the rebuilt packs, and their links no longer resolve.
    Overseer's view: yes, once #41 confirms each superseding pack's checksum.
-6. **CLAUDE.md edits from #13.** Its cert13 branch changes the "Known gaps" line. It also proposes
-   fixing the stale line saying the golden check doesn't cover the orbit arm (#12 is settled).
-   Overseer's view: yes to both, through the queue.
-7. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
-8. **#30**: the A1 candidate details. (Raised before 25 Nov.)
-9. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
+6. **Three CLAUDE.md edits.** (a) #13's cert13 branch changes the "Known gaps" line. (b) The
+   stale line saying the golden check doesn't cover the orbit arm (#12 is settled). (c) #42: the
+   params.conf note cites summary 7.10 for the timing radius, but it is 7.11. Overseer's view: yes
+   to all three. (a) arrives with cert13, and the merge session makes (b) and (c) with its next
+   merge.
+7. **Merge policy27 to main after methods42?** It's #27's unsigned REV. 3 draft, docs only.
+   Overseer's view: yes. It keeps the draft safe on main, and signing is a separate step.
+8. **Add rule 15 to STANDING_RULES** with the merge session's next merge, using RULE15.md's text.
+   Overseer's view: yes.
+9. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
+10. **#30**: the A1 candidate details. (Raised before 25 Nov.)
+11. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
 - Later: #13 will ask you to approve survey_pipeline.py's ADOPTED line after cert13's golden check.
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
 
 ## For overseer
-- merge hasn't posted its first board report.
 - #44's simulation numbers for #46, when posted.
 
 ## Items
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
-| merge | merge session | root tree | high | ? | merge queue; mcseed is on main (2513b12) | not on the board yet |
-| 11 | MC seeding, multi-target | wt_mt | medium | settled (D8) | waiting on #18 decision | 26 Nov 17:09 |
+| merge | merge session | root tree | high | active | finishing quota41b (D17), then rednoise (D18) | 26 Nov 17:25 |
+| 11 | MC seeding, multi-target | wt_mt | medium | settled (D8) | waiting on #18 decision | 26 Nov 17:25 |
 | 13 | certificate | wt_cert13 | high | active | build_cert.py v1.0 draft (D15); waits for a95cut and #46 | 26 Nov 17:10 |
 | 15 | survey intake | wt_intake15 | medium | active | 14 downloads, then Slurm job for 39 ObsIDs (D9, D10) | 26 Nov 17:10 |
 | 25 | artefact battery rev3 | root tree | medium | waiting | p14a-calib (5f9a009) queued; needs a trial merge | 26 Nov 17:11 |
-| 27 | detection policy draft | wt_policy27 | high | active | (k) rate fix (D13); then waits for C1–C4 | 26 Nov 17:13 |
+| 27 | detection policy draft | wt_policy27 | high | waiting | REV. 3 at 101b486, unchanged (D16); waits for C1–C4 | 26 Nov 17:24 |
 | 37 | a95 cut | root tree | high | active | a95cut golden check (D11) | 26 Nov 17:12 |
 | 38 | red noise | wt_rednoise | high | waiting | queued at 8828681; holds until rednoise is on main | 26 Nov 17:06 |
 | 41 | quota and packing | root tree | medium | waiting | quota41b queued at dfa0244 | 26 Nov 17:12 |
-| 42 | methods paper (#43, #45) | root tree | medium | active | writing "Per-photon source probability" (3 of 8 done) | 26 Nov 17:20 |
+| 42 | methods paper (#43, #45) | root tree | medium | active | writing "Weighted search statistic" (4 of 8 done) | 26 Nov 17:25 |
 | 44 | long-period part (#44, #46) | wt_longpext | medium | waiting | #46 scored; numbers requested; batch 2 held | 26 Nov 17:15 |
 | 47 | β study | - | high | not started | no conversation found | - |
 
@@ -57,7 +62,10 @@ Updated: 26 Nov 2026 17:30, by the overseer (first pass over the board reports)
 The dispatcher may send only these steps, when their conditions are clearly met. Anything else
 goes to "For overseer". A step that starts with "trigger:" is set off by another item's report.
 
-- **merge**: `merge.0`: for overseer (first board report).
+- **merge**:
+  - `merge.1`: after each merge it reports, send: "Carry on with the next entry in the D18 order."
+    Also send the plan steps that merge triggers for other items.
+  - Any failed suite, conflict it can't resolve, or golden difference: for overseer.
 - **11**:
   - `11.1`: hold idle reports. #18 and the worktrees are with Alistair.
 - **13**:
@@ -79,7 +87,7 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     Check the merged-tree suite result in the merge record, set your checklist line to settled,
     post a done report and stop."
 - **27**:
-  - `27.1`: when it reports the D13 correction committed, hold. It waits for C1–C4.
+  - `27.1`: hold. It waits for C1–C4, or for #19 to freeze N.
 - **37**:
   - `37.1`: while the golden jobs run, hold.
   - `37.2`: if both golden comparisons are bit-identical and a95cut is marked ready, hold.

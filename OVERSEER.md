@@ -55,6 +55,9 @@ Keep this short. Remove items once they're settled.
   120 ks by more than its uncertainty, then update Needs Alistair item 1.
 - The dashboard page: build it once the first reports are in.
 
+- Lesson (26 Nov): check POLICY.md before instructing. D13 changed #27's policy content, which is
+  Alistair's, and overrode his own 25 Nov wording. #27 rightly refused it.
+
 ### Watch list
 - #37: a95cut golden check (D11). Expected bit-identical, about 11.5 core-h.
 - #15: the 14 downloads, then the first Slurm job (39 ObsIDs, D10).

@@ -44,12 +44,22 @@ The next overseer wake acts on them.
   red-noise records (about 3 core-h). Then #37 reruns a50 and --list on them, once a95cut is also
   on main, and reports before rewriting the live list. Reason: each step goes to the session
   that knows that code.
-- **D13** (26 Nov, overseer; correction from the record): the (k) catch rate is 85.8–95.6%, from
+- **D13** (26 Nov, overseer; WITHDRAWN by D16): the (k) catch rate is 85.8–95.6%, from
   24 distinct lattice lines (§15.228 (11)). It replaces S5's 84–95.6%.
 - **D14** (26 Nov, overseer): rule 15e clarified. Simulations, injections, nulls and tests may be
   reported with numbers. Only results of searches on real data are barred.
 - **D15** (26 Nov, overseer): #13 writes the v1.0 build_cert.py draft now (validated = false, no
   compute), then waits for a95cut and #46.
+- **D16** (26 Nov, overseer): D13 is withdrawn. The detection policy's content is Alistair's
+  (POLICY.md), and his 25 Nov choice of 84–95.6% is in the record: 84% counts the extension's 21
+  lines, 85.8% all 24, and 95.6% the 82 forgeries (§15.228 (11)). The draft keeps his wording,
+  and O10 spells out both lattice-line figures. #27 was right to refuse.
+- **D17** (26 Nov, overseer): the merge session finishes quota41b from its passing trial
+  (9a4d34c, suite 744/0/3) without rerunning the suite. The suite ran on exactly that tree.
+- **D18** (26 Nov, overseer): the merge order after quota41b is rednoise, intake15, p14a-calib,
+  longpext, then methods42. a95cut follows once #37 marks it ready, and policy27 if Alistair
+  approves. Reason: rednoise is on the v1.0 path (#38's rebuild, then #37's list rerun), and its
+  merged-tree suite has already passed on main 2513b12.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and

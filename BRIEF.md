@@ -36,8 +36,9 @@ Last full revision: 26 Nov 2026 (first board reports read 17:20).
   of 1.517 (n = 1) and 1.828 (n = 8).
 - Artefact battery rev3 (#25) = rev2, plus (d) rebuilt as a halves amplitude test, plus the (k)
   lattice check. Provisional policy: a (d) failure sends a candidate to review, and a (k) failure
-  vetoes it. The (k) catch rate is 85.8–95.6% at 95% confidence: 85.8% counting the 24 distinct
-  lattice lines, 95.6% counting the 82 forgeries (§15.228 (11); D13).
+  vetoes it. The (k) catch rate is 84–95.6% at 95% confidence, as Alistair chose (D16). 84% counts
+  the extension's 21 lattice lines, 85.8% all 24 distinct lines, and 95.6% the 82 forgeries
+  (§15.228 (11)).
 - MC seeding (mcseed, #11): seeds are crc32(obsid|tag[|offset]). sigma_global is advisory only,
   because MC resolution is 5e−5 against the 5e−8 needed.
 - Golden checks compare against ADOPTED.sha256 and MANIFEST. Only Alistair approves ADOPTED lines.
