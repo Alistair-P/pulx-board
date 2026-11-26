@@ -1,33 +1,33 @@
 seq: 0
-state: running
-date: 2026-11-26T17:13Z
+state: needs-you
+date: 2026-11-26T17:15Z
 host: login7c
 ---
-Doing: #44/#46, finishing B's batch 1 (job 12424696) so #46 can be scored. First board report.
+Doing: #46, scoring the stacked-arm options above 120 ks on B's complete batch 1, per Alistair's 25 Nov instruction 1 (D4).
 
-My last terminal report (25 Nov) said 12424696 was pending. It has since finished, so this report is up to date, not that one.
+Alistair's 25 Nov instructions: 1 batch 1 finished (done) and #46 scored on all 164 (done, now). 2 batch 2 held (holding). 3 LESSONS line (done, 5bb342b).
 
-Alistair's 25 Nov instructions (typed in my terminal, = D4) all reached me:
-1. Finish batch 1, resubmitting shards 1-5 from the same commit with hashes recorded: DONE. 12424696 COMPLETED, all 5 tasks, 0 errors. Code byte-identical to 1cbad1c (logs/longpext/sha256_12424696.txt). Batch 1 now has 164 / 164 records.
-   Then score #46 on all 164: NOT YET DONE, next step (the job finished while this session was down).
-2. Hold batch 2 until #46 is decided: HELD, nothing submitted.
-3. Add a line to docs/LESSONS.md on pilot coverage: DONE. Group 7 bullet, longpext 5bb342b (on the branch; not yet queued).
-Earlier (20 Nov): the merge record is relabelled "(merge 1)" and longpext's (12)-(14) stay. This is in the queue note for longpext at 1cbad1c (= S1).
+Result is in summary.txt 15.230 (10) and figure 175 (validation store, 175_stacked46.png). Per rule 15e, no counts here.
+- The rule fixed before any draw (15.230 (9)) gives FIRM (b), M capped at 4, over (c), M = 5. It holds at both corners of the threshold brackets and under equal weighting of binaries and wander.
+- But (b) does not beat v1.0 without a stacked arm above 120 ks. Taking the arm's false-alarm share back raises the Z1 / Z3 thresholds (+1.7). That loses a few coherent detections near threshold, and (b)'s arm wins back fewer than that. The numbers are small and consistent with no difference. (a) and (c) do no better than (b).
+- The expected M = 5 advantage under spin wander did not appear.
+- B (#44) is untouched: #46's scorer never reads B's extension arm.
 
-Jobs: 12424696 (finished). None running.
-Core-h: this step 77.0 billed. Batch 1 total 552.6 (quoted 270-440 before the overrun, then about 110 more approved: 475.6 + 77.0). Since #44 began: about 625 (C1 pilot 1.9, C1 64.2, B pilot 6.1, batch 1 552.6).
+Jobs: none running (12424696 finished: 5/5 COMPLETED, 0 errors).
+Core-h: this step 0 (scoring on the login node, minutes). Batch 1 total 552.6. Since #44 began, about 625.
 Files: 146,194 (26 Nov).
 
 SETTLED:
-- #44/#46 batch 1 complete: 164 / 164 records, 0 errors. Recorded in summary 15.225 (14)(g)-(h). The completion record goes in with the #46 scoring commit.
-- Batch 2 held (D4).
-- LESSONS group 7 pilot line (5bb342b).
+- B's batch 1 complete: 164 / 164 records, 552.6 core-h billed (15.225 (14)(i)).
+- #46 scored by its pre-registered rule: FIRM (b) among the arms (15.230 (10), figure 175, longpext bd7b04a). Checklist lines #44 and #46 updated.
 
-NEEDS YOU:
-- Nothing now. Batch 2 (116 draws, re-projected about 270-280 core-h billed, cap 448) waits until #46 is decided, then Alistair's go (above 50 core-h, and above the 135-215 first approved).
+NEEDS YOU (Alistair; this changes the arms, so it is his call under POLICY):
+- #46: adopt (b), or keep v1.0's gap above 120 ks?
+  - ADOPT (b): (b)'s nulls (800 fresh at 122 and 136 ks, 40-60 core-h billed; double if the transfer check fails), the code change in manifest modules (M = min(ceil(T / 30 ks), 4)), and a new golden slot for 0791010101 (135.8 ks). All of it lands before #13.
+  - KEEP THE GAP: no code and no nulls. #46 closes on this measurement, and v1.0 keeps R1 above 120 ks.
+- #44 batch 2 (116 draws, re-projected about 270-280 core-h billed, cap 448): held until #46 is decided (D4). It then needs his go, since it is above the 135-215 first approved.
 
 NEXT:
-- Score #46 by its fixed rule (summary 15.230 (9), logs/longpext/stacked46_score.py) on all 164 draws (login node, minutes). Write 15.230 (10) and the validation figure, and post the outcome, with the result in summary.txt, not here (rule 15e).
-  - FIRM (b) or (c): bring that option's nulls (about 20-60 core-h), the code change and the 0791010101 golden slot, before #13.
-  - UNRESOLVED: bring both options' nulls first ((b) 40-60, (c) 20-40 core-h).
-- Then ask about batch 2. B is scored only on all 280 draws.
+- On "adopt (b)": price and run the nulls (asking if above 50 core-h), make the code change on a branch, run the golden check, and queue. Before #13.
+- On "keep the gap": close #46 in the checklist and summary, and tell #13.
+- Then batch 2 on his go, and B scored on all 280 draws.
