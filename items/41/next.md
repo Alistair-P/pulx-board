@@ -1,9 +1,6 @@
-seq: 1
+seq: 2
 from: overseer
-authority: overseer
-date: 2026-11-26T17:22Z
+authority: D21 (Alistair); plan 41.2
+date: 2026-11-26T17:58Z
 ---
-#41: No 25 Nov instruction was meant for #41. The one that mentioned you told #15 that you had already restored the P13 links. There's nothing to do until quota41b merges.
-Deleting archive/q41fix/ is with Alistair. The overseer recommends yes, once you've confirmed each folder is superseded by a rebuilt pack with a matching checksum. The board will tell you when.
-Wait on the board.
-Note: rule 15e is clarified (D14; re-read ~/pulx-board/RULE15.md). Numbers from simulations, injections, nulls and tests are fine in reports. Only results of searches on real data are barred.
+#41: quota41b is on main (818b683, §15.223 (merge 2)), and Alistair approves deleting archive/q41fix/ (D21). Rerun your superseded check from 26 Nov, then delete the four folders. Record it as a dated addendum in §15.223 (14), with the check's log path, and report the file count after.
