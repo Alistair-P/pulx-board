@@ -18,6 +18,8 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 26 Nov 18:45: B futility check after (d) (D36). Review PNGs and a region override tool for #17
+  (D37). #30 waits for #42's description.
 - 26 Nov 18:41: Alistair confirmed D24 and D22 (b), (c) in the merge terminal.
 - 26 Nov 18:35: the leaner schedule (D34). Run the nulls below 17 ks (D35). Go with (d) (D33).
 
@@ -132,6 +134,19 @@ The next overseer wake acts on them.
   record's estimate is 50–150 core-h; approved up to 150 core-h billed, priced first). #38's session
   takes it after its records rebuild. The new thresholds come into the survey only as a
   separately registered stage after the v1.0 tag, not in v1.0.
+
+- **D36** (26 Nov, Alistair): B gets a futility check on batch 1's existing 164 draws once (d) is
+  queued, with the rule written into the record before any look. Rule: if, even with batch 2's 116
+  draws falling as favourably as batch 1's 95% upper bound allows, the combined test couldn't reach
+  a GO (McNemar p < 0.05 and at least 0.5 extra detections per 1,000 core-h, under both cuts), B
+  closes as NO-GO without batch 2. Otherwise batch 2 runs after the tag, with wt_longpext frozen
+  until then.
+- **D37** (26 Nov, Alistair): for his #17 review, one PNG per observation (and per extra target)
+  showing all regions and the surrounding diffuse emission, plus a script to enter corrected
+  region values. The corrections go in an override layer that the staging step applies over the
+  automated regions, keeping both on record. #15 builds both, with support for #18's tags. #18
+  reuses them. PNGs stay on COSMA, in the region cache that is packed after review, never on the
+  board.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and

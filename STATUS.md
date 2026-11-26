@@ -3,14 +3,16 @@
 Updated: 26 Nov 2026 18:40, by the overseer
 
 ## Needs Alistair
-1. **B (#44 batch 2)**: decide whether to switch on the long-period orbit part for spans above
+1. (Decided: B gets a futility check on batch 1 after (d) is queued, D36.) **B (#44 batch 2)** was: decide whether to switch on the long-period orbit part for spans above
    80 ks, on one 80 ks window each (134 targets on 80 ObsIDs). It's a post-tag stage by design and
    can't change v1.0. Batch 2 costs about 270–280 core-h billed (cap 448). A GO would add 120–390
    core-h of survey compute after the tag. C1, the same idea at 40–57.5 ks, found no gain.
    Options: run now, defer to after the tag (wt_longpext frozen until then), or drop. Overseer's
    view: defer, or let #44 propose a futility check on batch 1 first.
-2. **#17**: your review of the flags table for each batch (regions, counts and flags rows), between regions and run_analysis. Batch 1's regions come from #15 after its prep. #18's tags join later. #19 needs it.
-3. **#30**: the A1 candidate details. (Raised before 25 Nov.)
+2. **#17**: your review of the flags table for each batch, between regions and run_analysis. #15 is
+   building one review PNG per observation and a region override script (D37). Batch 1 comes
+   after its last 12 ObsIDs are prepped.
+3. **#30**: the A1 candidate details. (Raised before 25 Nov.) #42 is reading what's needed.
 4. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
 - Later: #13 will ask you to approve survey_pipeline.py's ADOPTED line after cert13's golden check.
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
@@ -25,7 +27,7 @@ Updated: 26 Nov 2026 18:40, by the overseer
 | merge | merge session | root tree | high | active | intake15 merged (6b0b68f); now p14a-calib; D22/D24 confirmed by Alistair in its terminal | 26 Nov 18:25 |
 | 11 | #18 (multi-target), was #11 | wt_mt | medium | active | #18 step 1, target table (D25); wt_mcseed retired | 26 Nov 18:02 |
 | 13 | certificate | wt_cert13 | high | waiting | v1.0 draft builder done (baa7e20, suite 751/0/5); waits for a95cut and #46 | 26 Nov 18:18 |
-| 15 | survey intake | wt_intake15 | medium | running | job 12436014: 26/26 ok, 13.2 core-h; downloads 11/14; second array next | 26 Nov 18:30 |
+| 15 | survey intake | wt_intake15 | medium | running | second array after downloads; then review PNGs and override tool (D37) | 26 Nov 18:30 |
 | 25 | artefact battery rev3 | root tree | medium | waiting | p14a-calib (5f9a009) queued; needs a trial merge | 26 Nov 17:11 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | REV. 3 at 101b486, unchanged (D16); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | running | golden jobs 12436028/29/30 (D11) | 26 Nov 17:51 |
@@ -105,5 +107,12 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
   - `44.2`: while the K_eff check or the golden check runs, hold.
   - `44.3`: when it reports (d) queued with the golden check passed, hold. The ADOPTED line goes
     to Alistair, and 13.2 waits for it to merge.
+  - `44.4`: when it reports (d) queued, send: "D36: B's futility check on batch 1. First write this
+    rule into §15.225 and commit it, before looking at any B result: if, even with batch 2's 116
+    draws falling as favourably as batch 1's 95% upper bound allows, the combined test couldn't
+    reach a GO (McNemar p < 0.05 and at least 0.5 extra detections per 1,000 core-h, under both
+    cuts), B closes as NO-GO without batch 2. Then score B's arm on batch 1's 164 records (login
+    node, no new runs), apply the rule, and report the counts and the verdict. Keep wt_longpext
+    frozen. Update your checklist line, and end with the rule-12 report."
   - Anything else: for overseer. wt_longpext's code stays frozen at 1cbad1c until batch 2 is
     decided.
