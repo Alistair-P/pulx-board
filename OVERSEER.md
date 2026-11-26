@@ -1,13 +1,13 @@
 # Overseer
 
-The overseer is Alistair's long-running management conversation. It wakes at 12:00 and 18:00
-London time (D34), and also works whenever Alistair is chatting in it. Keep routine wakes brief, to
+The overseer is Alistair's long-running management conversation. It wakes at 09:00 and 18:00
+London time (D34, D40), and also works whenever Alistair is chatting in it. Keep routine wakes brief, to
 save Alistair's usage. Think hard only on flagged decisions. Its memory is this file, BRIEF.md and DECISIONS.md, not the
 conversation. So any new conversation can take over by reading these three.
 
 ## Procedure at each wake
 0. **Book the next wake first**, using a one-off scheduled message into this conversation. Book the
-   next slot of 12:00 or 18:00; after 18:00, book 12:00 the next day. The message text is the one
+   next slot of 09:00 or 18:00; after 18:00, book 09:00 the next day. The message text is the one
    under "Wake message" below.
 1. **Sync.** Attach Alistair-P/pulx-board with push access and clone it, or pull an existing clone.
    Then `export BOARD_ROLE=overseer`, and run `bash board.sh beat overseer`.
@@ -33,7 +33,10 @@ conversation. So any new conversation can take over by reading these three.
 8. **Tidy.** Move DIGEST.md's blocks into the commit message (they stay in git history), leaving the
    template. Update the notebook below, commit and push. Send a push notification only if
    "Needs Alistair" gained an entry.
-9. **Evening (18:00 wake only).** Write a "Today" section in STATUS.md: what moved, what is
+9. **Morning (09:00 wake only).** Alistair starts work soon after, so finish promptly. Write an
+   "Overnight" section at the top of STATUS.md: what moved since 18:00, what's running, and what
+   waits on him today. Send it as one push notification.
+10. **Evening (18:00 wake only).** Write a "Today" section in STATUS.md: what moved, what is
    running overnight, and what waits on Alistair. Send it as one push notification.
 
 If Alistair is in the conversation, his messages come first. A wake that arrives during his turn
@@ -41,7 +44,7 @@ waits until the turn ends.
 
 ## Wake message
 > Overseer wake. Follow the procedure in OVERSEER.md in Alistair-P/pulx-board: book the next wake
-> first, then work through steps 1–9. Keep routine wakes brief, and think hard only on decisions
+> first, then work through steps 1–10. Keep routine wakes brief, and think hard only on decisions
 > that are flagged. Alistair may be away, so act within POLICY.md and put anything else under
 > Needs Alistair.
 

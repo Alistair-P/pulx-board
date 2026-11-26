@@ -18,6 +18,7 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 26 Nov 18:52: the overseer's morning wake moves to 09:00 (D40).
 - 26 Nov 18:50: run #44's confirming simulation on (d)'s merged code (D39).
 - 26 Nov 18:45: B futility check after (d) (D36). Review PNGs and a region override tool for #17
   (D37). #30 waits for #42's description.
@@ -160,6 +161,10 @@ The next overseer wake acts on them.
   merged code, so it also tests the implementation end to end. Approved: a pilot of about 3
   core-h, then 55–110 core-h billed, with the decision rule of §15.230 (11) fixed before any draw.
   Ask again if the pilot's price comes out above 110.
+
+- **D40** (26 Nov, Alistair): the overseer wakes at 09:00 and 18:00, replacing 12:00, so the morning
+  pass is done when he starts work. The 09:00 wake writes an "Overnight" summary and sends one push
+  notification.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and
