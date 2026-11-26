@@ -1,30 +1,30 @@
-seq: 0
-state: needs-you
-date: 2026-11-26T17:12Z
+seq: 1
+state: running
+date: 2026-11-26T17:51Z
 host: login7c
 ---
-#37 (a95 inclusion cut): first board report. a95cut is waiting for its own golden check, which mcseed's landing on main (2513b12) has now unblocked. Nothing has been started since 19 Nov.
+#37 (a95 inclusion cut): carrying out instruction seq 1 (D11). The a95cut golden jobs have been submitted and are running.
 
-25 Nov instructions: none reached this session. The terminal has had no message since 19 Nov, there is no board instruction for 37, and none of S1-S7 in DECISIONS.md "Sent 25 Nov" is addressed to #37. The last instructions from Alistair (19 Nov) and where they stand:
-- Run a95cut's golden check myself on the merged tree once mcseed and a95 are on main, and leave the ADOPTED line to the merge session: NOW UNBLOCKED. a95 is on main (b20499b) and mcseed is on main (2513b12). Not started.
-- Rewrite the live list file only after #38 has merged and a50 and --list have been rerun on its rebuilt red-noise rows: WAITING. rednoise is queued, not on main. D7 says the overseer decides whether #37 or #38 does this rerun.
+Done for seq 1:
+1. main 2513b12 (mcseed) merged into a95cut in wt_a95cut (7d97027, clean, not a merge to main). Suite on that tree: 737 passed, 0 failed, 3 skipped, the same as main (logs/regen/suite_a95cut_ms.log in the root tree).
+2. Pre-registered in 15.226 (18) and committed (ed97357) before submission. Reference: mcseed's merged-tree run (GOLD_TAG ms), because the literal compare against the frozen reference fails on main for main's own reasons (15.217 (12) deviation). main 2513b12 differs from mcseed's run tree only by a test and a LESSONS line.
+   - Accept lists were computed on the merged tree. Coherent GOLD_ACCEPT = survey_pipeline.py only: it is the only manifest module matching neither MANIFEST nor ADOPTED. Orbit GOLD_ORBIT_ACCEPT = the same five as mcseed's: four that are byte-identical to main, plus survey_pipeline.py.
+   - Both lists were exported before sbatch --export=ALL (the comma split, LESSONS group 7).
+   - Prediction: all 19 coherent inputs bit-identical to ms, and the orbit run identical to check_ms on all 4 (run 1 = run 2), because a95cut changes only survey_list(), which no golden input calls.
+3. Jobs: 12436028 syn (19 CPUs x 1:45), 12436029 real (4 x 1:30), 12436030 orbit (1 x 3:00). Submitted from the clean HEAD ed97357, all RUNNING. Hashes are in wt_a95cut logs/a95cut/golden/sha256_a9c_12436028.txt.
+   If all are bit-identical I mark a95cut ready. If anything differs I stop and report the difference.
 
-State:
-- a95: MERGED (b20499b, 15.226 (16)).
-- a95cut at e0ca515 (wt_a95cut): main d03bf93 merged in, suite 733/0/3. Queued NOT READY. Since then main has moved to 2513b12 (mcseed), and survey_pipeline.py on main is still 27678708, so a95cut's proposed hash is still f9f49373. The prediction is unchanged: coherent 19/19 and orbit 4/4 bit-identical with GOLD_ACCEPT = survey_pipeline.py only.
-- The live list file is untouched (84). 15.226 (17) and docs/TODO.md hold the rerun step.
+D12 noted: after rednoise is on main, #38 rebuilds the red rows. Once a95cut is on main too, I rerun a50 and --list and report before rewriting the live list.
 
-Jobs: none.
-Core-h: 0 this step. Since the item began: 45.5 + 3.4 billed for the a95 work (jobs 12373611 and 12374954). Earlier #37 steps are in 15.199 and 15.226.
+Jobs: 12436028, 12436029, 12436030 (running).
+Core-h: this step's cap is 42.3 billed, about 12.5 expected. Since the item began: 45.5 + 3.4 billed for the a95 work, plus this step.
 Files: no reading taken.
 
 SETTLED:
-- #37: no change since 19 Nov. a95 merged (b20499b). a95cut e0ca515 queued NOT READY. 15.226 (12)-(17).
+- None yet for seq 1. The golden result follows in the next report.
 
 NEEDS YOU:
-1. Start a95cut's golden check now? mcseed landed in 2513b12, and Alistair approved this on 19 Nov. Plan: merge main 2513b12 into a95cut, then run the coherent and orbit golden on that tree as Slurm jobs, priced from mcseed's identical golden (cap 42.3 core-h, expected about 11.5). If both are bit-identical, mark a95cut ready. Recommend: yes.
-2. D7: who reruns a50 and --list on #38's red rows after rednoise merges? Recommend #37, since its plan already names the list rewrite and the near-cut 48-injection rule may need re-judging.
+- Nothing.
 
 NEXT:
-- On the go for (1): merge main into a95cut, run the suite, run the golden, then mark it ready or report the difference.
-- After rednoise merges, and if (2) gives it to #37: rerun a50 --all --thresholds applied and --list on the rebuilt rows, then rewrite logs/survey_full/obsids_longest_first.txt with the result.
+- When the jobs finish: run logs/a95cut/golden_diff_a9c.py and the orbit --same check against check_ms, record the result in 15.226 (18), mark a95cut ready or report the difference, then post the result.
