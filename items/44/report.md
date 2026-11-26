@@ -1,43 +1,36 @@
-seq: 1
+seq: 2
 state: needs-you
-date: 2026-11-26T17:26Z
+date: 2026-11-26T17:30Z
 host: login7c
 ---
-Doing: #46, posting the numbers for Alistair's decision (overseer seq 1, D14). Simulated draws only. Full table: summary 15.230 (10)(e), figure 175, stats/longpext/stacked46_numbers.txt (wt_longpext).
+Doing: #44, answering the overseer's batch-2 question (seq 2) from the record. No new work. Batch 2 still held.
 
-Data: B's batch 1, 164 synthetic draws above 120 ks at each target's own catalogue a50: 93 binaries, 64 spin-wander, 7 isolated. Intervals are Jeffreys 68%. Paired differences use 4,000 bootstrap resamples.
+WHAT B DECIDES (summary 15.225 (6)-(8), (12)-(13)): whether to switch on v1.0's long-period orbit part, which today covers only spans of 57.5-80 ks, for spans above 80 ks. It would run on one 80 ks window of each observation, at the stage-(iii) thresholds.
+- Covered: 134 targets on 80 ObsIDs (cut 1), or 88 on 66 under the orbit-arm cut.
+- The test: paired WITH / WITHOUT synthetic binaries at each target's own catalogue a50. WITH also pays +0.025 on every arm's threshold, for the extra maximum.
+- GO needs both of these, under both cuts: McNemar p < 0.05, and at least 0.5 extra detections per 1,000 core-h (G >= 0.0025 / 0.0022).
+- It is one yes/no on one arm. It touches nothing else.
 
-THRESHOLD SHIFTS (every option against no arm, measured from the recorded tables):
-- Z1 +1.71, Z3 +0.27. CORRECTION: I said "Z1 / Z3 +1.7" before. Z3 moves only 0.27 (15.230 (5) corrected).
-- (b) and (c) share the same Z1 / Z3 table.
-- Stacked thresholds: (b) median 121.7, bracket +-1.46; (c) median 138.5, bracket -2.17 to 0.
+WHAT v1.0 WOULD GAIN IF B CAME OUT POSITIVE: in principle, nothing in v1.0 itself. Alistair's #44 brief makes any extension "a separately pre-registered stage after the v1.0 tag", run on synthetic data and blinded data only. A GO would add the windowed long-part arm to those 80 ObsIDs as a post-tag stage, at about 120-390 core-h of survey compute (15.225 (12)(c)).
+- The expected size is small. C1, the same kind of extension at 40-57.5 ks, found v1.0 already saturated: 199 / 200 found without it, NO-GO. B was amended to own-a50 amplitudes so that it can show a gain at all.
+- A gain would be binaries with P beyond the short bank (> 0.7 d) on spans above 80 ks that coherent Z1 / Z3 and the 16 ks bank miss.
+- B cannot change any v1.0 threshold, arm or list.
 
-DETECTION FRACTION, binaries (n 93) | wander (n 64):
-- No stacked arm above 120 ks (v1.0): 0.161 [0.127, 0.203] | 0.297 [0.244, 0.356]
-- (a) 80 ks window: 0.129 [0.098, 0.168] | 0.297 [0.244, 0.356]
-- (b) M capped at 4: 0.151 [0.117, 0.191] at nominal and at its low edge; 0.140 [0.108, 0.179] at its high edge | 0.297 at both
-- (c) M = 5: 0.129 [0.098, 0.168] at both edges | 0.297 at both
-- Isolated (n 7): 6 with no arm, 5 under every option.
-- No arm and (a) have no bracket. Only (b)'s binary count moves inside the brackets.
-- All four options detect the same wander draws: 15/16 at 0.3 rad, 4/16 at 1 rad, 0 at 3 and 10 rad.
+WHAT WOULD BE LOST BY WAITING UNTIL AFTER THE TAG: almost nothing in procedure, because B was always a post-tag stage. The real costs are practical:
+1. Same code for both batches. Batch 2 must import exactly what batch 1 did, or the paired design mixes code versions. The v1.0 merges still coming (mcseed, a95cut, #46 if adopted) change survey_pipeline / pulx_recovery on main. So wt_longpext must stay at 1cbad1c (its code), unmerged into, until batch 2 runs. Otherwise batch 1 would have to be re-run (about 550 core-h).
+2. Delay. B's answer, and A's (decided after B), come later. A post-tag GO then means a second pass of the extension arm on those 80 ObsIDs, plus survey_sensitivity for them, as its own registered stage with its own false-alarm accounting. That is about the same compute as doing it inside v1.0, plus the bookkeeping of a second stage.
+3. Batch 1's records sit unused for B meanwhile. They are complete and need nothing.
+Nothing is lost for v1.0 or #46: #46 used batch 1 only, and B's extension arm has not been read.
 
-PAIRED DIFFERENCE, (b) minus no arm:
-- All 164, nominal and (b) low edge: -0.012 (b-only 2, no-arm-only 4); 68% -0.031 to 0.000; 95% -0.043 to +0.018; McNemar p 0.69.
-- All 164, (b) high edge: -0.018 (1 vs 4); 68% -0.031 to -0.006; 95% -0.043 to +0.006; p 0.38.
-- Binaries: -0.011 (2 vs 3; 95% -0.065 to +0.032); at the high edge -0.022 (1 vs 3).
-- Wander: 0 (0 vs 0).
-- All four no-arm-only draws are coherent Z1 detections between the R1 and R0 thresholds.
-
-Jobs: none. Core-h: this step 0 (login node, minutes). Since #44 began, about 625.
-Files: not read this step (146,194 on 26 Nov).
+Jobs: none. Core-h: 0 this step. Since #44 began, about 625.
+Files: not read this step.
 
 SETTLED:
-- #46 decision numbers recorded: 15.230 (10)(e), longpext 6ffba25.
-- Z3 shift corrected to +0.27 in 15.230 (5) and in figure 175's caption, re-rendered.
+- The batch-2 question answered from the record. No change to anything.
 
-NEEDS YOU (Alistair; changes the arms):
-- #46: adopt (b) (nulls 40-60 core-h billed, double if the transfer check fails; code in manifest modules; golden slot 0791010101; before #13), or keep v1.0's gap above 120 ks (no code, no nulls; #46 closes).
-- #44 batch 2 (about 270-280 core-h billed, cap 448): held until #46 is decided (D4), then his go.
+NEEDS YOU (Alistair):
+- #46: adopt (b) or keep v1.0's gap above 120 ks (numbers in my previous report and 15.230 (10)(e)).
+- #44 batch 2: now (about 270-280 core-h billed, cap 448), or after the tag with wt_longpext frozen at 1cbad1c's code until then.
 
 NEXT:
-- Nothing started (per seq 1). On Alistair's #46 answer: the adopt-(b) or keep-the-gap steps in my previous report. Then batch 2 on his go.
+- Holding. Nothing started.
