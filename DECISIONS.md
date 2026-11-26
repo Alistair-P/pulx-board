@@ -98,6 +98,11 @@ The next overseer wake acts on them.
   switch), so no production-search output exists for them before the v1.0 certificate. The P30
   pilot's existing search outputs stay unopened (rule 1).
 
+- **D29** (26 Nov, overseer; Alistair asked whether a harder test should come first): #44 scores
+  option (d) on the 164 draws under R0 and as an add-on beside R1 (under 0.3 core-h, post-hoc),
+  makes an analytic comparison of no arm and (d) for signals that lose coherence, and proposes
+  and prices a small confirming simulation. #46 stays undecided until Alistair has seen these.
+
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and
   fast-forward. The order is mcseed, then quota41b, intake15, p14a-calib (5f9a009), longpext

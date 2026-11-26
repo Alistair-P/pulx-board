@@ -9,8 +9,13 @@ Updated: 26 Nov 2026 18:05, by the overseer (18:00 wake)
    R0 (Z1 +1.71). That costs 4 coherent detections in the 164 draws, and the best arm, (b), wins
    back 2 (net −0.012, 95% −0.043 to +0.018). Alistair is leaning towards (d): the stacked arm on
    one 120 ks window, using the existing 120 ks calibration, so no new nulls. He's asking whether a
-   harder test should come first, with bright signals that lose coherence. Open: adopt (d) now, or
-   run that test first.
+   harder test should come first, with bright signals that lose coherence. (d) facts (§15.230
+   (10)(g)): the existing M = 4, 120 ks thresholds apply, so no new nulls. The window is chosen
+   blind, from the flare monitor. Code goes in survey_pipeline, octave_thresholds and
+   survey_sensitivity, plus a golden slot above 120 ks. Costs: Z1 +1.71 under R0, or +0.71 on every
+   arm as an add-on beside R1. There's an unmeasured union factor (an optional 20–40 core-h
+   check). It's expected to score about as (b). D29: #44 is scoring it both ways, with an analytic
+   check of where it could win. Open until those are in.
 2. **B (#44 batch 2)**: decide whether to switch on the long-period orbit part for spans above
    80 ks, on one 80 ks window each (134 targets on 80 ObsIDs). It's a post-tag stage by design and
    can't change v1.0. Batch 2 costs about 270–280 core-h billed (cap 448). A GO would add 120–390
@@ -27,7 +32,7 @@ Updated: 26 Nov 2026 18:05, by the overseer (18:00 wake)
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
 
 ## For overseer
-- #44's answers on (d), the Doppler slide and why the long-period part stops at 80 ks (asked 18:10).
+- #44's D29 results, for #46. #42's span-bin table, for Alistair.
 
 ## Items
 
@@ -35,7 +40,7 @@ Updated: 26 Nov 2026 18:05, by the overseer (18:00 wake)
 |---|---|---|---|---|---|---|
 | merge | merge session | root tree | high | active | rednoise merged (1399fad, suite 755/0/3); now intake15; D22–D24 with next merge | 26 Nov 17:57 |
 | 11 | #18 (multi-target), was #11 | wt_mt | medium | active | #18 step 1, target table (D25); wt_mcseed retired | 26 Nov 18:02 |
-| 13 | certificate | wt_cert13 | high | active | build_cert.py v1.0 draft (D15); waits for a95cut and #46 | 26 Nov 17:10 |
+| 13 | certificate | wt_cert13 | high | waiting | v1.0 draft builder done (baa7e20, suite 751/0/5); waits for a95cut and #46 | 26 Nov 18:18 |
 | 15 | survey intake | wt_intake15 | medium | running | downloads 3/14; job 12436014 (26 ObsIDs), 38–49 core-h | 26 Nov 17:50 |
 | 25 | artefact battery rev3 | root tree | medium | waiting | p14a-calib (5f9a009) queued; needs a trial merge | 26 Nov 17:11 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | REV. 3 at 101b486, unchanged (D16); waits for C1–C4 | 26 Nov 17:30 |
