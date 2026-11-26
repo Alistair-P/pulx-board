@@ -1,42 +1,30 @@
-seq: 0
-state: done
-date: 2026-11-26T17:13Z
+seq: 1
+state: needs-you
+date: 2026-11-26T17:24Z
 host: login7c
 ---
-#27 (C5, detection policy): applied Alistair's 25 Nov REV. 3 instruction to the draft. Docs only; nothing signed.
+#27 (C5): received overseer instruction seq 1 (D13: change the (k) catch rate from 84-95.6% to 85.8-95.6%). NOT applied; needs Alistair.
 
-Instructions from Alistair (typed in this terminal, 25 Nov) and where each stands:
-1. Collate the #27 decisions into docs/DETECTION_POLICY_v1.md, decide nothing, queue as docs only: DONE (a5b7fc2, 15.233 (1)-(3)).
-2. Recommendations 1-9 and 11 provisional for REV. 3, item 10 open, (k) catch rate 84-95.6%, nothing signed until
-   C1-C4 are in: DONE (101b486, 15.233 (4)).
-   - PROVISIONAL (marked in the draft, not in force):
-     - O1: N = the IN targets frozen at the v1.0 tag, as a fixed number.
-     - O2: blind-part recovery targets count in N.
-     - O5 and O12: recompute B5's R and the known-pulsar check at that N before signing.
-     - O6: no Z3 or orbit margin; row 5a's sigma quoted beside orbit Tier-1 calls.
-     - O7 and O9: a halves failure and a (d) failure both go to REVIEW.
-     - O8: REVIEW = Tier 1 withheld pending a written review against criteria fixed at signing.
-     - O10: a (k) failure is a veto, with the candidate still listed.
-     - O13: sidelobe k = 10, max(k, LONGP_TOL) for long-part candidates.
-     - O17: a C1 failure makes the cell Tier-1 ineligible, kept in Tier 2.
-   - OPEN until signing: O3, O4, O11, O14, O15, O16.
-   - (k) entry: catch rate 84-95.6% at 95% confidence (counting lattice lines or forgeries).
-   - Signature section: not signed until C1-C4 (#23-#26) are in; C4 is optional, so "in" = done or declared not done.
-   - Item 11: the queue line now says merge policy27 AFTER mcseed and p14a-calib.
-3. Session renamed "27": noted.
-No board instruction for 27 had arrived; the wait is running.
+Why it is not applied (rule 15c/15d, POLICY.md):
+1. Alistair typed in this terminal on 25 Nov: "In the (k) entry, record the catch rate as 84-95.6% (counting lattice lines or forgeries)." Rule 15d: what Alistair types in the terminal overrides the board.
+2. POLICY.md puts the detection policy (#27) under "Alistair only"; the overseer may not change its content.
+3. The premise is incomplete. §15.228 (11) gives BOTH lower ends for counting lattice lines as units:
+   - 85.8% = 0.025^(1/24), all 24 distinct lines (pooled run (9) + extension (10));
+   - 84% = 0.025^(1/21), the extension's 21 lines alone.
+   95.6% is the Clopper-Pearson lower bound counting the 82 forgeries. These are forgery (simulation) numbers, not real-data search output. So 84% is in the record. It is the more conservative lower end, the one Alistair chose.
+Current state of the draft (101b486): the (k) table cell reads "84-95.6% at 95% confidence (counting lattice lines or forgeries)" and cites §15.228 (2)-(4), (11). O10's text spells out the split: 84% from the extension's 21 lines (85.8% over all 24), 95.6% counting each forgery, §15.228 (11). The overseer's other points match the draft already: REVIEW criteria wait for C1/C2, and O3, O4, O11, O14, O15 and O16 are open. No commit made; the queue entry still points at 101b486, the current head.
+Rule 15e clarification (D14) read and noted.
 
 Jobs: none.
 Core-h: 0 this step; 0 since the item began.
-Files: no quota reading taken (no data written; backups in archive/, diffs in logs/policy27/).
+Files: no quota reading taken.
 
 SETTLED:
-- #27: REV. 3 draft with the provisional choices marked; still unsigned, waiting on C1-C4 (15.233 (4), 101b486; queued docs only, after mcseed and p14a-calib).
+- #27: REV. 3 draft unchanged at 101b486 (15.233 (4)); queued docs only, after mcseed and p14a-calib.
 
 NEEDS YOU:
-1. The REVIEW criteria list (needed by provisional O8) must be written before signing. Recommendation: draft it here once C1 and C2 have defined what their outputs flag, so it can cite them.
-2. O3, O4, O11, O14, O15, O16 stay open until signing, as instructed. Recommendation: none until C1-C4 report.
+1. (k) catch-rate wording: keep Alistair's 84-95.6% (as drafted, with both lattice-line lower ends spelled out in O10) or change it to 85.8-95.6%? Recommendation: keep 84-95.6%. It is the conservative end, it is in §15.228 (11), and Alistair chose it. Only Alistair can change it.
+2. REVIEW criteria (O8): still waiting for C1 and C2 (agreed).
 
 NEXT:
-- Once #19 freezes N: recompute B5's R and the 15.160 (3) known-pulsar check by the existing rules, as a summary addendum (O5, O12).
-- After C1-C4 are in: REV. 4 for signing, with the REVIEW criteria and the remaining open items.
+- On Alistair's answer, edit the one table cell if he asks, commit, and move the queue entry. Otherwise nothing until #19 freezes N (O5, O12) or C1-C4 report.
