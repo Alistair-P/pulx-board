@@ -3,16 +3,13 @@
 Updated: 26 Nov 2026 17:35, by the overseer
 
 ## Needs Alistair
-1. **#46: adopt (b), or keep v1.0's gap above 120 ks?** (Raised 26 Nov by #44.) By its
-   pre-registered rule, (b) (M capped at 4) beats (a) and (c). But (b) doesn't beat having no
-   stacked arm above 120 ks. Its false-alarm share raises Z1/Z3 by 1.7 in Z², which costs about as
-   many coherent detections as the arm adds. The difference is consistent with zero, and the
-   M = 5 advantage under spin wander didn't appear.
-   - Adopt (b): 800 nulls (40–60 core-h, double if the transfer check fails), a change to manifest
-     modules, a new golden slot (0791010101), all before #13.
-   - Keep the gap: no code and no nulls. #46 closes on this measurement.
-   - Overseer's view: keep the gap, unless the numbers show a real gain. #44 has been asked to post
-     the simulation numbers (D14), so this can be checked before you decide.
+1. **#46: adopt (b), or keep v1.0's gap above 120 ks?** (#44, 26 Nov; numbers in §15.230 (10)(e).)
+   On B's 164 simulated draws above 120 ks, (b) minus no arm is −0.012 in detection fraction
+   (95% −0.043 to +0.018, McNemar p = 0.69). (b) finds 2 draws that no arm misses, and misses 4
+   that no arm finds. Those 4 are coherent Z1 detections lost to (b)'s +1.71 rise in the Z1
+   threshold (Z3 rises only 0.27). Wander draws are identical under every option, and (a) and (c)
+   do worse. Adopting (b) costs 40–60 core-h of nulls, a manifest code change and a new golden
+   slot, all before #13. Overseer's view: keep the gap.
 2. **#44 batch 2** (116 draws, about 270–280 core-h billed, cap 448; above the 135–215 first
    approved). It isn't needed for v1.0. Overseer's view: defer it until after the tag, unless you
    want B for the methods paper.
@@ -20,9 +17,9 @@ Updated: 26 Nov 2026 17:35, by the overseer
    #19 needs it. #11's session wrote the multi-target code. Overseer's view: yes.
 4. **Retire merged worktrees.** wt_mcseed now, with wt_retire.sh. Keep wt_mt while #11's session
    is in use, because its conversation was started there. Overseer's view: yes.
-5. **#41: delete archive/q41fix/ (4 folders) after quota41b merges.** These are the old project
-   tar and sums pairs, superseded by the rebuilt packs, and their links no longer resolve.
-   Overseer's view: yes, once #41 confirms each superseding pack's checksum.
+5. **#41: delete archive/q41fix/ (4 folders, 8 files) after quota41b merges.** These are the old
+   project tar and sums pairs. #41 has checked that all four are superseded by rebuilt packs with
+   matching checksums, and that every old link is now a real file. Overseer's view: yes.
 6. **Three CLAUDE.md edits.** (a) #13's cert13 branch changes the "Known gaps" line. (b) The
    stale line saying the golden check doesn't cover the orbit arm (#12 is settled). (c) #42: the
    params.conf note cites summary 7.10 for the timing radius, but it is 7.11. Overseer's view: yes
@@ -39,7 +36,7 @@ Updated: 26 Nov 2026 17:35, by the overseer
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
 
 ## For overseer
-- #44's simulation numbers for #46, when posted.
+- #44's answer on what B decides (for Needs Alistair item 2).
 
 ## Items
 
