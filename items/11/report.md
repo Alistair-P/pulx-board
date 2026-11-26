@@ -1,28 +1,25 @@
-seq: 0
-state: needs-you
-date: 2026-11-26T17:09Z
+seq: 1
+state: done
+date: 2026-11-26T17:25Z
 host: login7c
 ---
-#11 (B4, multi-target P30/P32, and mcseed): rebuilt state after a terminal loss; both branches are on main, nothing running, two decisions for you.
+#11: carried out instruction seq 1 (D8): marked #11 settled in the checklist; worktrees left in place.
 
-STATE. multitarget on main (1538aa3, 15.217 (14) = (merge 1)). mcseed on main (27ba948, 15.217 (merge 2), 25 Nov; suite 737/0/3; the merge session let the golden run on 5fc2504 (15.217 (12)) stand, since the later commits were docs only). Worktrees wt_mt (multitarget, ec45668) and wt_mcseed (5bb81dd) are clean and fully merged (0 ahead of main). Checklist line #11 updated. The only background task cut off by the terminal loss was a wait-for-suite poller from 20 Nov whose suite had already finished; nothing to rerun. Still open in #11: [0830191601:ULX8] stays PENDING; its regions are at #18.
+- Checklist line #11 is now [x] settled: multi-target support on main as multitarget 1538aa3 (15.217 (14) = (merge 1)) and mcseed 27ba948 (15.217 (12), (merge 2)); suite 737/0/3; golden 19/19 + orbit 4/4 identical to the previous runs; ULX-8 (0830191601) goes to #18 (D8).
+- wt_mt and wt_mcseed are NOT removed (D8: deleting worktrees is Alistair's decision; wt_mt hosts this session). Both are clean and 0 commits ahead of main.
+- Nothing started on #18; waiting for Alistair's decision on whether this session takes it.
+- Rule 15e clarification (D14) noted.
 
-YOUR 25 NOV INSTRUCTIONS (DECISIONS.md "Sent 25 Nov"). None of S1-S7 is addressed to #11, and none reached this terminal; this session had no 25 Nov message. Where each touching #11 stands:
-- S1 (merge): mcseed first in the order -- DONE by the merge session (27ba948, record 2513b12). This confirms S1's mcseed step reached the merge session.
-- S4 (#13): the advisory block for mcseed's seed rule and the weighted_search / aperture_energy_scan hashes belongs to #13; not done here, and I can't see whether it is done.
-- S2, S3, S5, S6, S7: not #11's; no action here.
-Board: no instruction for 11 yet (board.sh show 11). STATUS.md's row "11 | MC seeding (mcseed), then #18 | waiting" is stale: mcseed is on main. I have not been told to start #18 work and have not started it.
-
-Jobs: none (last were 12379597/8/9, 20 Nov, completed).
-Core-h: 0 this step; about 48.5 billed since #11 began (golden 11.5, pilot 5.5, identity 2 x 9.5, mcseed golden 12.5; 15.217 (8)-(12)), plus the merge session's 12.7 for its golden on the merged multitarget tree.
-Files: lfs quota 145,712 (26 Nov).
+Jobs: none.
+Core-h: 0 this step; about 48.5 billed since #11 began (15.217 (8)-(12)).
+Files: not re-read (145,712 on 26 Nov, earlier today).
 
 SETTLED:
-- #11: multitarget (1538aa3) and mcseed (27ba948) are both on main; suite 737/0/3; 15.217 (12)-(14) and (merge 2). Checklist line updated.
+- #11: settled per D8; checklist line updated (26 Nov). Record: 15.217 (12)-(14), (merge 2); main commits 1538aa3, 27ba948.
 
 NEEDS YOU:
-1. Should #11 be marked settled, with ULX-8 left entirely to #18? Recommend yes: the multi-target code and both checks are on main.
-2. Should the merged worktrees wt_mt and wt_mcseed be removed (./link_data.sh --remove, then git worktree remove)? Recommend yes; it frees their links from the file quota. (Deleting worktrees is Alistair-only under POLICY.md.)
+1. Should wt_mt and wt_mcseed be removed once this session is finished with them? Recommend yes (./link_data.sh --remove, then git worktree remove); both are fully merged.
+2. Should this session take on #18 (ULX-8 regions)? Recommend yes if #18 has no session, since this one knows the [obsid:tag] code; otherwise no preference.
 
 NEXT:
-- On yes to both: mark #11 settled, then remove the two worktrees after checking each is clean and fully merged. Nothing started.
+- Wait on the board. On a #18 assignment: read its checklist line and plan, then report before changing anything. Nothing started.
