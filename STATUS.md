@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 26 Nov 2026 18:00, by the overseer
+Updated: 26 Nov 2026 18:05, by the overseer (18:00 wake)
 
 ## Needs Alistair
 1. **#46: adopt (b), or keep v1.0's gap above 120 ks?** (#44, 26 Nov; numbers in §15.230 (10)(e).)
@@ -26,14 +26,14 @@ Updated: 26 Nov 2026 18:00, by the overseer
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
-| merge | merge session | root tree | high | active | quota41b merged (818b683); now rednoise (D18); then D22–D24 | 26 Nov 17:29 |
+| merge | merge session | root tree | high | active | rednoise merged (1399fad, suite 755/0/3); now intake15; D22–D24 with next merge | 26 Nov 17:57 |
 | 11 | MC seeding, multi-target; now #18 | wt_mt | medium | active | #18 scoping report (D19); retire wt_mcseed (D20) | 26 Nov 17:25 |
 | 13 | certificate | wt_cert13 | high | active | build_cert.py v1.0 draft (D15); waits for a95cut and #46 | 26 Nov 17:10 |
 | 15 | survey intake | wt_intake15 | medium | running | downloads 3/14; job 12436014 (26 ObsIDs), 38–49 core-h | 26 Nov 17:50 |
 | 25 | artefact battery rev3 | root tree | medium | waiting | p14a-calib (5f9a009) queued; needs a trial merge | 26 Nov 17:11 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | REV. 3 at 101b486, unchanged (D16); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | running | golden jobs 12436028/29/30 (D11) | 26 Nov 17:51 |
-| 38 | red noise | wt_rednoise | high | waiting | queued at 8828681; holds until rednoise is on main | 26 Nov 17:06 |
+| 38 | red noise | wt_rednoise | high | active | rebuilding production red-noise records (D12, 38.2 sent 18:05) | 26 Nov 17:06 |
 | 41 | quota and packing | root tree | medium | waiting | quota41b on main (818b683); deletion waits for Alistair | 26 Nov 17:12 |
 | 42 | methods paper (#43, #45) | root tree | medium | active | "Weighted search statistic" done (4ff1e7c, 5 of 8); writing "The blind survey" | 26 Nov 17:30 |
 | 44 | long-period part (#44, #46) | wt_longpext | medium | waiting | #46 scored; batch-2 answer posted; batch 2 held | 26 Nov 17:30 |
@@ -80,11 +80,10 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     injections within ±20% of 0.25); price it first, and ask if it is above 50 core-h billed.
     Report the list changes before rewriting the live list file."
 - **38**:
-  - `38.1`: hold idle reports while rednoise is queued.
-  - `38.2`: trigger: a merge report says rednoise is on main. Send: "rednoise is on main (D12).
-    Rebuild the production red-noise records from main (a50.py --build-red --all, about 3 core-h
-    billed, as priced from job 12379547). Record the output folder and the hashes, and post your
-    report. Don't rerun a50 or --list; #37 does that next."
+  - `38.2`: sent 18:05 (rednoise is on main, 1399fad).
+  - `38.3`: while the rebuild job runs, hold. When it reports the records rebuilt, with folder and
+    hashes, hold. That report is one of 37.3's triggers.
+  - A failed rebuild, or a cost above 10 core-h: for overseer.
 - **41**:
   - `41.1`: hold idle reports while quota41b is queued.
   - `41.2`: trigger: a merge report says quota41b is on main. If DECISIONS.md records Alistair

@@ -51,8 +51,9 @@ Keep this short. Remove items once they're settled.
   intake15, p14a-calib 5f9a009) and add rule 15 to STANDING_RULES with the RULE15.md text.
 - File count 144,058–146,194 on 26 Nov, down from about 162,000 on 25 Nov. Watch it as #15's
   Slurm job runs (about 2,600 files per 32 ObsIDs in batch 1).
-- #46: #44 is posting the simulation numbers. Check whether (b) beats no stacked arm above
-  120 ks by more than its uncertainty, then update Needs Alistair item 1.
+- #46: numbers in (b − no arm = −0.012, 95% −0.043 to +0.018). Open point: which Z1/Z3 table
+  v1.0 uses above 120 ks today (asked #44 at 17:58). If it reserves the stacked arm's share, then
+  "keep the gap" scores like (a)/(c), and switching to the no-arm table is the best option.
 - The dashboard page: build it once the first reports are in.
 
 - Lesson (26 Nov): check POLICY.md before instructing. D13 changed #27's policy content, which is
@@ -70,6 +71,9 @@ Keep this short. Remove items once they're settled.
 - #23 and #24 wait for the tag.
 
 ### Last wake
+- 26 Nov 18:00 (scheduled). Heartbeat. Dispatcher's 17:45 run checked: merge.1 and 42.1 correct,
+  41.2 rightly held until D21. rednoise merged (1399fad), so 38.2 sent, rebuild only (D12),
+  overriding the merge record's "then a50 and --list". Nothing new for Alistair. Next wake 21:00.
 - 26 Nov 17:30, with Alistair present. First pass: 10 board reports read (#38 earlier). D8–D15
   recorded. Instructions sent to 11, 13, 15, 27, 37, 41, 42 and 44; 25 held. Rule 15e fixed (it
   had stopped #44 posting simulation numbers).
