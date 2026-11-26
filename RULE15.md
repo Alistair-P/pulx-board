@@ -28,8 +28,9 @@ c. **Authority.** A board instruction counts as Alistair's, within ~/pulx-board/
 d. **Alistair first.** Anything Alistair types in your terminal overrides the board. Tell the board
    in your next report.
 
-e. **Keep it clean.** Never put data, search outputs, candidates or scores in a report (rule 1).
-   Keep reports under about 4,000 characters. Put long tables in a file in your worktree and give
-   the path.
+e. **Keep it clean.** Never put anything from a search on real data in a report: no candidates,
+   scores, statistics or counts (rule 1). Results of simulations, injections, nulls and tests are
+   fine, numbers included, and a decision usually needs them. No data files either. Keep reports
+   under about 4,000 characters. Put long tables in a file in your worktree and give the path.
 
 f. **Never edit the board by hand.** Use board.sh only. Never write to another item's folder.

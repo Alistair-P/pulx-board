@@ -1,7 +1,7 @@
 # PULX brief
 
 What the dispatcher and the overseer need to know. The overseer keeps this current.
-Last full revision: 26 Nov 2026.
+Last full revision: 26 Nov 2026 (first board reports read 17:20).
 
 ## The project
 - Alistair's blind search for pulsations in ultraluminous X-ray sources, using archival XMM-Newton
@@ -36,8 +36,8 @@ Last full revision: 26 Nov 2026.
   of 1.517 (n = 1) and 1.828 (n = 8).
 - Artefact battery rev3 (#25) = rev2, plus (d) rebuilt as a halves amplitude test, plus the (k)
   lattice check. Provisional policy: a (d) failure sends a candidate to review, and a (k) failure
-  vetoes it. The (k) catch rate is 84–95.6%, depending on whether lattice lines or forgeries are
-  counted.
+  vetoes it. The (k) catch rate is 85.8–95.6% at 95% confidence: 85.8% counting the 24 distinct
+  lattice lines, 95.6% counting the 82 forgeries (§15.228 (11); D13).
 - MC seeding (mcseed, #11): seeds are crc32(obsid|tag[|offset]). sigma_global is advisory only,
   because MC resolution is 5e−5 against the 5e−8 needed.
 - Golden checks compare against ADOPTED.sha256 and MANIFEST. Only Alistair approves ADOPTED lines.
@@ -81,6 +81,15 @@ Last full revision: 26 Nov 2026.
 - A pilot must sample every band and span bin it prices. A 4-draw pilot under-priced #44's batch 1
   by 1.8 times (2.3 times in the low band).
 - #41 refuses to pack any folder a link points into. Packing once broke 1,264 P13 links.
+
+## Where things stand (26 Nov, from the first board reports)
+- On main: multitarget (1538aa3), mcseed (27ba948; record 2513b12), a95 (b20499b).
+- Queued: rednoise (#38, 8828681, merged-tree suite 748/0/3), quota41b, intake15, p14a-calib,
+  longpext, methods42, policy27 (docs only). a95cut is NOT READY until its golden check passes.
+- #46 is scored: FIRM (b) among the arms, but (b) doesn't beat having no stacked arm above
+  120 ks. Alistair decides (b) or keep the gap. Batch 1 is complete: 164/164, 552.6 core-h.
+- #15: batch 1 stopped after 7 of 32 prepped. The rest goes to Slurm (D10).
+- File count 144,000–146,000.
 
 ## Path to the v1.0 tag (as of 25 Nov)
 1. Merge queue, in order: mcseed; quota41b at dfa0244; intake15; p14a-calib at 5f9a009; longpext

@@ -5,7 +5,8 @@ z_sq_weighting repo. This repo holds messages and status only.
 
 ## What must never be here
 - Data, event files, ODFs, or anything from /cosma5.
-- Search outputs, candidate lists, scores or statistics from real searches (blinding, rule 1).
+- Anything from a search on real data: candidates, scores, statistics or counts (blinding, rule 1).
+  Results of simulations, injections, nulls and tests are fine, with their numbers.
 - Secrets, keys, tokens or personal details.
 A report that would need any of these points to a file path on COSMA instead.
 

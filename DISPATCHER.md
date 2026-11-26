@@ -28,6 +28,11 @@ Then do exactly one of these.
   "For overseer" in STATUS.md. Examples are a NEEDS YOU item the plan doesn't answer, a surprise,
   a failure, a quote overrun, or a report that contradicts the plan.
 
+**Steps triggered by another item.** Some plan steps start with a trigger that names another
+item, for example "trigger: merge reports rednoise is on main". After reading each report, look
+through every item's plan for steps that report triggers, and send those too. Most merge reports
+trigger something.
+
 Never send a step whose condition isn't clearly met. Never change a plan.
 
 ## 3. Write it down
