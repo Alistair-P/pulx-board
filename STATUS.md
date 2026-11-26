@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 26 Nov 2026 18:05, by the overseer (18:00 wake)
+Updated: 26 Nov 2026 18:40, by the overseer
 
 ## Needs Alistair
 1. **B (#44 batch 2)**: decide whether to switch on the long-period orbit part for spans above
@@ -28,7 +28,7 @@ Updated: 26 Nov 2026 18:05, by the overseer (18:00 wake)
 | merge | merge session | root tree | high | active | intake15 merged (6b0b68f, suite 765/0/3); now p14a-calib; D22/D24 wait for Alistair's terminal line | 26 Nov 18:25 |
 | 11 | #18 (multi-target), was #11 | wt_mt | medium | active | #18 step 1, target table (D25); wt_mcseed retired | 26 Nov 18:02 |
 | 13 | certificate | wt_cert13 | high | waiting | v1.0 draft builder done (baa7e20, suite 751/0/5); waits for a95cut and #46 | 26 Nov 18:18 |
-| 15 | survey intake | wt_intake15 | medium | running | downloads 3/14; job 12436014 (26 ObsIDs), 38–49 core-h | 26 Nov 17:50 |
+| 15 | survey intake | wt_intake15 | medium | running | job 12436014: 26/26 ok, 13.2 core-h; downloads 11/14; second array next | 26 Nov 18:30 |
 | 25 | artefact battery rev3 | root tree | medium | waiting | p14a-calib (5f9a009) queued; needs a trial merge | 26 Nov 17:11 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | REV. 3 at 101b486, unchanged (D16); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | running | golden jobs 12436028/29/30 (D11) | 26 Nov 17:51 |
