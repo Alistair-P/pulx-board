@@ -47,18 +47,18 @@ waits until the turn ends.
 Keep this short. Remove items once they're settled.
 
 ### Open threads
-- First round: every session posts a full state report. Then reconcile each with the
-  instructions of 25 Nov (DECISIONS.md, "Sent 25 Nov") and write each item's first plan.
-- The file quota rose by about 29,000 between about 20 and 25 Nov. Alistair was asked to run
-  filemap.sh v2 twice and check tmp/. Find the cause before #15's batch 2.
-- Confirm whether the §15.133 (C) instruction reached #13.
+- merge hasn't posted a board report. When it does, check S1 (quota41b at dfa0244, the order,
+  intake15, p14a-calib 5f9a009) and add rule 15 to STANDING_RULES with the RULE15.md text.
+- File count 144,058–146,194 on 26 Nov, down from about 162,000 on 25 Nov. Watch it as #15's
+  Slurm job runs (about 2,600 files per 32 ObsIDs in batch 1).
+- #46: #44 is posting the simulation numbers. Check whether (b) beats no stacked arm above
+  120 ks by more than its uncertainty, then update Needs Alistair item 1.
 - The dashboard page: build it once the first reports are in.
 
 ### Watch list
-- #44: job 12424696 (batch 1, last 25 draws). When it ends, check all 164 records and the billed
-  total. The quote was about 110 core-h, cap 200. Then #46 is scored.
-- #15: the batch 1 prep run on the login node (10–15 h from 25 Nov 16:33); the 14 XSA downloads.
-- merge: mcseed should land first. When it does, #37 runs a95cut's golden check.
+- #37: a95cut golden check (D11). Expected bit-identical, about 11.5 core-h.
+- #15: the 14 downloads, then the first Slurm job (39 ObsIDs, D10).
+- Merges: rednoise, quota41b, p14a-calib and the rest; each one triggers plan steps.
 
 ### Links between items
 - #37's list rerun waits for #38 to merge.
@@ -67,4 +67,6 @@ Keep this short. Remove items once they're settled.
 - #23 and #24 wait for the tag.
 
 ### Last wake
-- (none yet)
+- 26 Nov 17:30, with Alistair present. First pass: 10 board reports read (#38 earlier). D8–D15
+  recorded. Instructions sent to 11, 13, 15, 27, 37, 41, 42 and 44; 25 held. Rule 15e fixed (it
+  had stopped #44 posting simulation numbers).

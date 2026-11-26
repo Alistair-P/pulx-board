@@ -33,7 +33,7 @@ Updated: 26 Nov 2026 17:30, by the overseer (first pass over the board reports)
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
 
 ## For overseer
-- merge and #42 haven't posted their first board reports.
+- merge hasn't posted its first board report.
 - #44's simulation numbers for #46, when posted.
 
 ## Items
@@ -49,7 +49,7 @@ Updated: 26 Nov 2026 17:30, by the overseer (first pass over the board reports)
 | 37 | a95 cut | root tree | high | active | a95cut golden check (D11) | 26 Nov 17:12 |
 | 38 | red noise | wt_rednoise | high | waiting | queued at 8828681; holds until rednoise is on main | 26 Nov 17:06 |
 | 41 | quota and packing | root tree | medium | waiting | quota41b queued at dfa0244 | 26 Nov 17:12 |
-| 42 | methods paper (#43, #45) | root tree | medium | ? | | not on the board yet |
+| 42 | methods paper (#43, #45) | root tree | medium | active | writing "Per-photon source probability" (3 of 8 done) | 26 Nov 17:20 |
 | 44 | long-period part (#44, #46) | wt_longpext | medium | waiting | #46 scored; numbers requested; batch 2 held | 26 Nov 17:15 |
 | 47 | β study | - | high | not started | no conversation found | - |
 
@@ -101,7 +101,12 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     approving the archive/q41fix/ deletion, send: "quota41b is on main. Check each folder in
     archive/q41fix/ is superseded by a rebuilt pack with a matching checksum, then delete it,
     record it, and report." If not, hold.
-- **42**: `42.0`: for overseer (first board report).
+- **42**:
+  - `42.1`: when it reports a subsection committed and the queue entry updated, with no new NEEDS YOU,
+    send the next one from this list, in order: "Weighted search statistic", "The blind survey",
+    "Sensitivity", "Validation". Say: "Go ahead with <subsection>, on methods42, docs only. Commit,
+    update the queue entry, update your checklist line, post your report and wait."
+  - When all five are written: for overseer.
 - **44**:
   - `44.1`: when it posts the #46 numbers, for overseer.
   - `44.2`: hold anything else until Alistair decides #46 and batch 2.
