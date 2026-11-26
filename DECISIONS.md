@@ -80,6 +80,13 @@ The next overseer wake acts on them.
 - **D24** (26 Nov, Alistair): the merge session adds rule 15 to docs/STANDING_RULES.md with its
   next merge, using RULE15.md's text from "15." to the end, as it now stands.
 
+- **D25** (26 Nov, overseer): #18 works in wt_mt, on a new branch targets18 off main. That saves
+  287 new links, and the session's conversation lives there. Its step 1, the target table (about
+  1 h on the login node, no compute), starts now.
+- **D26** (26 Nov, overseer): #18's 2-tag pilot (about 6–10 core-h) is approved, once its tooling
+  is queued and Alistair has answered the tag QA and analysis-only questions. Full runs (160–490
+  core-h over all batches) need Alistair's approval per batch.
+
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and
   fast-forward. The order is mcseed, then quota41b, intake15, p14a-calib (5f9a009), longpext

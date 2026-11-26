@@ -27,8 +27,11 @@ Last full revision: 26 Nov 2026 (first board reports read 17:20).
 - The floor configuration applies from 17 ks; below that it is pre-floor. There are no validated
   thresholds below 17 ks. So the 94 shorter targets are deferred to a later stage with 15 and
   10 ks nulls, not dropped.
-- Thresholds come from the RF tail model, with a union bound (δu = 2 ln R) and allocation R0 + 1.4,
-  R1 + 1.1. The Z1 common factor R = 1.231 (+0.44 in Z²) is adopted (z1-adopt).
+- Thresholds come from the RF tail model, with a union bound (δu = 2 ln R). R0 (§15.125) splits the
+  non-orbit α three ways (Z1 0.004275, stacked 0.004275, Z3 0.00095), with a +1.4 margin. R1
+  (§15.123) drops the stacked arm and gives its share to Z1 (Z1 0.00855, Z3 0.00095), with a +1.1
+  margin. R1 applies wherever M is outside 2–4, including above 120 ks. Going from R1 to R0
+  raises Z1 by 1.71 and Z3 by 0.27. The Z1 common factor R = 1.231 (+0.44 in Z²) is adopted (z1-adopt).
 - The inclusion cut is a95 < 0.25 (#37). a95 is the 95% point of the same detection curve as a50.
   The k correction is 1.014 with 12 η injections and 1.004 with 48. An a95 within ±20% of 0.25
   gets 48 injections. The on-disk list goes from 84 to 73 under this cut.

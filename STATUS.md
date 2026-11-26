@@ -3,31 +3,38 @@
 Updated: 26 Nov 2026 18:05, by the overseer (18:00 wake)
 
 ## Needs Alistair
-1. **#46: adopt (b), or keep v1.0's gap above 120 ks?** (#44, 26 Nov; numbers in §15.230 (10)(e).)
-   On B's 164 simulated draws above 120 ks, (b) minus no arm is −0.012 in detection fraction
-   (95% −0.043 to +0.018, McNemar p = 0.69). (b) finds 2 draws that no arm misses, and misses 4
-   that no arm finds. Those 4 are coherent Z1 detections lost to (b)'s +1.71 rise in the Z1
-   threshold (Z3 rises only 0.27). Wander draws are identical under every option, and (a) and (c)
-   do worse. Adopting (b) costs 40–60 core-h of nulls, a manifest code change and a new golden
-   slot, all before #13. Overseer's view: keep the gap.
-2. **#44 batch 2** (116 draws, about 270–280 core-h billed, cap 448; above the 135–215 first
-   approved). It isn't needed for v1.0. Overseer's view: defer it until after the tag, unless you
-   want B for the methods paper.
-3. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
-4. **#30**: the A1 candidate details. (Raised before 25 Nov.)
-5. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
+1. **#46: adopt (b), or keep v1.0's gap above 120 ks?** (#44, 26 Nov; §15.230 (10)(e)–(f).)
+   v1.0 already uses R1 above 120 ks: no stacked arm, with its α share given to Z1. So keeping the
+   gap is v1.0 as it is, with no code, nulls or golden. Any stacked arm there moves those rows to
+   R0 (Z1 +1.71). That costs 4 coherent detections in the 164 draws, and the best arm, (b), wins
+   back 2 (net −0.012, 95% −0.043 to +0.018). Overseer's view: keep the gap. A 120 ks window
+   (Alistair's (d)) would pay the same R0 cost, with fewer photons than (b).
+2. **B (#44 batch 2)**: decide whether to switch on the long-period orbit part for spans above
+   80 ks, on one 80 ks window each (134 targets on 80 ObsIDs). It's a post-tag stage by design and
+   can't change v1.0. Batch 2 costs about 270–280 core-h billed (cap 448). A GO would add 120–390
+   core-h of survey compute after the tag. C1, the same idea at 40–57.5 ks, found no gain.
+   Options: run now, defer to after the tag (wt_longpext frozen until then), or drop. Overseer's
+   view: defer, or let #44 propose a futility check on batch 1 first.
+3. **#18: do MIN_COUNTS = 1000 and HOLD_SOURCES apply to extra targets ([obsid:tag]) as to bare
+   targets?** (#11, 26 Nov.) Overseer's view: yes, the same QA for every target.
+4. **#18: should extra targets stop after run_analysis (a new analysis-only switch), so that no
+   production-search output exists for them before the v1.0 certificate?** Today a tagged
+   preprocess.sh also runs both production searches, and the P30 pilot did. Overseer's view: yes.
+5. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
+6. **#30**: the A1 candidate details. (Raised before 25 Nov.)
+7. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
 - Later: #13 will ask you to approve survey_pipeline.py's ADOPTED line after cert13's golden check.
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
 
 ## For overseer
-- #44: which Z1/Z3 table v1.0 uses above 120 ks today (asked 18:00), for Needs Alistair item 1.
+- #44's answers on (d), the Doppler slide and why the long-period part stops at 80 ks (asked 18:10).
 
 ## Items
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
 | merge | merge session | root tree | high | active | rednoise merged (1399fad, suite 755/0/3); now intake15; D22–D24 with next merge | 26 Nov 17:57 |
-| 11 | MC seeding, multi-target; now #18 | wt_mt | medium | active | #18 scoping report (D19); retire wt_mcseed (D20) | 26 Nov 17:25 |
+| 11 | #18 (multi-target), was #11 | wt_mt | medium | active | #18 step 1, target table (D25); wt_mcseed retired | 26 Nov 18:02 |
 | 13 | certificate | wt_cert13 | high | active | build_cert.py v1.0 draft (D15); waits for a95cut and #46 | 26 Nov 17:10 |
 | 15 | survey intake | wt_intake15 | medium | running | downloads 3/14; job 12436014 (26 ObsIDs), 38–49 core-h | 26 Nov 17:50 |
 | 25 | artefact battery rev3 | root tree | medium | waiting | p14a-calib (5f9a009) queued; needs a trial merge | 26 Nov 17:11 |
@@ -47,9 +54,9 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
   - `merge.1`: after each merge it reports, send: "Carry on with the next entry in the D18 order."
     Also send the plan steps that merge triggers for other items.
   - Any failed suite, conflict it can't resolve, or golden difference: for overseer.
-- **11**:
-  - `11.1`: when it reports wt_mcseed retired, hold.
-  - `11.2`: its #18 scoping report: for overseer.
+- **11** (now #18):
+  - `11.1`: when it reports the target table done, with no new NEEDS YOU, hold until Alistair has
+    answered Needs Alistair items 3 and 4. Then for overseer.
 - **13**:
   - `13.1`: when it reports the build_cert.py draft committed, with no new NEEDS YOU, hold. It
     waits for a95cut and #46.
@@ -86,16 +93,15 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
   - A failed rebuild, or a cost above 10 core-h: for overseer.
 - **41**:
   - `41.1`: hold idle reports while quota41b is queued.
-  - `41.2`: trigger: a merge report says quota41b is on main. If DECISIONS.md records Alistair
-    approving the archive/q41fix/ deletion, send: "quota41b is on main. Check each folder in
-    archive/q41fix/ is superseded by a rebuilt pack with a matching checksum, then delete it,
-    record it, and report." If not, hold.
+  - `41.2`: done (D21, 18:05). #41 is settled once its addendum 26cca25 merges; hold its reports.
 - **42**:
   - `42.1`: when it reports a subsection committed and the queue entry updated, with no new NEEDS YOU,
     send the next one from this list, in order: "Weighted search statistic", "The blind survey",
     "Sensitivity", "Validation". Say: "Go ahead with <subsection>, on methods42, docs only. Commit,
     update the queue entry, update your checklist line, post your report and wait."
-  - When all five are written: for overseer.
+  - When "Validation" is written: for overseer.
+  - `42.2`: trigger: a merge report says a95cut is on main. Send: "a95cut is on main. Fill in the
+    survey-list cut in 'The blind survey' (a95 < 0.25), commit, update the queue entry and report."
 - **44**:
   - `44.1`: its answer on the Z1/Z3 table above 120 ks: for overseer.
   - `44.2`: hold anything else until Alistair decides #46 and batch 2. wt_longpext's code stays
