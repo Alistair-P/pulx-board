@@ -1,31 +1,42 @@
-seq: 3
+seq: 4
 state: needs-you
-date: 2026-11-26T18:01Z
+date: 2026-11-26T18:12Z
 host: login7c
 ---
-Doing: #46, answering the overseer's table question (seq 3) from the code and the record. No new runs. Holding.
+Doing: #44/#46, answering overseer seq 4 (which replaces seq 3) from the code and the record. No runs. Holding.
 
-1. v1.0 today uses the NO-ARM table above 120 ks.
-   - In octave_thresholds.applied_table (main's 20857320, the same as 1cbad1c), R1 applies whenever the stacked arm cannot be judged: r1 = (ALLOCATION == "R1") or M outside RF_M_STACKED 2-4. Above 120 ks M = 5, so those rows are R1.
-   - I checked this by calling it: the 122 and 136 ks rows report allocation R1, margin 1.1.
-   - B's draws took their coherent thresholds from survey_pipeline.thresholds_for(T), which is that same table. So my no-arm column IS v1.0 as it stands, and keep-the-gap scores exactly as that column. It does not score like (b) without (b)'s stacked-only draws.
-2. Nothing is needed to switch. Keep-the-gap means no code, no nulls and no golden. One optional cosmetic edit: the UNUSABLE reason text for M 5 says "MEASURE it (C3)"; under keep-the-gap it could say "no stacked arm above 120 ks (#46)". That is a manifest-module edit, not needed, and only offered.
-3. R0 and R1:
-   - R0 (15.125): the non-orbit alpha is split into coherent Z1 0.004275, stacked 0.004275 and Z3 0.00095, with a signed margin of +1.4.
-   - R1 (15.123): the stacked arm is dropped and its share goes to Z1 (Z1 0.00855, Z3 0.00095), with a signed margin of +1.1.
-   - So R1 -> R0 is Z1 +1.71 (share halved, plus margin +0.3) and Z3 +0.27 (margin only).
+1. TABLE ABOVE 120 ks (as seq 3; 15.230 (10)(f)): v1.0 today uses the NO-ARM table there. octave_thresholds.applied_table takes R1 whenever M is outside RF_M_STACKED 2-4, and above 120 ks M = 5. I checked by calling it: the 122 and 136 ks rows report allocation R1, margin 1.1. B's draws used that table, so my no-arm column is v1.0 as it stands. Keep-the-gap needs no code, no nulls and no golden.
+   - R0 (15.125): non-orbit alpha split Z1 0.004275 / stacked 0.004275 / Z3 0.00095, signed margin +1.4.
+   - R1 (15.123): stacked arm dropped, its share to Z1 (Z1 0.00855 / Z3 0.00095), margin +1.1.
+   - So R1 -> R0 is Z1 +1.71 and Z3 +0.27.
 
-Recorded: summary 15.230 (10)(f), longpext 3696fd4. That is a summary-only commit; the code stays frozen at 1cbad1c and nothing from main is merged in.
+2. OPTION (d): M = 4 on one 120 ks window (first or last 120 ks, chosen from the flare monitor before any search). 15.230 (10)(g), priced only, post-hoc if run.
+   - Thresholds: yes, the existing ones. M 4 at 120 ks with 30 ks segments is inside RF_M_STACKED and was validated there (15.97 Add. S, on the conservative edge), so no new stacked nulls. The window choice is phase-blind, so it adds no trials.
+   - Caveat as for (a): the union of a windowed stacked arm with full-span Z1 / Z3 has an unmeasured K_eff. Conservative K meanwhile; an optional union check costs 20-40 core-h.
+   - Z1 cost: under R0 the SAME +1.71 (Z3 +0.27) as (a)-(c). As an add-on beside R1 instead, +0.71 on every arm.
+   - Code (manifest modules): the window rule in survey_pipeline.run_one (recorded in the JSON), the stacked row at 120 ks in octave_thresholds, and the same window in survey_sensitivity. Golden: the real slots are unchanged; add the slot above 120 ks (0791010101).
+   - Expected: about (b) or a little less. It keeps 0.88-0.99 of the photons, with 30 ks segments against (b)'s 30-34. To beat no-arm under R0 it would need more than 4 stacked-only detections; (b) had 2.
+   - Price to score it on the 164 draws: the draws regenerate from their seeds, and only stack_slide on [0, 120 ks] is new. On these draws (b)'s stacked arm measured 245 s in total, so about 10-15 min on the login node, < 0.3 core-h.
+
+3. DOPPLER SLIDE (pulx_recovery.stack_slide, 15.45): each segment's Z^2 spectrum, already maximised over fdot within that segment, is replaced by a rolling maximum over +-v/c x f_top (v/c = 1.84e-3: a sin i 25.3 lt-s at P_orb 1 d, 15.39). The M results are summed and maximised once.
+   - So each segment's peak may sit anywhere within that window of a common frequency, independently. Any drift or wander up to +-v/c is tolerated, but nothing tracks a continuous drift path between segments.
+   - There is NO orbit correction: no demodulation and no orbit templates. Orbits are the orbit arm's job (bank, 16 ks segments).
+
+4. WHY THE LONG PART STOPS AT 80 ks (15.225 (1); 15.171 (3), 15.173 (5), 15.178): calibration plus cost.
+   - Stage (iii) ran long-part nulls only at M 4 (64 ks) and M 5 (80 ks), and thresholds are looked up by M. 80 ks is the longest span with measured nulls.
+   - Spans above 80 ks were left to the short bank for cost: at fixed f the long part grows as ~T^3.7 (templates T^2.8 x per-template wall ~T; 64 -> 128 ks, INFERRED).
+   - 57.5 ks is not a measured edge, only the stage-(ii) scorer's midpoint. 0.85 Hz is a cost cap (templates ~ f^3).
 
 Jobs: none. Core-h: 0 this step. Since #44 began, about 625.
 Files: not read this step.
 
 SETTLED:
-- v1.0 already uses R1 above 120 ks, so keep-the-gap needs no change (15.230 (10)(f)).
+- Option (d) priced and recorded as post-hoc (15.230 (10)(g), longpext 0364fe4).
+- The table question answered: keep-the-gap = no change (15.230 (10)(f)).
 
 NEEDS YOU (Alistair):
-- #46: adopt (b) (nulls 40-60 core-h, code, golden slot 0791010101, before #13), or keep the gap (no change; #46 closes).
+- #46: adopt (b), keep the gap, or score (d) first (< 0.3 core-h, post-hoc).
 - #44 batch 2: now (about 270-280 core-h billed, cap 448), or after the tag with wt_longpext frozen at 1cbad1c's code.
 
 NEXT:
-- Holding; nothing started. wt_longpext's code stays frozen at 1cbad1c until batch 2 is decided.
+- Holding; nothing started. wt_longpext's code stays frozen at 1cbad1c.
