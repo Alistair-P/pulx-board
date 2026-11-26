@@ -8,8 +8,10 @@ Use `export BOARD_ROLE=dispatcher BOARD_DIR=<this clone>` for every board.sh cal
 
 ## 1. Check and stop early
 1. Run `bash board.sh pending` and `bash board.sh ages`.
-2. Check the overseer's heartbeat. If it is more than 4 hours old, and the time in London is
-   between 09:30 and 22:30, raise an alert (step 4).
+2. Check the overseer's heartbeat. The overseer wakes at 12:00 and 18:00 London time. Raise an
+   alert (step 4) if the heartbeat is older than 19 hours, or if it is after 12:45 and the
+   heartbeat is from before today's 12:00, or if it is after 18:45 and the heartbeat is from
+   before today's 18:00.
 3. If nothing is pending and there is no alert, stop now. Make no commit. Your final message is
    `Quiet run.`
 

@@ -18,6 +18,7 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 26 Nov 18:35: the leaner schedule (D34). Run the nulls below 17 ks (D35). Go with (d) (D33).
 
 ## Standing decisions
 - **D1** (≈19 Nov, Alistair): targets with spans under 17 ks are deferred to a later stage with
@@ -113,6 +114,23 @@ The next overseer wake acts on them.
 - **D32** (26 Nov, Alistair): no new stacked calibration for longer segments above 120 ks. So (a),
   (b) and (c) are out. #46's choice is between (d), a stacked arm on one 120 ks window with the
   existing calibration, and keeping the gap. Alistair leans towards including (d).
+
+- **D33** (26 Nov, Alistair): #46 adopts option (d), recorded as a post-hoc option. That's a stacked
+  arm at M = 4 on one 120 ks window of each observation above 120 ks: the first or last 120 ks,
+  whichever the flare monitor scores better, fixed before any search. It uses the existing
+  120 ks calibration. Reasons: a robust arm for the 63 longest targets at no new calibration cost,
+  and the orbit arm already windows long observations (best 128 ks). The budgeting (R0, or the
+  add-on beside R1) is whichever scores better on the 164 draws. If both have 95% intervals
+  entirely below zero against no arm, it comes back to Alistair. It's implemented on a new
+  branch off main, not in wt_longpext, with a golden slot above 120 ks, before #13. The ADOPTED
+  line needs Alistair.
+- **D34** (26 Nov, Alistair): to save his usage, the overseer wakes at 12:00 and 18:00 only,
+  without "ultrathink" on routine wakes, and the dispatcher runs every two hours from 07:45 to
+  21:45.
+- **D35** (26 Nov, Alistair): validate spans below 17 ks now, with the 15 and 10 ks nulls (the
+  record's estimate is 50–150 core-h; approved up to 150 core-h billed, priced first). #38's session
+  takes it after its records rebuild. The new thresholds come into the survey only as a
+  separately registered stage after the v1.0 tag, not in v1.0.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and

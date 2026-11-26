@@ -3,30 +3,23 @@
 Updated: 26 Nov 2026 18:05, by the overseer (18:00 wake)
 
 ## Needs Alistair
-1. **#46: include (d), or keep the gap?** (D32: (a), (b) and (c) are out.) (d) is a stacked arm at
-   M = 4 on one 120 ks window, chosen blind from the flare monitor, using the existing 120 ks
-   calibration (no new nulls). It can be budgeted under R0 (Z1 +1.71, Z3 +0.27) or as an add-on
-   beside R1 (+0.71 on every arm). D29 scoring and the analytic check are running; the K_eff check
-   (D31, 20–40 core-h) follows. Alistair leans towards including it. Proposed rule, to fix before
-   the results: adopt (d) with the better-scoring budgeting, unless both budgetings' paired
-   differences against no arm have 95% intervals entirely below zero.
-2. **B (#44 batch 2)**: decide whether to switch on the long-period orbit part for spans above
+1. **B (#44 batch 2)**: decide whether to switch on the long-period orbit part for spans above
    80 ks, on one 80 ks window each (134 targets on 80 ObsIDs). It's a post-tag stage by design and
    can't change v1.0. Batch 2 costs about 270–280 core-h billed (cap 448). A GO would add 120–390
    core-h of survey compute after the tag. C1, the same idea at 40–57.5 ks, found no gain.
    Options: run now, defer to after the tag (wt_longpext frozen until then), or drop. Overseer's
    view: defer, or let #44 propose a futility check on batch 1 first.
-3. **Confirm in the merge terminal**: rule 15 into STANDING_RULES, with 15e as revised on the board
+2. **Confirm in the merge terminal**: rule 15 into STANDING_RULES, with 15e as revised on the board
    on 26 Nov (D24), and the two CLAUDE.md fixes (D22 (b), (c)). The merge session rightly refused
    them from the board (rule 15c). One line from Alistair in its terminal is enough.
-4. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
-5. **#30**: the A1 candidate details. (Raised before 25 Nov.)
-6. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
+3. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
+4. **#30**: the A1 candidate details. (Raised before 25 Nov.)
+5. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
 - Later: #13 will ask you to approve survey_pipeline.py's ADOPTED line after cert13's golden check.
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
 
 ## For overseer
-- #44's D29 results, for #46.
+- #44's D29 results, and its choice of budgeting for (d) under D33.
 
 ## Items
 
@@ -59,8 +52,8 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
 - **13**:
   - `13.1`: when it reports the build_cert.py draft committed, with no new NEEDS YOU, hold. It
     waits for a95cut and #46.
-  - `13.2`: trigger: a merge report says a95cut AND #46's outcome are on main (or #46 is closed as
-    "keep the gap"). Then for overseer, because the rebase and golden check plan needs checking.
+  - `13.2`: trigger: a merge report says a95cut AND #46's (d) branch are on main. Then for
+    overseer, because the rebase and golden check plan needs checking.
 - **15**:
   - `15.1`: while downloads, the memory test or the Slurm job are running, hold.
   - `15.2`: when the first Slurm job has finished with every ObsID ok, and the file count is under
@@ -87,8 +80,17 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     Report the list changes before rewriting the live list file."
 - **38**:
   - `38.2`: sent 18:05 (rednoise is on main, 1399fad).
-  - `38.3`: while the rebuild job runs, hold. When it reports the records rebuilt, with folder and
-    hashes, hold. That report is one of 37.3's triggers.
+  - `38.3`: while the rebuild job runs, hold. That report is one of 37.3's triggers.
+  - `38.4`: when it reports the production records rebuilt, with folder and hashes, send: "D35:
+    Alistair approves validating spans below 17 ks. Take it as a new item, and add a checklist line
+    if none exists. Report first, then run. 1. From the record (D1, the floor configuration, and
+    the random-field model's validated range of 17–136 ks), say what it needs: which spans (15 and
+    10 ks nulls were planned), which arms (coherent Z1/Z3, and whether the orbit arm's M1
+    thresholds are validated below 16 ks), and how the thresholds would be fitted and checked.
+    2. Price the nulls in billed core-h and files, from measured times. 3. If the price is at most
+    150 core-h billed, submit them; otherwise post needs-you with the price. The new thresholds
+    are not adopted into v1.0. They come in as a separately registered stage after the tag. Update
+    your checklist line, and end with the rule-12 report."
   - A failed rebuild, or a cost above 10 core-h: for overseer.
 - **41**:
   - `41.1`: hold idle reports while quota41b is queued.
@@ -102,6 +104,9 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
   - `42.2`: trigger: a merge report says a95cut is on main. Send: "a95cut is on main. Fill in the
     survey-list cut in 'The blind survey' (a95 < 0.25), commit, update the queue entry and report."
 - **44**:
-  - `44.1`: its answer on the Z1/Z3 table above 120 ks: for overseer.
-  - `44.2`: hold anything else until Alistair decides #46 and batch 2. wt_longpext's code stays
-    frozen at 1cbad1c until batch 2 is decided.
+  - `44.1`: its D29 report (scores, analytic check, proposed simulation): for overseer.
+  - `44.2`: while the K_eff check or the golden check runs, hold.
+  - `44.3`: when it reports (d) queued with the golden check passed, hold. The ADOPTED line goes
+    to Alistair, and 13.2 waits for it to merge.
+  - Anything else: for overseer. wt_longpext's code stays frozen at 1cbad1c until batch 2 is
+    decided.
