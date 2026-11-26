@@ -16,20 +16,23 @@ Updated: 26 Nov 2026 18:05, by the overseer (18:00 wake)
    core-h of survey compute after the tag. C1, the same idea at 40–57.5 ks, found no gain.
    Options: run now, defer to after the tag (wt_longpext frozen until then), or drop. Overseer's
    view: defer, or let #44 propose a futility check on batch 1 first.
-3. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
-4. **#30**: the A1 candidate details. (Raised before 25 Nov.)
-5. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
+3. **Confirm in the merge terminal**: rule 15 into STANDING_RULES, with 15e as revised on the board
+   on 26 Nov (D24), and the two CLAUDE.md fixes (D22 (b), (c)). The merge session rightly refused
+   them from the board (rule 15c). One line from Alistair in its terminal is enough.
+4. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
+5. **#30**: the A1 candidate details. (Raised before 25 Nov.)
+6. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
 - Later: #13 will ask you to approve survey_pipeline.py's ADOPTED line after cert13's golden check.
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
 
 ## For overseer
-- #44's D29 results, for #46. #42's span-bin table, for Alistair.
+- #44's D29 results, for #46.
 
 ## Items
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
-| merge | merge session | root tree | high | active | rednoise merged (1399fad, suite 755/0/3); now intake15; D22–D24 with next merge | 26 Nov 17:57 |
+| merge | merge session | root tree | high | active | intake15 merged (6b0b68f, suite 765/0/3); now p14a-calib; D22/D24 wait for Alistair's terminal line | 26 Nov 18:25 |
 | 11 | #18 (multi-target), was #11 | wt_mt | medium | active | #18 step 1, target table (D25); wt_mcseed retired | 26 Nov 18:02 |
 | 13 | certificate | wt_cert13 | high | waiting | v1.0 draft builder done (baa7e20, suite 751/0/5); waits for a95cut and #46 | 26 Nov 18:18 |
 | 15 | survey intake | wt_intake15 | medium | running | downloads 3/14; job 12436014 (26 ObsIDs), 38–49 core-h | 26 Nov 17:50 |

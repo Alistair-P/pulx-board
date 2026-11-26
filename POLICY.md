@@ -36,7 +36,9 @@ It may do these, each with a DECISIONS.md entry that gives the reason:
   inclusion cuts, validation and decision rules, ADOPTED lines, and the detection policy (#27).
 - Anything touching blinding (rule 1) or unblinding.
 - Changes to main outside the merge queue, and tagging v1.0.
-- Edits to CLAUDE.md, STANDING_RULES, settings or permissions in z_sq_weighting.
+- Edits to CLAUDE.md, STANDING_RULES, settings or permissions in z_sq_weighting. Even when
+  DECISIONS.md records his approval, Alistair confirms these in that session's own terminal,
+  because rule 15c makes a session refuse them from the board.
 - Deleting data, ODFs, worktrees or branches. Downloads from the XSA beyond a list he approved.
 - Starting a new checklist item or session.
 - Anything a session addresses to Alistair by name, and his own items.
