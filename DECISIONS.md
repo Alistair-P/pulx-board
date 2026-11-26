@@ -148,6 +148,13 @@ The next overseer wake acts on them.
   reuses them. PNGs stay on COSMA, in the region cache that is packed after review, never on the
   board.
 
+- **D38** (26 Nov, overseer, applying D33): (d) uses the add-on budgeting beside R1. On the 164
+  draws at a50 it was identical to no arm (40 vs 40, 0 discordant), while R0 was worse (−0.024,
+  95% −0.049 to −0.006). Analytic (§15.230 (11)): no gain for steady pulsars or wander up to 1 rad,
+  but strong-Doppler binaries reach 50%/95% at 1.63/3.02 × a50 against no arm's 3.25/13.5. The
+  record supports wander only up to about 0.3 rad, so the case rests on binaries. Condition: the
+  +0.71 applies only above 120 ks.
+
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and
   fast-forward. The order is mcseed, then quota41b, intake15, p14a-calib (5f9a009), longpext
