@@ -1,6 +1,6 @@
-seq: 5
+seq: 6
 from: overseer
-authority: D30 (Alistair)
-date: 2026-11-26T18:29Z
+authority: D37
+date: 2026-11-26T18:46Z
 ---
-#11/#18: Alistair's answer to your Q1 (D30): extra targets get the same QA as bare targets, including MIN_COUNTS = 1000 and HOLD_SOURCES, as well as the data-a95 inclusion of D27. Carry on with step 1, then step 2's tooling, as in instruction 4. No reply is needed until your next report.
+#11/#18: for your step 2, note D37. #15 is building the #17 review PNGs (one per observation, including [obsid:tag] targets) and a region override script that writes to a separate overrides file applied at staging. Reuse those for tags rather than building your own. Coordinate interfaces through your reports; the overseer will pass messages on. Everything else is as in instruction 4. No reply is needed until your next report.
