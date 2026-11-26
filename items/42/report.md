@@ -1,41 +1,33 @@
-seq: 3
+seq: 4
 state: idle
-date: 2026-11-26T17:50Z
+date: 2026-11-26T18:02Z
 host: login7c
 ---
-#42: wrote "The blind survey" on methods42, as the board asked (seq 3, plan 42.1). Committed, queue entry updated; waiting for the next subsection.
+#42: wrote "Sensitivity" on methods42, as the board asked (seq 4, plan 42.1), and brought the survey subsection's red-noise rule up to date with main. Committed, queue entry updated; waiting for the last subsection.
 
-Done (seq 3):
-- methods42 head 21b26d6, on top of 4ff1e7c. Docs only: docs/methods_section.md, no code, so no suite run.
-- The queue entry now names 21b26d6. Checklist: 6 of 8 subsections written; 2 TO WRITE (Sensitivity, Validation).
-- The subsection is paper text in eight parts:
-  - Band and octaves, 6.8 Hz down to 0.0066 Hz, with per-octave fdot ranges: orbit, spin-up and the torque cap below about 0.05 Hz.
-  - The span switch at 17 ks.
-  - The three arms: coherent Z1/Z3; stacked, M = ceil(T/30 ks) with the Doppler slide; orbit, 0.05-0.7 d with the frozen 16 ks bank to 1.7 Hz, plus the long-period part at 57.5-80 ks with its frequency-tolerance caveat. Published orbits demodulated with their GTIs.
-  - The comb fill, gap form, below 0.2125 Hz.
-  - Refinement (top 20 per octave per arm) and ranking.
-  - Thresholds: the alpha split, the random-field model and its validated ranges, UNUSABLE outside them, margins +1.4 / +1.1, the orbit arm's measured thresholds, the red-noise scale with its KS gate.
-  - Eccentric orbits, the text that was in the stub.
-  - The survey list.
-- Current values were taken from the code, not from pipeline_description section 11, which is partly stale (it predates P11, the random-field thresholds and the orbit-arm changes). Checked: pulx_recovery, survey_pipeline, octave_thresholds, orbit_search, comb_fill, slurm/submit_survey_full.sh. Sources are listed in the comment after the subsection.
-- Fixed before committing:
-  - "settings fixed before any survey output was examined" is now "fixed and validated before it is run for results". The step-1 JSONs exist, kept only for comparison.
-  - "up to three arms", since the stacked arm needs M >= 2.
-  - The span-carrying of A now names its fitted power-law correction.
-  - The eccentricity loss is written with x, the projected semi-major axis.
+Done (seq 4):
+- methods42 head 7f48153, on top of 21b26d6. Docs only: docs/methods_section.md, no code, so no suite run.
+- The queue entry now names 7f48153. Checklist: 7 of 8 subsections written; 1 TO WRITE (Validation).
+- "Sensitivity" is paper text in three parts:
+  - The model: lambda = eta a^2 S2_eff / 2 and a_P from the noncentral chi^2 at the applied threshold. a50 and a95 differ only in P; reference octave and minimum over octaves.
+  - eta by thinning injection on the survey's own axis, weights, sweep and thresholds: 12 injections, 48 near the cut, the small k correction.
+  - Validation: a95 by injection, 1886/2000, exact 95% 0.932-0.953, none rejected per observation (15.226 (12)). Thinning accepted (15.212). What the model leaves out: the spread of efficiency within an octave.
+- Correction to "The blind survey" (committed at 21b26d6): it described the red-noise gate as a two-sided KS. Main now has #38's rule (15.232, merged 1399fad): an octave is unusable only on an excess of high values over max(c, 1) x chi^2_2, by a one-sided KS at 0.01 per observation (Bonferroni over octaves). The text now says that and why: a deficit can't raise a false alarm at a threshold that is never lowered. I found it through the CLAUDE.md change on main.
+- "Per-photon source probability" pointed to "Sensitivity" for the frame-preserving jitter nulls. Those belong under Validation, so the pointer now says Validation.
+- Every number here comes from injections and simulations. No real-data search result is in this report or the text.
 
-OPEN in the text, marked in place:
-- The survey-list cut. Main has a50 <= 0.4 (15.155 (8)); #37's a95 < 0.25 is queued, not merged. I'll fill it in once a95cut lands; it's a one-line edit.
+Noted:
+- methods42 is off d03bf93, and main is now 1399fad (mcseed, quota41b, rednoise merged). The text follows main's current state (15.232). The merge should be textual: docs/methods_section.md and one summary.txt subsection, 15.227 (15).
 
 Jobs: none.
 Core-h: 0 this step; 0 since #42 began.
 Files: no quota reading taken.
 
 SETTLED:
-- "The blind survey" written and committed on methods42 (21b26d6); queue entry and checklist updated.
+- "Sensitivity" written and committed on methods42 (7f48153); the survey subsection's red-noise rule matches main; queue entry and checklist updated.
 
 NEEDS YOU:
 - Nothing.
 
 NEXT:
-- #42: "Sensitivity" when the board sends it, then "Validation". After a95cut merges, the one-line survey-list fill-in.
+- #42: "Validation" when the board sends it: golden checks, coherent and orbit arms; null calibrations including the jitter nulls; injection recovery. After a95cut merges, the one-line survey-list fill-in.
