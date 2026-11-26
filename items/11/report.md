@@ -1,50 +1,44 @@
-seq: 2
+seq: 3
 state: needs-you
-date: 2026-11-26T18:02Z
+date: 2026-11-26T21:32Z
 host: login7c
 ---
-#11/#18: did instruction seq 2 (D19, D20): retired wt_mcseed; scoped #18, report first, nothing changed.
+#18 (this is #11's session): did instruction seq 3 (D25): step 1, the target table. Done; step 2 waits for Alistair.
 
-1. D20: wt_mcseed RETIRED. Clean, 0 ahead of main, no job, no other process. 10 real ignored files: 3 already identical in the root tree; 7 were mcseed's run records (golden job outputs, sha256 file, diff json, suite logs), cited by 15.217 (12) and found nowhere else. Copied to the root tree's logs/mcseed/ (cp -n, sha256 checked 7/7), then link_data.sh --remove (287 links), git worktree remove, no --force. Branch mcseed kept. wt_mt kept.
+DONE. Branch targets18 off main 1399fad, in wt_mt. logs/targets18/target_table.py reads only #15's intake tables and the params.conf section headers, nothing from any search. It writes target_table.csv, obsid_table.csv and inputs_sha256.txt to /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting/stats/targets18/. Test test_targets18 3/0/0, registered. Suite 758/0/3. Commit 43d8ccf, record 15.235. About 45 min of login-node work, 1 thread.
 
-2. #18 SCOPE (MEASURED from #15's intake tables, read-only in wt_intake15/stats/intake15/). 138 ObsIDs carry 323 list targets, so 185 targets beyond the bare one:
-- span >= 17 ks: 116 ObsIDs, 162 extra targets:
-  - already processed, unpacked: 8 ObsIDs, 15 targets;
-  - already processed, packed: 19 ObsIDs, 33 targets;
-  - still to process (#15/#16 batches): 89 ObsIDs, 114 targets (78 tarball, 8 none, 3 prep).
-- span < 17 ks: 22 ObsIDs, 23 targets, deferred by D1.
-15.229 (12) counted 170 tags on a different span basis; step 1 reconciles.
-Includes ULX-8 (0830191601, 4 list targets) and NGC 7793 ULX-4 (0693760101, recovery set).
+TABLE (MEASURED). 145 ObsIDs, 330 list targets:
+- the 138 multi-target ObsIDs;
+- 6 processed ObsIDs whose single list target is not their bare section;
+- 0693760101 (finding c).
+Roles:
+- new tags: 170 on 122 ObsIDs. This equals 15.229 (12)'s 170 (114 + 56), so the two counts agree. By stage: tarball 98, packed 41, analysis 15, none 9, prep 7. By #15 batch: 1 45, 2 23, 3 32, 4 12, 5 2, already processed 56.
+- bare-planned 89, bare-existing 25, existing tag 1 (ULX8).
+- deferred by D1: 45 (the 22 ObsIDs under 17 ks).
+Proposals for step 2:
+- An existing bare section is kept.
+- In a new ObsID a known pulsar takes the bare slot, else the best catalogue a95. This moves M51 ULX-7 into the bare slot of 0830191401.
+- Tags are "D" + the DR14 SRCID; ULX8 is kept.
 
-WHAT #18 MUST PRODUCE. For #19 (QA, data-based a95/a50, IN list): every extra target as an [obsid:tag] section with its own products under targets/<tag>/ (pipeline_inputs.json, spectra, expmap, frame-aligned events, barycentred at its own position), so cfg_for / survey_sensitivity run per target. For #17 (Alistair's review): per target the region result (src, aperture, bkg, mask), counts, flags rows in the new_obs_flags format, and the P30 neighbour handling (a listed target inside another's aperture is masked; none in a background circle: preflight ERROR).
-
-ON MAIN ALREADY: [obsid:tag] sections, per-target products and barycentring (preprocess.sh, pipeline_config.tid_of/cfg_for); preflight P30 rules; new_obs_regions.py --target (ONE target, never staged: stage() skips tags); figure 157; tests (test_multitarget 17). MISSING: a batch region run and a staging file for tags, flags rows for tags, and an analysis-only run (a tagged preprocess.sh also runs both production searches, qa_obs and survey_pipeline: the P30 pilot did).
-
-PLAN:
-1. Target table (login, ~1 h, no compute): tag, bare choice, span, stage, neighbours inside 65", per ObsID.
-2. Tooling on a branch off main (tests, queue): batch --target regions, data/params_new_targets.conf staging (not params.conf), flags rows, an analysis-only switch.
-3. Regions for the 27 processed ObsIDs (login). The 19 packed ones need #41 to unpack them in small batches. Then the #17 review.
-4. After review: run_analysis per tag on compute, 2-tag pilot first; load check; #41 packs.
-5. The 89 new ObsIDs: same steps inside #15/#16's batches, after each bare target's prep and regions.
-6. Hand #19 the section list and product check.
-
-PRICE (INFERRED unless marked):
-- Compute: run_analysis at 1-3 core-h per tag (15.229 (7)) gives 160-490 billed core-h for all 162. The pilot's 5.5 (MEASURED) included the searches. Pilot about 6-10 core-h, then priced per batch.
-- Files: 26 per tag (MEASURED, targets/ULX8), so about 4,200 for 162, plus temporary unpacks. Quota 145,712 (26 Nov).
-- Login: about 1-2 h for steps 1-2, then about 3-8 h of region runs spread over the batches.
+FINDINGS (from records; none acted on):
+a. 24 ObsIDs in scope have a bare section with skip = 1. In 16 of them that skipped bare is a list target, so those 16 never reach #19 unless the skip is lifted.
+b. 7 known pulsars come out as tags under a skipped bare section that is another source: P13 in 0748390901, 0781800101, 0804670301, 0804670401; NGC 1313 X-2 in 0405090101, 0693850501, 0693851201. ORBITS is keyed by source name, so a tag may still be demodulated; step 2 checks that.
+c. 0693760101: [0693760101] is named NGC7793P13 and skip = 1, but its source circle is on NGC 7793 ULX-4 (0.3" from the published position, 2.5' from P13). Unskipped as it stands, stage B would stack ULX-4 with P13.
+d. 36 new tags have another list target inside 65". 169 of the 170 have a 4XMM-DR14 detection inside 65". v1.0 masks listed neighbours only.
+e. 1 new tag has catalogue counts under 1000.
 
 Jobs: none.
-Core-h: 0 this step; #18 0 so far.
-Files: 145,712.
+Core-h: 0 this step; #18 0.
+Files: not re-read (145,712 earlier today; this step added 3 files in the root tree, plus 2 tracked files).
 
 SETTLED:
-- #11: wt_mcseed retired per D20 (records preserved, branch kept); checklist #11 note updated.
+- #18 step 1: target table built and recorded; 15.235, commit 43d8ccf on targets18 (not queued: step 2 joins it).
 
 NEEDS YOU:
-1. Do MIN_COUNTS = 1000 and HOLD_SOURCES apply to tags as to bare targets? Recommend yes (an inclusion rule: Alistair).
-2. Should tags stop after run_analysis (new analysis-only switch), so no production-search or survey output exists before the v1.0 certificate? Recommend yes (touches blinding: Alistair).
-3. Approve the 2-tag pilot (about 6-10 core-h) once the tooling is queued? The full 160-490 core-h needs your approval per batch.
-4. Work #18 in wt_mt on a new branch targets18 off main (saves 287 new links), instead of a new worktree? Recommend yes.
+1. Earlier questions 1 and 2 (count and hold rules for tags; an analysis-only switch) are still with Alistair, and step 2 waits on them.
+2. Finding a: should the 16 skipped bare sections that are list targets have their skip lifted for v1.0? Recommend Alistair decides at #17/#19 (an inclusion question). #18 makes no change to them.
+3. Finding b: should P13 and NGC 1313 X-2 take the bare slot in those 7 ObsIDs, in place of the skipped other source? Recommend yes (recovery set; ORBITS, OVERRIDES and the gate read the bare). Alistair's call.
+4. Finding c: should 0693760101's section be renamed to a ULX-4 name? Recommend yes, before anything unskips it. A params.conf fix, Alistair's call.
 
 NEXT:
-- On the answers: step 1 (target table, no compute), then step 2's tooling with tests. Nothing started.
+- When Alistair has answered: step 2's tooling on targets18, with tests (batch regions for tags, a staging file, flags rows, analysis-only switch if approved), then the queue, then the 2-tag pilot (D26). Nothing started.
