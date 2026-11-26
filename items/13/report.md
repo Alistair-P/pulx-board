@@ -1,35 +1,35 @@
-seq: 0
+seq: 1
 state: done
-date: 2026-11-26T17:10Z
+date: 2026-11-26T18:18Z
 host: login7c
 ---
-#13 (B7): recorded the user's 25 Nov decisions, retired the 19 Oct stamp, wrote the hash gate and its test on cert13.
+#13 (B7): wrote the v1.0 certificate draft builder (board seq 1, D15). Committed; cert13 stays unqueued.
 
-The user's 25 Nov instructions (typed in this terminal; all five reached me) and where each stands:
-1. 15.133 -> option (C): #46 decides the stacked rows above 120 ks; Z1/Z3 there use max(transfer, direct fit). RECORDED, 15.234 (1)(a). Takes effect with #46's code, before the stamp.
-2. 19 Oct validated.json moved to archive/ now: DONE. Now at archive/validated_survey_thresholds.json.pre_cert13_20261125 (sha256 a7df2b1f..., checked after the move). Main's code refuses results runs and --collect; --unvalidated-diagnostic unaffected. No running job reads that path. 15.234 (2).
-3. rev3 battery hashes checked by #27 / battery tools, not the survey gate: DONE in code. A 'post_search' block the gate ignores; verify_hashes() is there for those tools to call. 15.234 (1)(c).
-4. mcseed seed rule + weighted_search / aperture_energy_scan hashes in an 'advisory' block: DONE in code. The gate prints the block and never checks it. 15.234 (1)(d).
-5. Checklist line updated: DONE (set again today with the commit).
-Then: gate code + tests/test_certificate.py on cert13: DONE, 9145f0a. UNQUEUED until a95cut and #46 land, as instructed.
+Done as instructed: logs/p13/build_cert.py rewritten, validated = false always, no compute. Both CLAUDE.md points left alone. Rule 15e clarification noted.
+- Hashes come from survey_pipeline.gate_block(): 23 modules + 9 inputs.
+- Per-span threshold tables at 17.5/30/40/60/75/80/100/122/136 ks, read from thresholds_for() and search_config(). The "unusable" list is exactly the tables' empty entries (49), each with the module's reason.
+- The 15.234 (1)(a) decision (above 120 ks), the inclusion rule (marked PRE-a95cut on this branch), the orbit block and the long part (span, band, stage (iii) file, LONGP_TOL).
+- Per-target entries keyed by target ID: configuration, stacked M, above-120 ks flag, published orbit, long part. They come from survey_list (selection inputs only) and are marked "frozen by #14".
+- 'advisory' block (seed rule + weighted_search / aperture_energy_scan hashes) and 'post_search' block (rev3 + battery module hashes).
+- --check is the consistency test. It re-derives every table and configuration, compares to 1e-9, and runs the survey gate's own hash check. The fresh draft is CONSISTENT.
+- Blockers are tested from the code, not asserted. --stamp refuses while any is open, and even with none open it only says stamping is by hand after your review.
+  Now READY: signed margins, clean tree.
+  PENDING: a95cut, mcseed, rednoise (#38), #46, the Z1/Z3 = max(transfer, direct) rule above 120 ks, survey_pipeline.py's ADOPTED line, p14a_lattice.py not on main.
 
-The gate (survey_pipeline): a certificate must have a 'gate' block {modules, inputs}. It must cover 23 modules (the manifest's 8 + the other files the survey imports) and 9 input files whose paths are read from the code (rf models per configuration, margins, orbit + long-part thresholds, both frozen bank records, QA thresholds, template). Every hash must match, or the run refuses and names the file. ZSQW_CERT overrides the path; each results JSON records the certificate's sha256.
+Draft: /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting/stats/survey_thresholds/validated_DRAFT_v1.json. It was built from cert13 at baa7e20, and the file records that.
 
-Note for the board: in my own branch I edited CLAUDE.md's "Known gaps" line and added a LESSONS group 7 entry (rule 9). It reaches main only through the queue.
+Tests: new tests/test_build_cert.py, 9/0/0. The first full run failed one existing test: test_template_beta read the old draft's layout. I fixed it to read the same file's hash from the new gate block (backup in archive/). Full rerun: ALL SUITES PASS, 751/0/5.
 
-"What has gone wrong" (asked in the terminal): nothing failed. The full suite PASSED. Its last step was still running when the user asked, so it hadn't been committed or reported yet. It is now.
-
-Jobs: none (suite on the login node, nice 10, 1 thread)
+Jobs: none (login node, nice 10, 1 thread)
 Core-h: 0 this step; 0 since the item began
 Files: not taken
 
 SETTLED:
-- #13 (partial): 15.133 -> (C) recorded, old stamp archived, hash gate + tests/test_certificate.py written. test_certificate 9 passed / 2 skipped (they wait for the stamp); full suite 742/0/5, ALL SUITES PASS (log is in logs/cert13/suite_1.log, untracked). 15.234, commit 9145f0a (branch cert13; survey_pipeline.py is now ba03e88a...).
+- #13 (partial): v1.0 draft builder with --check, blockers and per-target IDs; draft consistent. 15.234 (4), commit baa7e20 (hash gate 9145f0a), cert13 unqueued.
 
 NEEDS YOU:
-1. When cert13 is rebased after a95cut and #46, approve the ADOPTED.sha256 line for survey_pipeline.py after its golden check (golden predicted bit-identical, GOLD_ACCEPT=survey_pipeline.py; ~13-25 billed core-h). Recommend yes, decided then.
-2. CLAUDE.md "Known gaps" still says the golden check doesn't exercise the orbit arm (#12), which is stale since #12 settled. Fix it at the next merge? Recommend yes (not my item, so not edited).
+1. Nothing new. Outstanding from my last report: the ADOPTED line for survey_pipeline.py after the golden check on the rebased branch. Recommend yes, decided then.
 
 NEXT:
-- Rewrite logs/p13/build_cert.py for v1.0: use gate_block(); add the 15.234 decisions, the a95 cut, the long part, per-target IDs, per-span threshold tables for a consistency test, and the advisory and post_search blocks. Draft only (validated = false).
-- After a95cut and #46 are on main: rebase cert13, golden on the merged tree, ADOPTED line (your approval), queue; stamp after the merge.
+- Wait for a95cut and #46 on main. Then: merge main into cert13, rerun build_cert --check and the suite, golden check on the merged tree (~13-25 billed core-h, priced first), ADOPTED line for approval, queue.
+- After the merge: rebuild the draft in the root tree, the user reviews it, stamp by hand.
