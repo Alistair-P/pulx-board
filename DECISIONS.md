@@ -12,6 +12,9 @@ The next overseer wake acts on them.
   archive/q41fix/ (D21). The three CLAUDE.md edits (D22). Merge policy27 after methods42 (D23).
   Add rule 15 to STANDING_RULES (D24). #46 and #44 batch 2 are still open; Alistair asked for more
   detail.
+- 26 Nov 18:18: Q4 yes (D28). Inclusion works by data a95 after download (D27). Leaning towards
+  option (d) for #46, a stacked arm on a 120 ks window, and asking whether a harder test should
+  come first. #46 is not yet decided.
 
 ## Standing decisions
 - **D1** (≈19 Nov, Alistair): targets with spans under 17 ks are deferred to a later stage with
@@ -86,6 +89,14 @@ The next overseer wake acts on them.
 - **D26** (26 Nov, overseer): #18's 2-tag pilot (about 6–10 core-h) is approved, once its tooling
   is queued and Alistair has answered the tag QA and analysis-only questions. Full runs (160–490
   core-h over all batches) need Alistair's approval per batch.
+
+- **D27** (26 Nov, Alistair): inclusion is decided by each target's data a95, not the catalogue
+  estimate. The catalogue a95 chooses what to download and prep, including a margin band just
+  outside 0.25. After prep, a95 is recalculated from the data, and a target is searched only if
+  its data a95 meets the cut. The same holds for #18's extra targets ([obsid:tag]).
+- **D28** (26 Nov, Alistair): #18's extra targets stop after run_analysis (a new analysis-only
+  switch), so no production-search output exists for them before the v1.0 certificate. The P30
+  pilot's existing search outputs stay unopened (rule 1).
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and

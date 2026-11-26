@@ -7,19 +7,19 @@ Updated: 26 Nov 2026 18:05, by the overseer (18:00 wake)
    v1.0 already uses R1 above 120 ks: no stacked arm, with its α share given to Z1. So keeping the
    gap is v1.0 as it is, with no code, nulls or golden. Any stacked arm there moves those rows to
    R0 (Z1 +1.71). That costs 4 coherent detections in the 164 draws, and the best arm, (b), wins
-   back 2 (net −0.012, 95% −0.043 to +0.018). Overseer's view: keep the gap. A 120 ks window
-   (Alistair's (d)) would pay the same R0 cost, with fewer photons than (b).
+   back 2 (net −0.012, 95% −0.043 to +0.018). Alistair is leaning towards (d): the stacked arm on
+   one 120 ks window, using the existing 120 ks calibration, so no new nulls. He's asking whether a
+   harder test should come first, with bright signals that lose coherence. Open: adopt (d) now, or
+   run that test first.
 2. **B (#44 batch 2)**: decide whether to switch on the long-period orbit part for spans above
    80 ks, on one 80 ks window each (134 targets on 80 ObsIDs). It's a post-tag stage by design and
    can't change v1.0. Batch 2 costs about 270–280 core-h billed (cap 448). A GO would add 120–390
    core-h of survey compute after the tag. C1, the same idea at 40–57.5 ks, found no gain.
    Options: run now, defer to after the tag (wt_longpext frozen until then), or drop. Overseer's
    view: defer, or let #44 propose a futility check on batch 1 first.
-3. **#18: do MIN_COUNTS = 1000 and HOLD_SOURCES apply to extra targets ([obsid:tag]) as to bare
-   targets?** (#11, 26 Nov.) Overseer's view: yes, the same QA for every target.
-4. **#18: should extra targets stop after run_analysis (a new analysis-only switch), so that no
-   production-search output exists for them before the v1.0 certificate?** Today a tagged
-   preprocess.sh also runs both production searches, and the P30 pilot did. Overseer's view: yes.
+3. **#18: do MIN_COUNTS = 1000 and HOLD_SOURCES apply to extra targets as to bare ones?** (#11.)
+   Inclusion itself is by data a95 (D27). Overseer's view: yes, the same QA for every target.
+4. (Answered: Q4 analysis-only, D28.)
 5. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
 6. **#30**: the A1 candidate details. (Raised before 25 Nov.)
 7. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
