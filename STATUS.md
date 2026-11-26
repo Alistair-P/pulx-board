@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 26 Nov 2026 17:35, by the overseer
+Updated: 26 Nov 2026 17:50, by the dispatcher
 
 ## Needs Alistair
 1. **#46: adopt (b), or keep v1.0's gap above 120 ks?** (#44, 26 Nov; numbers in §15.230 (10)(e).)
@@ -36,23 +36,27 @@ Updated: 26 Nov 2026 17:35, by the overseer
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
 
 ## For overseer
-- #44's answer on what B decides (for Needs Alistair item 2).
+- #44's answer on what B decides is in (report seq 2, 17:30), for Needs Alistair item 2. It says
+  waiting means keeping wt_longpext frozen at 1cbad1c's code, unmerged into, until batch 2 runs
+  (otherwise batch 1 reruns, about 550 core-h). Worth checking against the longpext merge in D18.
+- quota41b is on main (818b683). Plan 41.2 held: DECISIONS.md has no Alistair approval yet for
+  deleting archive/q41fix/ (Needs Alistair item 5).
 
 ## Items
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
-| merge | merge session | root tree | high | active | finishing quota41b (D17), then rednoise (D18) | 26 Nov 17:25 |
+| merge | merge session | root tree | high | active | quota41b merged (818b683); now rednoise (D18) | 26 Nov 17:29 |
 | 11 | MC seeding, multi-target | wt_mt | medium | settled (D8) | waiting on #18 decision | 26 Nov 17:25 |
 | 13 | certificate | wt_cert13 | high | active | build_cert.py v1.0 draft (D15); waits for a95cut and #46 | 26 Nov 17:10 |
 | 15 | survey intake | wt_intake15 | medium | active | 14 downloads, then Slurm job for 39 ObsIDs (D9, D10) | 26 Nov 17:10 |
 | 25 | artefact battery rev3 | root tree | medium | waiting | p14a-calib (5f9a009) queued; needs a trial merge | 26 Nov 17:11 |
-| 27 | detection policy draft | wt_policy27 | high | waiting | REV. 3 at 101b486, unchanged (D16); waits for C1–C4 | 26 Nov 17:24 |
+| 27 | detection policy draft | wt_policy27 | high | waiting | REV. 3 at 101b486, unchanged (D16); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | active | a95cut golden check (D11) | 26 Nov 17:12 |
 | 38 | red noise | wt_rednoise | high | waiting | queued at 8828681; holds until rednoise is on main | 26 Nov 17:06 |
-| 41 | quota and packing | root tree | medium | waiting | quota41b queued at dfa0244 | 26 Nov 17:12 |
-| 42 | methods paper (#43, #45) | root tree | medium | active | writing "Weighted search statistic" (4 of 8 done) | 26 Nov 17:25 |
-| 44 | long-period part (#44, #46) | wt_longpext | medium | waiting | #46 scored; numbers requested; batch 2 held | 26 Nov 17:15 |
+| 41 | quota and packing | root tree | medium | waiting | quota41b on main (818b683); deletion waits for Alistair | 26 Nov 17:12 |
+| 42 | methods paper (#43, #45) | root tree | medium | active | "Weighted search statistic" done (4ff1e7c, 5 of 8); writing "The blind survey" | 26 Nov 17:30 |
+| 44 | long-period part (#44, #46) | wt_longpext | medium | waiting | #46 scored; batch-2 answer posted; batch 2 held | 26 Nov 17:30 |
 | 47 | β study | - | high | not started | no conversation found | - |
 
 ## Plans
