@@ -15,6 +15,9 @@ The next overseer wake acts on them.
 - 26 Nov 18:18: Q4 yes (D28). Inclusion works by data a95 after download (D27). Leaning towards
   option (d) for #46, a stacked arm on a 120 ks window, and asking whether a harder test should
   come first. #46 is not yet decided.
+- 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
+  stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
+  and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
 
 ## Standing decisions
 - **D1** (≈19 Nov, Alistair): targets with spans under 17 ks are deferred to a later stage with
@@ -102,6 +105,14 @@ The next overseer wake acts on them.
   option (d) on the 164 draws under R0 and as an add-on beside R1 (under 0.3 core-h, post-hoc),
   makes an analytic comparison of no arm and (d) for signals that lose coherence, and proposes
   and prices a small confirming simulation. #46 stays undecided until Alistair has seen these.
+
+- **D30** (26 Nov, Alistair): #18's extra targets get the same QA as bare targets, including
+  MIN_COUNTS = 1000 and HOLD_SOURCES, as well as the data-a95 inclusion of D27.
+- **D31** (26 Nov, Alistair): #44 runs the union (K_eff) check for option (d), 20–40 core-h billed,
+  priced first, after the D29 scoring.
+- **D32** (26 Nov, Alistair): no new stacked calibration for longer segments above 120 ks. So (a),
+  (b) and (c) are out. #46's choice is between (d), a stacked arm on one 120 ks window with the
+  existing calibration, and keeping the gap. Alistair leans towards including (d).
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and

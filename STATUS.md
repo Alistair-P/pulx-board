@@ -3,31 +3,22 @@
 Updated: 26 Nov 2026 18:05, by the overseer (18:00 wake)
 
 ## Needs Alistair
-1. **#46: adopt (b), or keep v1.0's gap above 120 ks?** (#44, 26 Nov; §15.230 (10)(e)–(f).)
-   v1.0 already uses R1 above 120 ks: no stacked arm, with its α share given to Z1. So keeping the
-   gap is v1.0 as it is, with no code, nulls or golden. Any stacked arm there moves those rows to
-   R0 (Z1 +1.71). That costs 4 coherent detections in the 164 draws, and the best arm, (b), wins
-   back 2 (net −0.012, 95% −0.043 to +0.018). Alistair is leaning towards (d): the stacked arm on
-   one 120 ks window, using the existing 120 ks calibration, so no new nulls. He's asking whether a
-   harder test should come first, with bright signals that lose coherence. (d) facts (§15.230
-   (10)(g)): the existing M = 4, 120 ks thresholds apply, so no new nulls. The window is chosen
-   blind, from the flare monitor. Code goes in survey_pipeline, octave_thresholds and
-   survey_sensitivity, plus a golden slot above 120 ks. Costs: Z1 +1.71 under R0, or +0.71 on every
-   arm as an add-on beside R1. There's an unmeasured union factor (an optional 20–40 core-h
-   check). It's expected to score about as (b). D29: #44 is scoring it both ways, with an analytic
-   check of where it could win. Open until those are in.
+1. **#46: include (d), or keep the gap?** (D32: (a), (b) and (c) are out.) (d) is a stacked arm at
+   M = 4 on one 120 ks window, chosen blind from the flare monitor, using the existing 120 ks
+   calibration (no new nulls). It can be budgeted under R0 (Z1 +1.71, Z3 +0.27) or as an add-on
+   beside R1 (+0.71 on every arm). D29 scoring and the analytic check are running; the K_eff check
+   (D31, 20–40 core-h) follows. Alistair leans towards including it. Proposed rule, to fix before
+   the results: adopt (d) with the better-scoring budgeting, unless both budgetings' paired
+   differences against no arm have 95% intervals entirely below zero.
 2. **B (#44 batch 2)**: decide whether to switch on the long-period orbit part for spans above
    80 ks, on one 80 ks window each (134 targets on 80 ObsIDs). It's a post-tag stage by design and
    can't change v1.0. Batch 2 costs about 270–280 core-h billed (cap 448). A GO would add 120–390
    core-h of survey compute after the tag. C1, the same idea at 40–57.5 ks, found no gain.
    Options: run now, defer to after the tag (wt_longpext frozen until then), or drop. Overseer's
    view: defer, or let #44 propose a futility check on batch 1 first.
-3. **#18: do MIN_COUNTS = 1000 and HOLD_SOURCES apply to extra targets as to bare ones?** (#11.)
-   Inclusion itself is by data a95 (D27). Overseer's view: yes, the same QA for every target.
-4. (Answered: Q4 analysis-only, D28.)
-5. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
-6. **#30**: the A1 candidate details. (Raised before 25 Nov.)
-7. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
+3. **#17**: review the recovery sections and batch regions. (Raised before 25 Nov.)
+4. **#30**: the A1 candidate details. (Raised before 25 Nov.)
+5. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
 - Later: #13 will ask you to approve survey_pipeline.py's ADOPTED line after cert13's golden check.
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
 
