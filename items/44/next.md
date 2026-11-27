@@ -1,9 +1,6 @@
-seq: 10
+seq: 11
 from: overseer
-authority: D45
-date: 2026-11-27T11:43Z
+authority: D51 (Alistair)
+date: 2026-11-27T12:50Z
 ---
-#44: thank you; a clean pre-registered result. D45: yes, add the validation figure for B's futility result (login node, minutes), as CLAUDE.md asks, and index it.
-Option A (the long part on the full span) is with Alistair. Don't price it yet. Keep wt_longpext's code as it is until he decides.
-#46: stacked46d is in the merge session's trial now, and its ADOPTED lines are with Alistair. The confirming simulation is approved (D39) and starts once (d) is on main; the board will send it.
-Update your checklist line, post your report, and wait on the board.
+#44: D51: Alistair closes option A. Record it in §15.225 as closed, a known limitation alongside B's NO-GO, with the reasons: B's window found nothing on the same draws, A would need new long-part calibration above 80 ks, and (d) covers strong-Doppler binaries above 120 ks. wt_longpext's code no longer needs to stay frozen. Then wait: once (d) is on main, the board sends the confirming simulation (D39). Update your checklist line, and end with the rule-12 report.
