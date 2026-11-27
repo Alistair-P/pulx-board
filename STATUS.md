@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 27 Nov 2026 09:47, by the dispatcher
+Updated: 27 Nov 2026 13:50, by the dispatcher
 
 ## Overnight (to 27 Nov 09:05)
 - **Merges:** 9 branches merged overnight. main is at 6cd77d3, with the suite at 782/0/3. Rule 15 is in
@@ -27,6 +27,24 @@ Updated: 27 Nov 2026 09:47, by the dispatcher
 5. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
 
 ## For overseer
+- **Cluster policy change (27 Nov), reported by #11, #15, #41 and #44:** sessions now run sbatch only on
+  Alistair's own yes to the exact command in their terminal, and delete files only on his OK there.
+  Board approval isn't enough. This contradicts the "submit" wording in plans 15.2, 38.4 and 44.5.
+- **#11 (seq 8, needs-you):** correction: finding (a) was wrong; survey_list() ignores `skip`, so D48's
+  premise fails. D47 (b)/(c) done, targets18 b75e098 queued (suite 792/0/3). NGC 1313 X-2 swap blocked
+  (packed, X-1's products in dir/; X2 still in HOLD_SOURCES). D48 list: 20 rows, no PNGs
+  (stats/targets18/d48_review/review_list.tsv). Pilot waits for Alistair's yes. 5 NEEDS YOU.
+- **#15 (seq 5, needs-you):** 31 of batch 1's 43 region runs failed instantly (run_one folder-lookup bug;
+  one-line fix proposed). 16 PNGs ready for #17 (0830191401 fails the count check). pickfix 8b03189
+  queued NOT READY; doesn't fix 0884030101, whose rerun needs Alistair's yes and delete OK. New:
+  0150280101 prepped from a CalClosed exposure; rule proposed. 3 NEEDS YOU.
+- **#41 (seq 4, needs-you):** census done (logs/q41/quota_census_20261127.md). Files 169,781. Projected
+  peak ~199,700 during a 50-obs batch, over the 195,000 line, unless tmp/tmp* is cleared and the
+  testshim leak fixed. D49 checks pass; removal waits for Alistair's OK in the #41 terminal. 4 NEEDS YOU.
+- **#42 (seq 10, done):** the three coverage answers and the two ObsIDs' modes and spans are in its
+  report, for Alistair. #30 still needs "A1" and the candidate details.
+- **#44 (seq 11, idle):** D51 recorded (15.225 (16)); #44 settled. Waits for 44.5; it will ask Alistair
+  for the sbatch yes itself (policy change above).
 - Silent since their last instructions: merge (last report 23:52; instructions 5 and 6 unread),
   #11 (21:32; instruction 7), #44 (01:04; instruction 9) and #38 (17:06; instruction 3). Alistair
   asked to check those windows at 11:15.
@@ -38,16 +56,16 @@ Updated: 27 Nov 2026 09:47, by the dispatcher
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
 | merge | merge session | root tree | high | active | a95cut merged (df0a6f9, ADOPTED f9f49373); stacked46d trial running | 27 Nov 11:29 |
-| 11 | #18 (multi-target), was #11 | wt_mt | medium | waiting | tooling queued (targets18 992696d); pilot needs Alistair's sbatch yes | 27 Nov 12:17 |
+| 11 | #18 (multi-target), was #11 | wt_mt | medium | needs-you | targets18 b75e098 queued; finding (a) corrected; X-2 swap blocked; pilot needs Alistair's yes | 27 Nov 13:27 |
 | 13 | certificate | wt_cert13 | high | waiting | draft builder done; waits for a95cut and (d) | 26 Nov 18:18 |
-| 15 | survey intake | wt_intake15 | medium | needs-you | D43 fix proposed (not applied); intake15 queued 0ada393; regions wait on Alistair's naming answer | 27 Nov 09:12 |
+| 15 | survey intake | wt_intake15 | medium | needs-you | D47 names in; 12/43 regions OK, 31 need a lookup fix; pickfix 8b03189 queued NOT READY; 0884030101 rerun needs Alistair | 27 Nov 13:16 |
 | 25 | artefact battery rev3 | root tree | medium | settled | p14a-calib on main (15285f7) | 26 Nov 21:50 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | policy27 on main (077a2eb); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | waiting | D41 acknowledged; a95cut READY at 6b015e2; waits for 37.3 triggers | 27 Nov 09:05 |
 | 38 | red noise | wt_rednoise | high | ? | rebuild instruction 3 (18:01) not yet picked up; needs a nudge | 26 Nov 17:06 |
-| 41 | quota and packing | root tree | medium | settled | addendum on main (4f4386e) | 27 Nov 00:56 |
-| 42 | methods paper (#43, #45) | root tree | medium | waiting | cut filled in (5264663, queued); 2 OPEN markers left | 27 Nov 11:58 |
-| 44 | long-period part (#44, #46) | wt_longpext | medium | active | B NO-GO (futility); figure (D45); Option A with Alistair | 27 Nov 11:41 |
+| 41 | quota and packing | root tree | medium | needs-you | census done (169,781); D49 removal waits for Alistair's OK | 27 Nov 13:41 |
+| 42 | methods paper (#43, #45) | root tree | medium | waiting | coverage questions answered; 2 OPEN markers left | 27 Nov 12:55 |
+| 44 | long-period part (#44, #46) | wt_longpext | medium | waiting | #44 settled (A closed, D51); waits for 44.5 | 27 Nov 12:53 |
 | 47 | β study | - | high | not started | no conversation found | - |
 
 ## Plans

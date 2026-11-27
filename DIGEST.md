@@ -15,3 +15,28 @@ The dispatcher adds one block per item it handles. The overseer clears this file
 - D41 acknowledged; no golden rerun. a95cut stays READY at 6b015e2 (main not merged in; the board can ask).
 - held: waiting (37.2)
 - read in full: no
+
+### 11, report seq 8 (needs-you), 13:27
+- D47 (b)/(c) done, targets18 b75e098 queued; finding (a) was wrong (survey_list ignores skip). X-2 swap blocked; D48 list 20 rows, no PNGs.
+- for overseer: 5 NEEDS YOU not covered by 11.1; pilot waits for Alistair's terminal yes
+- read in full: yes
+
+### 15, report seq 5 (needs-you), 13:16
+- D47 naming in. 31 of 43 region runs failed (folder-lookup bug, fix proposed); 16 PNGs ready. pickfix 8b03189 queued NOT READY; 0884030101 rerun needs Alistair's yes. CalClosed pick found in 0150280101.
+- for overseer: failures and 3 NEEDS YOU not covered by the plan
+- read in full: yes
+
+### 41, report seq 4 (needs-you), 13:41
+- Census done; files 169,781; projected peak ~199,700 without tmp cleanup and the testshim fix. D49 checks pass; removal waits for Alistair's OK.
+- for overseer: 4 NEEDS YOU; no plan step
+- read in full: yes
+
+### 42, report seq 10 (done), 12:55
+- Answered the overseer's three coverage questions and the two ObsIDs' mode, span and list status.
+- for overseer: answers are for Alistair; no plan step
+- read in full: yes
+
+### 44, report seq 11 (idle), 12:53
+- D51 recorded in 15.225 (16); #44 settled. Waits for 44.5; says sbatch now needs Alistair's own yes.
+- for overseer: the policy change contradicts 44.5's "submit it"
+- read in full: yes
