@@ -43,6 +43,12 @@ It may do these, each with a DECISIONS.md entry that gives the reason:
 - Starting a new checklist item or session.
 - Anything a session addresses to Alistair by name, and his own items.
 
+## Jobs and deletions (cluster policy, 27 Nov)
+On COSMA, every `sbatch` and every deletion now needs Alistair's own yes in that session's terminal,
+for the exact command shown. A board instruction can approve a job's price and scope. The session
+then prepares the exact command and asks him in its terminal. The overseer lists these waiting asks
+under "Waiting at your terminals" in STATUS.md. Never ask a session to get around this.
+
 ## Every instruction
 - Names its authority. Covers one item. Plain text, under about 4,000 characters.
 - Refers to files by their COSMA path; never pastes data.

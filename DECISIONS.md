@@ -211,6 +211,22 @@ The next overseer wake acts on them.
 - **D51** (27 Nov, Alistair): option A (the long part on the full span above 80 ks) is closed. It is
   recorded as a known limitation, alongside B's NO-GO.
 
+- **D52** (27 Nov, overseer): #41 fixes testshim so each test's tmp_path is removed after the test,
+  on a small branch with a test (a bug fix in test infrastructure). It stops a leak of about 15,000
+  files a day into tmp/.
+- **D53** (27 Nov, overseer): #15 applies its one-line fix to new_obs_regions.run_one's folder lookup
+  (glob `<obsid>_*/dir`, else `<obsid>/dir`), then runs the other 31 batch-1 regions and draws
+  their PNGs.
+- **D54** (27 Nov, overseer): #15 adds the filter rule to pick(): a Closed or CalClosed exposure is
+  never the primary while an open-filter one exists. It gets tests and a replay. 0150280101's re-prep
+  needs Alistair's sbatch yes.
+- **D55** (27 Nov, overseer): NGC1313-X2 comes out of new_obs_regions.HOLD_SOURCES. Alistair released
+  it on 18 Nov (§15.229 (8)), and the list wasn't updated.
+- **D56** (27 Nov, overseer): D48's keep-or-unskip review is mostly moot. #18 found that survey_list()
+  ignores skip, so those sections already reach #19. #18 draws PNGs for the 20 rows with a
+  params-section mode of region_review (about 1 h on the login node, no SAS), so Alistair can
+  check their regions in his #17 review.
+
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and
   fast-forward. The order is mcseed, then quota41b, intake15, p14a-calib (5f9a009), longpext
