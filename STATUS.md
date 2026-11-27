@@ -37,33 +37,10 @@ Updated: 27 Nov 2026 15:50, by the dispatcher
 4. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
 
 ## For overseer
-- **ALERT (15:50): new terminal ask.** #41's retirement of the 9 worktrees plus wt_p14a and wt_regrev
-  (~16,300 inodes) now waits for Alistair's yes in the #41 terminal.
-- **Cluster policy change (27 Nov), reported by #11, #15, #41 and #44:** sessions now run sbatch only on
-  Alistair's own yes to the exact command in their terminal, and delete files only on his OK there.
-  Board approval isn't enough. This contradicts the "submit" wording in plans 15.2, 38.4 and 44.5.
-- **#11 (seq 8, needs-you):** correction: finding (a) was wrong; survey_list() ignores `skip`, so D48's
-  premise fails. D47 (b)/(c) done, targets18 b75e098 queued (suite 792/0/3). NGC 1313 X-2 swap blocked
-  (packed, X-1's products in dir/; X2 still in HOLD_SOURCES). D48 list: 20 rows, no PNGs
-  (stats/targets18/d48_review/review_list.tsv). Pilot waits for Alistair's yes. 5 NEEDS YOU.
-- **#15 (seq 9, needs-you):** instruction 9 done: light-curve panel in review.png (regfix ba93f94), all 51
-  gallery PNGs redrawn; verdicts FAIL/REVIEW/PASS (regfix d0e20bf; gallery 9 FAIL, 6 REVIEW, 36 PASS);
-  flag counts over batch 1's 49 targets posted (8 with any flag). §15.229 (28)–(29), intake15 9f11bbb.
-  NEEDS YOU: (1) Alistair: should any of the five flags become a hard QA rule? (2) the two reruns' deletions
-  and sbatch wait at his terminal (already listed). Files 175,237.
-- **#41 (seq 6, needs-you):** instruction 6 done. Unpacked 0405090101, 0693850501, 0693851201 for #18's
-  X-2 swap (all hash checks clean, +251 inodes), so #18 can run X-2's regions; #18 hasn't been told.
-  Copy-out of the 9 worktrees done (+116 files; 15.223 (16), daef6ba on testshim-tmp). Files 175,025.
-  NEEDS YOU: Alistair's yes in the #41 terminal for the retirements; tmp/ clean-up after testshim-tmp merges.
-- **#42 (seq 10, done):** the three coverage answers and the two ObsIDs' modes and spans are in its
-  report, for Alistair. #30 still needs "A1" and the candidate details.
-- **#44 (seq 11, idle):** D51 recorded (15.225 (16)); #44 settled. Waits for 44.5; it will ask Alistair
-  for the sbatch yes itself (policy change above).
-- Silent since their last instructions: merge (last report 23:52; instructions 5 and 6 unread),
-  #11 (21:32; instruction 7), #44 (01:04; instruction 9) and #38 (17:06; instruction 3). Alistair
-  asked to check those windows at 11:15.
-- #41's quota census (asked 11:20): 171,676 files, up about 11,700 overnight.
-- (d)'s ADOPTED approval, then tell the merge session (D42).
+- #38 hasn't posted its rebuild report (instruction 3, sent 26 Nov 18:01). It did the rebuild (88/88)
+  but was interrupted while recording it. Alistair has the paste line. #37's list rerun waits on it.
+- Open question for Alistair: make "not detected AND neighbour outshines" a hard QA rule (2 of 49 in
+  batch 1, both already excluded).
 
 ## Items
 
@@ -106,7 +83,8 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     190,000, send: "Record batch 1's outcome in §15.229. Then price batch 2 (up to N = min(50,
     floor((195,000 − used)/500)) ObsIDs) the same way. If it needs XSA downloads, list them under
     NEEDS YOU and don't download them. If it is at most 50 core-h billed and its file projection
-    stays under 194,000, submit the ObsIDs that need no download (D10), and report."
+    stays under 194,000, prepare the job for the ObsIDs that need no download (D10), and ask
+    Alistair for his yes in your terminal (D59)."
   - Any failed ObsID, a price over 50 core-h, or a file count over 190,000: for overseer.
 - **25**:
   - `25.1`: hold idle reports while p14a-calib is queued.
@@ -133,7 +111,8 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     10 ks nulls were planned), which arms (coherent Z1/Z3, and whether the orbit arm's M1
     thresholds are validated below 16 ks), and how the thresholds would be fitted and checked.
     2. Price the nulls in billed core-h and files, from measured times. 3. If the price is at most
-    150 core-h billed, submit them; otherwise post needs-you with the price. The new thresholds
+    150 core-h billed, prepare the job and ask Alistair for his yes in your terminal (D59); otherwise
+    post needs-you with the price. The new thresholds
     are not adopted into v1.0. They come in as a separately registered stage after the tag. Update
     your checklist line, and end with the rule-12 report."
   - A failed rebuild, or a cost above 10 core-h: for overseer.
@@ -156,8 +135,9 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
   - `44.5`: trigger: a merge report says (d)'s branch is on main. Send: "D39: Alistair approves your
     confirming simulation for (d), on main's merged code. Write the decision rule of §15.230 (11)
     into the record before any draw, and commit it. Run the pilot (about 3 core-h, 8 draws across both
-    octaves, both span bins and both amplitudes) and reprice from it. If the full run is within
-    110 core-h billed, submit it; otherwise post needs-you with the price. Report the result
+    octaves, both span bins and both amplitudes) and reprice from it. Each sbatch needs Alistair's
+    yes in your terminal (D59). If the full run is within 110 core-h billed, ask him for it there;
+    otherwise post needs-you with the price. Report the result
     against the rule. Update your checklist line, and end with the rule-12 report." If B's futility
     check (44.4) is still running, send this after it reports.
   - `44.4`: when it reports (d) queued, send: "D36: B's futility check on batch 1. First write this

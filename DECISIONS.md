@@ -18,6 +18,8 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 27 Nov 16:03: "happy with all decisions": exclude 0400560301's target for this epoch (D60); (d)'s
+  merge goes ahead once he says yes in the merge terminal.
 - 27 Nov 14:21: he approves every Slurm job himself, in the terminal (D59).
 - 27 Nov 14:18: yes to all six terminal asks (each still needs his yes in its own terminal). Job
   tiers (D57). A flat gallery of review PNGs, and a readable flaring panel (D58).
@@ -241,6 +243,12 @@ The next overseer wake acts on them.
 - **D59** (27 Nov, Alistair): he approves every Slurm job (and every deletion) himself, with his yes in
   the session's terminal, as the cluster policy requires. D57's tiers decide who approves the plan
   and price before that. The dispatcher alerts him for each new terminal ask.
+
+- **D60** (27 Nov, Alistair): NGC4258-J121903.0+471722 is excluded (held) in 0400560301. It isn't
+  detected, a brighter neighbour 15" away outshines it to its core, contamination is 6.4%, and the
+  diffuse emission is +323%. No region can separate it, so its net counts aren't source counts. The
+  only other target with both "not detected" and "outshines" (0674210601) already fails the count
+  gate. Whether that combination becomes a hard QA rule is still open.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and
