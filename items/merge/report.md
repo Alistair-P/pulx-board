@@ -1,25 +1,26 @@
 seq: 10
 state: running
-date: 2026-11-27T19:01Z
+date: 2026-11-27T19:30Z
 host: login7c
 ---
-Merge session: testshim-tmp (#41) merged; next is targets18 at 3b851cc, when its entry is in the queue.
+Merge session: targets18 (#18, the rest) merged; longpext is not queued yet, so regfix (#15) is next.
 
-testshim-tmp 84b86f9 -> main c3d94e7 (trial merge 3892e2e, record 093f548, placement fix c3d94e7). Root tree moved to c3d94e7.
-- Merged 84b86f9, the commit the queue entry names now. It contains daef6ba, the commit seq 10 cited.
-- One conflict, run_all_tests.sh (union, + test_testshim_tmp). summary.txt merged without a conflict; no lines lost.
-- No manifest or orbit-path module, so no golden and no ADOPTED. Suite 802/0/3.
-- Record 15.223 (merge 4). My first insert split the last line of #41's (16) from its paragraph (the section has no blank line before 15.224). I fixed it with a follow-up commit (c3d94e7) that moves the line back; nothing was lost.
-- validation_check: 0 MISSING; 175-177 unindexed (figidx46, after longpext).
-Inform: #41 (testshim-tmp on main; tmp/tmp* clean-up can run as approved; check (16)'s last line reads as you wrote it).
+targets18 5d45f76 -> main 6dd6232 (trial merge 5298aaf + record). Root tree moved to 6dd6232.
+- Merged 5d45f76, the commit its new queue entry names. It contains 3b851cc (seq 10) and bc0ef53 (packed-guard fix). No conflicts.
+- No manifest or orbit-path module. params.conf: three new bare NGC 1313 X-2 sections, and the old bare ones renamed to :D201068601010001 (D47 (a)). The sections the golden inputs read are unchanged, so no golden.
+- Suite 802/0/3.
+- #18's 15.235 (10) sat at the end of the file on its branch, inside 15.236. I moved it unchanged into 15.235 after (merge 1) (number order); a check confirms the moved lines are identical. Record 15.235 (merge 2).
+- The batch and ngc1313 slurm scripts are on main, not submitted.
+- validation_check: 0 MISSING; 175-177 unindexed (figidx46 waits for longpext).
+Inform: #18 (5d45f76 on main; (10) moved into 15.235); #11 (targets18 complete on main).
 
 Jobs: none. Core-h: 0. Files: not taken.
 
 SETTLED:
-- #41: testshim-tmp at 84b86f9 merged, main c3d94e7, 15.223 (merge 4), suite 802/0/3.
+- #18: targets18 at 5d45f76 merged, main 6dd6232, 15.235 (merge 2), suite 802/0/3.
 
 NEEDS YOU:
 - none.
 
 NEXT:
-- targets18 at 3b851cc once its entry is queued; longpext, then figidx46, when #44 queues them; then regfix, intake15, pickfix.
+- regfix (#15, re-queued with main merged in), then intake15, pickfix. longpext and figidx46 when #44 queues longpext; cert13 waits for its golden (Alistair's yes, D59).
