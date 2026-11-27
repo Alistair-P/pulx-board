@@ -18,6 +18,9 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 27 Nov about 16:00, in the terminals: yes to (d)'s ADOPTED lines and fast-forward (merge, main
+  57974c9); yes to #11's pilot (job 12448511) and the 2 stale folders; yes to #41's 11 retirements and
+  the tmp/ clean-up after testshim-tmp.
 - 27 Nov 16:08: #17 review of five gallery PNGs (D61). Asked why a neighbour that outshines a target
   should matter (M82 X-2 was found blended with X-1), and whether anything corrects for off-axis sources.
 - 27 Nov 16:03: "happy with all decisions": exclude 0400560301's target for this epoch (D60); (d)'s

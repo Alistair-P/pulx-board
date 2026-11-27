@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 27 Nov 2026 16:10, by the overseer
+Updated: 27 Nov 2026 16:25, by the overseer
 
 ## Overnight (to 27 Nov 09:05)
 - **Merges:** 9 branches merged overnight. main is at 6cd77d3, with the suite at 782/0/3. Rule 15 is in
@@ -19,14 +19,13 @@ Updated: 27 Nov 2026 16:10, by the overseer
 - **Files:** about 160,000.
 
 ## Waiting at your terminals (cluster policy: your yes, in that window, to the exact command)
-- **merge**: write (d)'s two ADOPTED lines (octave_thresholds.py ab3e3264, survey_pipeline.py 9b8ce8b0),
-  freeze the window slot, fast-forward. The golden passed as predicted, so D46's conditions are met.
-- **#11**: (a) the pilot's sbatch (8 core-h); (b) delete 2 stale pilot folders; (c) the X-2 swap's
-  preprocess commands, once its regions are drawn (the unpack is done).
-- **#15**: delete 0884030101's 4 failed files and sbatch its rerun; same for 0150280101 (1–3 core-h each).
-- **#41**: retire the 9 worktrees (copy-out done, 0 files left only in a worktree) plus wt_p14a and
-  wt_regrev, about 16,300 inodes, commands shown in the #41 terminal; 0 core-h. Later: clear tmp/tmp* older
-  than 1 h once testshim-tmp merges (about 37,000).
+- **#11**: `sbatch slurm/submit_targets18_ngc1313.sh` (the X-2 swap, cap 32 core-h), once the pilot
+  (job 12448511) passes its pre-registered rule.
+- **#15**: delete 0884030101's 4 failed files and sbatch its rerun; same for 0150280101 (1-3 core-h each).
+- **#44** (coming): the D39 pilot (about 3 core-h), then the full confirming run (up to 110 core-h).
+- **#13** (maybe): a golden rerun, only if cert13 touches a hashed module.
+- Done this afternoon: (d) on main (57974c9); #11's pilot and folders; #41's 11 retirements (files now
+  157,359).
 
 ## Needs Alistair
 1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ holds 51 PNGs, with verdicts
@@ -47,17 +46,17 @@ Updated: 27 Nov 2026 16:10, by the overseer
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
-| merge | merge session | root tree | high | active | a95cut merged (df0a6f9, ADOPTED f9f49373); stacked46d trial running | 27 Nov 11:29 |
-| 11 | #18 (multi-target), was #11 | wt_mt | medium | needs-you | targets18 b75e098 queued; told the unpack is done, so (c) goes ahead; pilot needs Alistair's yes | 27 Nov 14:44 |
-| 13 | certificate | wt_cert13 | high | waiting | draft builder done; waits for a95cut and (d) | 26 Nov 18:18 |
+| merge | merge session | root tree | high | active | stacked46d merged (57974c9, ADOPTED ab3e3264 and 9b8ce8b0); targets18 next | 27 Nov 16:10 |
+| 11 | #18 (multi-target), was #11 | wt_mt | medium | running | pilot 12448511 running; guard bug fixed (bc0ef53); X-2 swap prepared (50836e4), its sbatch waits | 27 Nov 16:12 |
+| 13 | certificate | wt_cert13 | high | told | 13.2 sent: rebase cert13 on main, golden only if a hashed module changed | 26 Nov 18:18 |
 | 15 | survey intake | wt_intake15 | medium | needs-you | told D60 and D61 (review verdicts) plus questions on fov, off-axis PSF and flags; 2 reruns wait at Alistair's terminal | 27 Nov 15:10 |
 | 25 | artefact battery rev3 | root tree | medium | settled | p14a-calib on main (15285f7) | 26 Nov 21:50 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | policy27 on main (077a2eb); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | waiting | D41 acknowledged; a95cut READY at 6b015e2; waits for 37.3 triggers | 27 Nov 09:05 |
 | 38 | red noise | wt_rednoise | high | ? | rebuild instruction 3 (18:01) not yet picked up; needs a nudge | 26 Nov 17:06 |
-| 41 | quota and packing | root tree | medium | needs-you | NGC 1313 unpacked for #18; worktree copy-out done; retirements wait at Alistair's terminal | 27 Nov 15:06 |
+| 41 | quota and packing | root tree | medium | waiting | 11 worktrees retired (files 157,359); tmp/ clean-up waits for testshim-tmp | 27 Nov 16:14 |
 | 42 | methods paper (#43, #45) | root tree | medium | waiting | coverage questions answered; 2 OPEN markers left | 27 Nov 12:55 |
-| 44 | long-period part (#44, #46) | wt_longpext | medium | waiting | #44 settled (A closed, D51); waits for 44.5 | 27 Nov 12:53 |
+| 44 | long-period part (#44, #46) | wt_longpext | medium | told | 44.5 sent: README rows, then the D39 pilot at Alistair's terminal | 27 Nov 14:25 |
 | 47 | β study | - | high | not started | no conversation found | - |
 
 ## Plans
@@ -76,8 +75,8 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
 - **13**:
   - `13.1`: when it reports the build_cert.py draft committed, with no new NEEDS YOU, hold. It
     waits for a95cut and #46.
-  - `13.2`: trigger: a merge report says a95cut AND #46's (d) branch are on main. Then for
-    overseer, because the rebase and golden check plan needs checking.
+  - `13.2`: sent 27 Nov 16:20.
+  - `13.3`: its rebase report: for overseer.
 - **15**:
   - `15.1`: while downloads, the memory test or the Slurm job are running, hold.
   - `15.2`: when the first Slurm job has finished with every ObsID ok, and the file count is under
@@ -133,7 +132,8 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
   - `44.2`: while the K_eff check or the golden check runs, hold.
   - `44.3`: when it reports (d) queued with the golden check passed, hold. The ADOPTED line goes
     to Alistair, and 13.2 waits for it to merge.
-  - `44.5`: trigger: a merge report says (d)'s branch is on main. Send: "D39: Alistair approves your
+  - `44.5`: sent 27 Nov 16:20. Its reports while the pilot or full run go: hold. Results: for overseer.
+    Text sent: "D39: Alistair approves your
     confirming simulation for (d), on main's merged code. Write the decision rule of §15.230 (11)
     into the record before any draw, and commit it. Run the pilot (about 3 core-h, 8 draws across both
     octaves, both span bins and both amplitudes) and reprice from it. Each sbatch needs Alistair's
