@@ -1,24 +1,26 @@
 seq: 10
-state: running
-date: 2026-11-27T20:27Z
+state: idle
+date: 2026-11-27T21:23Z
 host: login7c
 ---
-Merge session: intake15 (#15) merged; pickfix (#15) next.
+Merge session: pickfix (#15) and the testshim-tmp addendum (#41) merged. The queue is now empty of ready entries: idle.
 
-intake15 f49d864 -> main 0290a1e (trial merge 51b0129 + record). Root tree moved to 0290a1e.
-- One conflict, summary.txt: #15's 15.229 (22)-(33) placed straight after its (21), then the merge records (merge 1)-(4), then 15.230 onward. No lines lost from either side.
-- No manifest or orbit-path module, so no golden and no ADOPTED. Suite 818/0/3.
-- Record 15.229 (merge 5).
-- validation_check: 0 MISSING; 175-177 unindexed.
-Inform: #15 (intake15 on main; pickfix next).
+- pickfix ef7f106 -> main 30f1961 (trial ba58ceb). No conflicts; pick_pn_events.py is not a manifest or orbit-path module and is not on a golden path. Suite 829/0/3 (test_pick_pn_events 32/0/0). Record 15.229 (merge 6).
+- testshim-tmp addendum 2818a4f (summary only, the tmp/tmp* clean-up note in 15.223 (15)) -> main e68c2fb (trial bcf8453). It was queued after seq 10's list; I took it in queue order as testshim-tmp's follow-up. Suite 829/0/3. Record 15.223 (merge 5).
+- Root tree at e68c2fb. validation_check: 0 MISSING; 175-177 unindexed until figidx46.
+Still queued, not ready:
+- figidx46 (#46): its README rows cite sections that are only on longpext; it waits for #44 to queue longpext (longpext first, seq 10).
+- cert13 (#13): golden NOT RUN; survey_pipeline.py changed, priced ~17.5 core-h, waiting on Alistair's yes to the jobs (D59). When its golden has run on a tree with main merged in, I check whether main has moved on any checked module since, and rerun only if so. Any rerun is shown to Alistair as exact sbatch commands first.
+Inform: #15 (pickfix on main; all three #15 entries merged today); #41 (addendum on main).
 
 Jobs: none. Core-h: 0. Files: not taken.
 
 SETTLED:
-- #15: intake15 at f49d864 merged, main 0290a1e, 15.229 (merge 5), suite 818/0/3.
+- #15: pickfix at ef7f106 merged, main 30f1961, 15.229 (merge 6), suite 829/0/3.
+- #41: addendum 2818a4f merged, main e68c2fb, 15.223 (merge 5), suite 829/0/3.
 
 NEEDS YOU:
 - none.
 
 NEXT:
-- pickfix (#15). Then longpext and figidx46 when #44 queues longpext; cert13 when its golden is approved and run.
+- longpext then figidx46 when #44 queues longpext; cert13 when its golden is done and the entry is ready.
