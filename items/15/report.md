@@ -1,35 +1,36 @@
 seq: 10
 state: needs-you
-date: 2026-11-27T16:07Z
+date: 2026-11-27T16:14Z
 host: login7c
 ---
-#15 (board seq 10, D60): done. NGC4258-J121903.0+471722 in 0400560301 is now held for this epoch with the D60 reason: never staged, and shown as HELD in its PNG and index row. Still open: the hard-QA-rule question and the two reruns, both with Alistair.
+#15: both reruns worked. Alistair said yes in the terminal. 0884030101 now uses U002 and 0150280101 uses S001, both with the barycentre correction and frame alignment verified. Their regions and PNGs are done, and pickfix is marked READY.
 
-1. **The hold (regfix 1a00ba7):**
-   - new `new_obs_regions.HOLD_TARGETS`, keyed by (target ID, name), holds one target in one epoch. HOLD_SOURCES still holds a source in every epoch.
-   - `stage()` lists it in params_new_obs_held.tsv with the D60 reason, marks it "held" in new_obs_flags.tsv, and writes no params section.
-   - I also fixed the staging header, which still said NGC 1313 X-2 is held.
-2. **Display:**
-   - The PNG banner reads "HELD, NOT STAGED (D60)" in orange, and the caption gives the full reason.
-   - index.tsv has a new `held` column, and held rows sort last.
-   - Gallery: 9 FAIL, 5 REVIEW, 36 PASS, 1 HELD (51 PNGs).
-3. **Tests:** test_regfix 11/0/0. That includes a run of stage() on a temporary tree, which held the target and staged nothing for it, and a check that another epoch of the same source is not held. test_region_review 7/0/0, test_targets18 10/0/0.
-4. **--stage was NOT run on the real staging tables.** They are tracked in git, and a run would stage about 40 batch 1 sections ahead of Alistair's #17 review. Instead I ran stage() with its outputs sent to a scratch folder: 0400560301 came out held with the D60 reason and staged nowhere. Because the hold is in the code, every later --stage will hold it.
-5. 0674210601 already fails the count gate (net 858), so nothing more is needed there.
-6. **Reruns:** 0884030101 and 0150280101 still wait for Alistair's yes in the terminal (commands in report c).
+1. **Deleted (Alistair's OK):**
+   - 0884030101's failed-run files: pn_clean.fits, rateEPICPN.fits, pn_merged_evts.ds (558 MB) and its .inputs.
+   - 0150280101's files built from S011: prep_events.done, pn_clean.fits, rateEPICPN.fits.
+2. **Jobs** (submitted from wt_pickfix at ef7f106; 1 CPU, 18000M = 3 billed CPUs):
+   - 12448507, 0884030101: COMPLETED, exit 0, 1:47. U002 chosen (Thin1, about 110 ks ONTIME), no merge. barycen OK. 5,657,800 events aligned; TIMESYS TDB, DE200.
+   - 12448508, 0150280101: COMPLETED, exit 0, 0:30. S001 chosen (Thin1, about 7.9 ks), barycen OK. 3,886,591 events aligned; TDB.
+3. **Regions** (regfix tool, login node):
+   - 0150280101 NGC1313-X2: OK. Its PNG is REVIEW (not_detected); its checks pass.
+   - 0884030101 NGC3621-J111815.2-324841: OK. Its PNG is REVIEW (outshines, shrunk<60"); its checks pass.
+   - Batch 1 now has regions for all 49 ObsIDs.
+4. **Gallery: 54 PNGs** (9 FAIL, 5 REVIEW, 36 PASS, 3 UNCHECKED, 1 HELD).
+   - #18 removed its two duplicate tag folders.
+   - 3 new NGC1313-X2 PNGs (0405090101, 0693850501, 0693851201) were drawn by another session at 16:07–16:09 with main's tool, which writes no review.json. They show UNCHECKED until redrawn with regfix's region_review.
+5. **pickfix ef7f106: READY** (merge after intake15).
 
-Recorded in §15.229 (30) (intake15 007c54f).
+Recorded in §15.229 (31) (intake15 72b1959).
 
-Jobs: none. Core-h: 0 (login only). Files: 175,686.
+Jobs: 12448507 and 12448508, both COMPLETED. Core-h: 0.11 billed. Files: 157,398.
 
 SETTLED:
-- D60: 0400560301's NGC4258-J121903.0+471722 is held for this epoch with its reason, never staged, and shown as HELD.
+- The 0884030101 and 0150280101 reruns are verified end to end, with regions and PNGs; pickfix is READY.
 
 NEEDS YOU:
-1. Alistair: should "not detected AND outshines" (2 targets in batch 1) become a hard QA rule?
-2. Alistair, in the terminal: yes or no to the two deletions and two sbatch commands (report c).
-3. When should --stage write the real staging tables: after the #17 review, or now?
+1. Alistair: should "not detected AND outshines" become a hard QA rule? (2 batch 1 targets, as counted earlier; 0884030101 is outshone but detected.)
+2. When should --stage write the real staging tables: after the #17 review, or now?
 
 NEXT:
-- After each rerun: check the chosen exposure and barycentring, then run its regions and PNG, then mark pickfix ready.
 - Apply any QA rule Alistair sets; run --stage when told.
+- Merge order for the merge session: targets18 → regfix → intake15 → pickfix.
