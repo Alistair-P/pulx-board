@@ -53,43 +53,31 @@ waits until the turn ends.
 Keep this short. Remove items once they're settled.
 
 ### Open threads
-- merge hasn't posted a board report. When it does, check S1 (quota41b at dfa0244, the order,
-  intake15, p14a-calib 5f9a009) and add rule 15 to STANDING_RULES with the RULE15.md text.
-- File count 144,058–146,194 on 26 Nov, down from about 162,000 on 25 Nov. Watch it as #15's
-  Slurm job runs (about 2,600 files per 32 ObsIDs in batch 1).
-- #46: numbers in (b − no arm = −0.012, 95% −0.043 to +0.018). Open point: which Z1/Z3 table
-  v1.0 uses above 120 ks today (asked #44 at 17:58). If it reserves the stacked arm's share, then
-  "keep the gap" scores like (a)/(c), and switching to the no-arm table is the best option.
-- The dashboard page: build it once the first reports are in.
-
-- Lesson (26 Nov): check POLICY.md before instructing. D13 changed #27's policy content, which is
-  Alistair's, and overrode his own 25 Nov wording. #27 rightly refused it.
-
+- D63: #15's stage-1 report (15.4), then Alistair's scope decision (Needs Alistair 2). 37.3, 38.4,
+  #13's final certificate and #18's full tag runs all wait on it.
+- #38: silent since 26 Nov 17:06. Its rebuild was done (88/88) but not reported. Less urgent now,
+  since its records are rebuilt again after D63.
+- Dispatcher (27 Nov): it wrote DIGEST blocks inside the format comment and lost the `-->`. Fixed,
+  and DISPATCHER.md now says to append below it. Check the digest at the next wake.
 - board_watch.sh (27 Nov): runs on COSMA in tmux window "watch". It nudges a session whose
-  instruction has gone unread, because a resumed conversation loses its background wait. Its log
-  is ~/pulx-board/.local/watch.log on COSMA. Check after the first few days that it isn't nudging
-  sessions that are mid-task.
+  instruction has gone unread. Log: ~/pulx-board/.local/watch.log. Check it isn't nudging sessions
+  that are mid-task.
 
 ### Watch list
-- #37: a95cut golden check (D11). Expected bit-identical, about 11.5 core-h.
-- #15: the 14 downloads, then the first Slurm job (39 ObsIDs, D10).
-- Merges: rednoise, quota41b, p14a-calib and the rest; each one triggers plan steps.
+- Files: 164,367 (27 Nov 17:57). tmp/ clean-up (about 37,000) runs once testshim-tmp merges.
+- Merges follow D64's order; each one triggers plan steps.
 
-### Links between items
-- #37's list rerun waits for #38 to merge.
-- #13 waits for a95cut and #46.
-- #46's option decides the stacked rows above 120 ks (§15.133 (C)), and adds a golden slot (0791010101).
-- #23 and #24 wait for the tag.
+### Lessons
+- Check POLICY.md before instructing (D13 overrode Alistair's own policy wording; #27 refused it).
+- An instruction saying "as in instruction N" fails if N was never seen. Always restate it.
+- Establish the pipeline's actual baseline before recommending a method change. The study's first
+  comparison used a 20" baseline the survey doesn't use (27 Nov); #15's answers corrected it.
+- A science change needs the step-7 second look before it goes to Alistair. D63 went without one.
 
 ### Last wake
-- 27 Nov 09:00. Overnight: 9 merges (main 6cd77d3); a95cut golden PASS; (d) built and checked on
-  stacked46d. Sent: #11 a consolidated instruction (it had missed 4–6); #15 (second array,
-  summary entry, D43); #37 (D41); merge (D41, D42). #38 silent since 17:06 with instruction 3
-  unread, so Alistair is asked to nudge it. Next wake 18:00.
-- Lesson: an instruction saying "as in instruction N" fails if N was never seen. Always restate it.
-- 26 Nov 18:00 (scheduled). Heartbeat. Dispatcher's 17:45 run checked: merge.1 and 42.1 correct,
-  41.2 rightly held until D21. rednoise merged (1399fad), so 38.2 sent, rebuild only (D12),
-  overriding the merge record's "then a50 and --list". Nothing new for Alistair. Next wake 21:00.
-- 26 Nov 17:30, with Alistair present. First pass: 10 board reports read (#38 earlier). D8–D15
-  recorded. Instructions sent to 11, 13, 15, 27, 37, 41, 42 and 44; 25 held. Rule 15e fixed (it
-  had stopped #44 posting simulation numbers).
+- 27 Nov 18:00 (scheduled; Alistair active until 17:08). Read merge, #15, #11 and #44. Sent: merge
+  (D64 order), #15 (regfix conflict, then D63 stage 1, amended for its answers), #11 (swap waits for
+  his yes; tag runs wait for D63), #44 (queue longpext; D39 continues). D64 recorded; the D63
+  baseline note added. Needs Alistair: D63 scope, 0150280101 X-2. Next wake 28 Nov 09:00
+  (trig_01PuM3oxMMSTPAtPmApRT3rS).
+- 27 Nov 09:00. Overnight: 9 merges (main 6cd77d3); a95cut golden PASS; (d) built and checked.

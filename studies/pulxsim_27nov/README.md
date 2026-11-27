@@ -52,6 +52,10 @@ Leakage of a pulsing neighbour into the target's search, hard 20" against joint 
 - The noise is white. New weights change the red-noise records (#38).
 - The pipeline already weights by energy (w = p·g(E)^β, β = 0.75). So the energy rows show what
   energy weighting is worth, not a change D63 makes.
+- **The pipeline's baseline is "weighted 60"", not "weighted 20"".** #15 found (27 Nov) that the
+  weighted search takes the whole aperture (20-100", neighbours masked) with the ELLBETA PSF. So
+  D63's gain is the step from "weighted 60"" to "joint fit 60"": 11%, 23%, 17% and 6% lower a95
+  beside a neighbour 3x brighter at 5", 10", 15" and 25", and about 0 for isolated targets.
 
 ## Running it (read this before running anything)
 This folder is inside the board clone. A changed or new file here stops every session's board sync.

@@ -44,7 +44,8 @@ Never send a step whose condition isn't clearly met. Never change a plan.
 ## 3. Write it down
 - STATUS.md: update the item's row (State, Doing, Last report). Put the date and "dispatcher" on
   the "Updated" line.
-- DIGEST.md: add one block per item you handled:
+- DIGEST.md: add one block per item you handled, at the END of the file, below the `-->` line.
+  Leave the format comment as it is (27 Nov: blocks written inside it hid them and lost the `-->`):
   ```
   ### ID, report seq N (STATE), HH:MM
   - what the report says, in 1–3 lines

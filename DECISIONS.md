@@ -287,6 +287,21 @@ The next overseer wake acts on them.
   K by 0.5%; it is a QA fix. Before ADOPTED: a design and price report (stage 1), then an injection
   validation on real batch-1 event files evaluated only at the injected trial, a null check, the
   golden, and rebuilt red-noise records (#38), a50 and list (#37) and certificate (#13).
+  - Overseer's note (27 Nov 18:10), from #15's answers: the survey already searches the whole
+    aperture (masks cut; timing_radius is empty, and the 20" circle on the PNGs is only drawn), with
+    w = p·g(E)^0.75 and the ELLBETA PSF (off-axis and energy-dependent). So the study's relevant
+    baseline is its "weighted 60"" (two-way, masks), not "weighted 20"". Against that baseline,
+    the joint fit lowers a95 by 11%, 23%, 17% and 6% beside a neighbour 3x brighter at 5", 10", 15"
+    and 25", and by about 0 for isolated targets. The off-axis and radius gains don't apply. The
+    scope question (all targets, neighbour fields only, or after the tag) is with Alistair once
+    stage 1 has priced it (Needs Alistair 2).
+- **D64** (27 Nov 18:10, overseer): merge order methods42, testshim-tmp, targets18 3b851cc,
+  longpext, figidx46, then regfix (re-queued by #15 after merging main), intake15 and pickfix.
+  These are independent of regfix, and its conflict is code, so it goes back to its owner.
+  longpext is queued because B is NO-GO, which lifts its freeze. #18's full tag runs wait for D63's
+  stage 1, because D63 may change the region products. 0111800101's shrunk<60" flag is accepted
+  under D61 (Alistair judged the whole PNG fine). 0150280101 X-2's detect FAIL stands for now; it
+  is below the 17 ks floor anyway.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and

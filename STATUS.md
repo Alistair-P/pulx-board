@@ -1,41 +1,45 @@
 # PULX status
 
-Updated: 27 Nov 2026 17:05, by the overseer
+Updated: 27 Nov 2026 18:10, by the overseer
 
-## Overnight (to 27 Nov 09:05)
-- **Merges:** 9 branches merged overnight. main is at 6cd77d3, with the suite at 782/0/3. Rule 15 is in
-  STANDING_RULES, and the CLAUDE.md fixes are in.
-- **a95cut (#37):** golden PASS (coherent 19/19 bit-identical, orbit 4/4). It's merging now, with a
-  golden rerun on the merged tree.
-- **(d) (#44/#46):** built on stacked46d. Union check PASS (2 of 400 nulls against 3.8 expected).
-  Golden PASS, including the new 0791010101 slot. 50.7 core-h. It merges after a95cut and needs
-  your ADOPTED approval (item 1).
-- **B:** the futility check on batch 1 has started (D36).
-- **#15:** the review tools (region_review.py) are on main. Batch 1's regions wait on your naming
-  answers (item 2).
-- **#18:** target table done: 170 new tags on 122 ObsIDs. Step 2's tooling is starting.
-- **#25 and #41:** settled. **#42:** all 8 methods subsections drafted.
-- **#38:** hasn't picked up its rebuild instruction (sent 18:01). It needs a nudge (item 4).
-- **Files:** about 160,000.
+## Today (27 Nov, to 18:10)
+- **On main:** (d) (stacked46d, 57974c9; ADOPTED ab3e3264 and 9b8ce8b0) and targets18 (6db5e1f).
+  Suite 800/0/3.
+- **Merge queue:** regfix conflicts with main in region_review.py, so it went back to #15. methods42,
+  testshim-tmp, targets18 3b851cc, longpext and figidx46 go first (D64).
+- **Review (#17):** D60-D62 recorded and drawn. Gallery: 9 FAIL, 4 REVIEW, 37 PASS, 1 held, 3 unchecked.
+  The new detect check also fails 0150280101 X-2 (Needs Alistair 3).
+- **Source finding:** the labelled-photon study (studies/pulxsim_27nov) led to D63. #15's answers
+  show the survey already weights the whole aperture with the ELLBETA PSF, so D63's gain is in
+  neighbour fields only. Stage 1 (design and price, with a neighbour-fields-only option) is with #15.
+- **#18:** pilot PASS (0.23 core-h). **#44:** README rows queued (figidx46), D39's rule committed.
+  **#41:** 11 worktrees retired. Files 164,367.
+- **Overnight:** nothing on Slurm. merge works through D64's order; #15 fixes regfix, then D63 stage
+  1; #13 rebases cert13.
 
 ## Waiting at your terminals (cluster policy: your yes, in that window, to the exact command)
-- **#11**: `sbatch slurm/submit_targets18_ngc1313.sh` (the X-2 swap, cap 32 core-h), once the pilot
-  (job 12448511) passes its pre-registered rule.
-- **#15**: delete 0884030101's 4 failed files and sbatch its rerun; same for 0150280101 (1-3 core-h each).
-- **#44** (coming): the D39 pilot (about 3 core-h), then the full confirming run (up to 110 core-h).
+- **#11**: `sbatch slurm/submit_targets18_ngc1313.sh` from wt_mt (the X-2 swap; cap 32 core-h, about
+  1-2 expected from the pilot). The pilot passed.
+- **#44**: the D39 pilot sbatch from its confirm46d worktree (cap 6 core-h, about 2-4 expected). Then
+  the full confirming run, if within 110 core-h.
 - **#13** (maybe): a golden rerun, only if cert13 touches a hashed module.
-- Done this afternoon: (d) on main (57974c9); #11's pilot and folders; #41's 11 retirements (files now
-  157,359).
+- Done today: (d) on main; #11's pilot and folders; #15's two reruns; #41's 11 retirements.
 
 ## Needs Alistair
-1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ holds 51 PNGs, with verdicts
-   (9 FAIL, 6 REVIEW, 36 PASS) and light-curve panels. Also #18's 20 D48 PNGs in
-   stats/targets18/d48_review/png/. 0400560301's target is excluded (D60).
-2. **D63 (source selection and weights, v1.0)**: adopted 27 Nov. Stage 1 is #15's design and price
-   report (plan 15.3). The overseer suggested an independent second look before coding.
-3. **#30**: starts later, in a COSMA session. 0200670401's section has timing = 0, so as it stands
+1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ (9 FAIL, 4 REVIEW, 37 PASS, 1 held,
+   3 unchecked), with verdicts and light curves. Also #18's 20 D48 PNGs in stats/targets18/d48_review/png/.
+2. **D63's scope** (raised 27 Nov). Against the survey's actual weights, the joint fit lowers a95 by
+   6-23% beside a neighbour 3x brighter at 5-25", and by about 0 elsewhere. Options: (i) every target
+   in v1.0; (ii) only targets with a neighbour within 30", in v1.0; (iii) after the tag, as a
+   separately registered stage. #15's stage 1 prices (i) and (ii) and counts the targets affected.
+   Overseer's lean: (ii) if it is cheap, otherwise (iii). Decide once stage 1 reports. The overseer
+   also offered an independent second look first (OVERSEER.md step 7).
+3. **0150280101 NGC1313-X2** fails the new detect check (nothing within 10" in 7.9 ks). It is below
+   the 17 ks floor, so v1.0 doesn't search it either way. Recommend leaving it out, with no
+   override. Raised 27 Nov.
+4. **#30**: starts later, in a COSMA session. 0200670401's section has timing = 0, so as it stands
    that ObsID isn't searched.
-4. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
+5. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
 
 ## For overseer
 - #38 hasn't posted its rebuild report (instruction 3, sent 26 Nov 18:01). It did the rebuild (88/88)
@@ -45,17 +49,17 @@ Updated: 27 Nov 2026 17:05, by the overseer
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
-| merge | merge session | root tree | high | active | stacked46d merged (57974c9, ADOPTED ab3e3264 and 9b8ce8b0); targets18 next | 27 Nov 16:10 |
-| 11 | #18 (multi-target), was #11 | wt_mt | medium | running | pilot 12448511 running; guard bug fixed (bc0ef53); X-2 swap prepared (50836e4), its sbatch waits | 27 Nov 16:12 |
+| merge | merge session | root tree | high | active | targets18 merged (6db5e1f); regfix conflict sent back; D64 order next | 27 Nov 17:52 |
+| 11 | #18 (multi-target), was #11 | wt_mt | medium | needs-you | pilot PASS; targets18 3b851cc queued; swap sbatch at Alistair's terminal; tag runs wait for D63 | 27 Nov 17:51 |
 | 13 | certificate | wt_cert13 | high | told | 13.2 sent: rebase cert13 on main, golden only if a hashed module changed | 26 Nov 18:18 |
-| 15 | survey intake | wt_intake15 | medium | needs-you | told D60 and D61 (review verdicts) plus questions on fov, off-axis PSF and flags; 2 reruns wait at Alistair's terminal | 27 Nov 15:10 |
+| 15 | survey intake | wt_intake15 | medium | told | D60-D62 done, reruns done; told: fix regfix's conflict, then D63 stage 1 | 27 Nov 17:57 |
 | 25 | artefact battery rev3 | root tree | medium | settled | p14a-calib on main (15285f7) | 26 Nov 21:50 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | policy27 on main (077a2eb); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | waiting | D41 acknowledged; a95cut READY at 6b015e2; waits for 37.3 triggers | 27 Nov 09:05 |
 | 38 | red noise | wt_rednoise | high | ? | rebuild instruction 3 (18:01) not yet picked up; needs a nudge | 26 Nov 17:06 |
 | 41 | quota and packing | root tree | medium | waiting | 11 worktrees retired (files 157,359); tmp/ clean-up waits for testshim-tmp | 27 Nov 16:14 |
 | 42 | methods paper (#43, #45) | root tree | medium | waiting | coverage questions answered; 2 OPEN markers left | 27 Nov 12:55 |
-| 44 | long-period part (#44, #46) | wt_longpext | medium | told | 44.5 sent: README rows, then the D39 pilot at Alistair's terminal | 27 Nov 14:25 |
+| 44 | long-period part (#44, #46) | wt_longpext | medium | needs-you | figidx46 queued; told to queue longpext; D39 pilot at Alistair's terminal | 27 Nov 17:53 |
 | 47 | β study | - | high | not started | no conversation found | - |
 
 ## Plans
@@ -69,8 +73,10 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     other items.
   - Any failed suite, conflict it can't resolve, or golden difference: for overseer.
 - **11** (now #18):
-  - `11.1`: when it reports the target table done, with no new NEEDS YOU, hold until Alistair has
-    answered Needs Alistair items 3 and 4. Then for overseer.
+  - `11.2`: its swap-job report: if all 6 targets check out as the pilot did, hold; otherwise for
+    overseer.
+  - `11.3`: its batch-1 tag list and script prepared, not submitted: hold. The tag runs wait for
+    D63's stage 1 (15.4) and Alistair's scope decision.
 - **13**:
   - `13.1`: when it reports the build_cert.py draft committed, with no new NEEDS YOU, hold. It
     waits for a95cut and #46.
@@ -106,7 +112,9 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     and its scenarios as test cases where useful. Never run it inside ~/pulx-board: a changed file
     there stops every session's board sync. Post the report and wait. Update your checklist line,
     and end with the rule-12 report."
-  - `15.4`: its D63 design report: for overseer.
+    (Sent 27 Nov 18:10 as instruction 13, amended for #15's answers, with the regfix fix first.)
+  - `15.4`: its regfix re-queue report, with no new NEEDS YOU: hold. Its D63 design report: for
+    overseer.
 - **25**:
   - `25.1`: hold idle reports while p14a-calib is queued.
   - `25.2`: trigger: a merge report says p14a-calib is on main. Send: "p14a-calib is on main.
@@ -165,7 +173,8 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     otherwise post needs-you with the price. Report the result
     against the rule. Update your checklist line, and end with the rule-12 report." If B's futility
     check (44.4) is still running, send this after it reports.
-  - `44.4`: when it reports (d) queued, send: "D36: B's futility check on batch 1. First write this
+  - `44.6`: its report that longpext is queued: hold.
+  - `44.4`: done (B NO-GO). Text kept for the record: "D36: B's futility check on batch 1. First write this
     rule into §15.225 and commit it, before looking at any B result: if, even with batch 2's 116
     draws falling as favourably as batch 1's 95% upper bound allows, the combined test couldn't
     reach a GO (McNemar p < 0.05 and at least 0.5 extra detections per 1,000 core-h, under both

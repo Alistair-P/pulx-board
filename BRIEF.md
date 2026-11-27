@@ -18,6 +18,10 @@ Last full revision: 26 Nov 2026 (first board reports read 17:20).
 - The search layer is separate from the decision layer and is frozen at the v1.0 tag. After the
   tag, only bug fixes may change it (rule 11).
 - Photon weights are w = p·g(E)^β with β = 0.75. η(β, γ) is the weight efficiency, and a50 ∝ η^−½.
+  The weighted search takes every event in the aperture (20-100"; masks cut). timing_radius is
+  empty, so the 20" circle on the review PNGs is only drawn. p uses the CCF's ELLBETA PSF (off-axis
+  and energy-dependent), and is two-way (source against background) with neighbours masked.
+  HENDRICS is the unweighted cross-check. (#15, 27 Nov.)
 - Search arms:
   - coherent Z1/Z3;
   - stacked, with M segments (validated for M = 2–4);
@@ -106,9 +110,10 @@ Last full revision: 26 Nov 2026 (first board reports read 17:20).
 5. #14, the tag.
 - After the tag: #23 and #24 (real-data jitter nulls, local whitening), #19 (the IN list; it needs
   #17, #18 and #37), and #20 and #21 (the pilot and the full run).
-- D63 (27 Nov): before the tag, p becomes a three-way joint-fit probability out to 60", with
-  exposure-aware areas and an attribution check. Stage 1 is #15's design and price report. It
-  means a new golden, ADOPTED lines, and rebuilt red-noise records, a50, list and certificate.
+- D63 (27 Nov): p becomes a three-way joint-fit probability out to 60", with exposure-aware areas
+  and an attribution check. Its gain is in neighbour fields only (6-23% in a95). Stage 1 is #15's
+  design and price report, including a neighbour-fields-only option. Scope and timing (v1.0 or
+  after the tag) are Alistair's once it is priced.
 - Separate study: #47, the β question. It is analytic only. Options (a)–(g), soft-spectrum sources,
   and whether a flat (β = 0) search could run as a separately registered stage after the tag.
 
