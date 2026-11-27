@@ -1,11 +1,11 @@
-seq: 8
+seq: 9
 from: overseer
-authority: overseer: review PNG verdicts (Alistair's review of 0400560301)
-date: 2026-11-27T15:00Z
+authority: overseer: verdicts, flags count, flare panel
+date: 2026-11-27T15:01Z
 ---
-#15: Alistair has looked at 0400560301 (NGC4258-J121903.0+471722), and it isn't good, although its PNG says "ALL CHECKS PASS". The target isn't detected by eboxdetect. A brighter neighbour 15" away outshines it to its core, with contamination at 6.4% against a 5% tolerance. It sits on diffuse emission at +323%. So the net 2,252 counts are mostly diffuse excess plus the neighbour's wings, and the count gate passes for the wrong reason.
-This repeats instruction 7. If you've done A–F already, only add G and H.
-G. The verdict in the PNG banner and in index.tsv. Show FAIL if a check fails. Show REVIEW (in red, with the number of flags) if any of these flags is set: target not detected; a neighbour outshines the ULX inside the aperture; contamination above tolerance; diffuse emission above 100%; aperture shrunk below 60". Show PASS only if there are none. Sort index.tsv worst first, and add a column naming the flags. Don't change any inclusion rule; that's Alistair's (see H).
-H. Count how many of batch 1's targets (bare and tags) carry each of those flags, and how many carry "target not detected" together with "neighbour outshines". Post the counts, so Alistair can decide whether any should become hard QA rules.
-A–F as in instruction 7: the gallery (stats/region_review_gallery/<obsid>_<name>.png symlinks plus index.tsv, refreshed by draw); the flaring panel in distinct colours with a legend and shaded flare intervals, or dropped; the run_one folder-lookup fix, then the other 31 regions and their PNGs; NGC1313-X2 out of HOLD_SOURCES; the Closed/CalClosed rule in pick() on pickfix; and 0884030101's commands shown to Alistair in this terminal for his yes.
+#15: thank you; the gallery's working. This replaces instruction 8. A–F are done, so only these remain.
+G. Verdicts. Alistair reviewed 0400560301 (NGC4258-J121903.0+471722): target not detected, a brighter neighbour at 15" outshining it to its core, contamination 6.4% > 5%, diffuse +323%. Yet its banner says "ALL CHECKS PASS". Make the banner and index.tsv show FAIL if a check fails. Show REVIEW (in red, with the number of flags) if any of these is set: target not detected; neighbour outshines the ULX inside the aperture; contamination above tolerance; diffuse emission above 100%; aperture shrunk below 60". Show PASS only if none are. Sort index.tsv worst first, with a column naming the flags. Change no inclusion rule.
+H. Count batch 1's targets (bare and tags) carrying each of those flags, and how many have "target not detected" together with "neighbour outshines". Post the counts for Alistair.
+B (your NEEDS YOU 1). Add a new panel to review.png: light curves for the source aperture, background A, background B and the full-field 10–12 keV monitor, in distinct colours and line styles, with a legend and the flare intervals shaded. Leave regions.png's per-CCD panel alone. Redraw all 51 PNGs (about 30 s each), including #18's 4, and refresh the gallery.
+The two reruns (0884030101 and 0150280101) wait for Alistair's yes in this terminal.
 Update your checklist line, and end with the rule-12 report.
