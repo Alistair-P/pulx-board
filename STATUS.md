@@ -19,36 +19,12 @@ Updated: 27 Nov 2026 09:47, by the dispatcher
 - **Files:** about 160,000.
 
 ## Needs Alistair
-1. **ADOPTED lines for (d)** (stacked46d): octave_thresholds.py (ab3e3264), and survey_pipeline.py at the
-   combined hash after it merges on top of a95cut. Conditions: the merge session's golden on the
-   merged tree passes as predicted (coherent 19/19 bit-identical, orbit identical, the new slot
-   identical to stacked46d's run), and the live hashes match. Overseer's view: yes.
-2. **Bare slots and names** (one decision for #15 and #18):
-   - (a) Known pulsars take the bare slot: P13 in 4 ObsIDs, and NGC 1313 X-2 in 3, plus the 15 NGC 1313
-     ObsIDs, where X-1 would become the tag. Overseer's view: yes, because ORBITS, OVERRIDES and the
-     gate read the bare slot. Make both targets' regions in batch 1.
-   - (b) Names for non-PULX targets: literature names where one is established (for example
-     HolmbergIX-X1), and `<HOST>-<Jname>` otherwise. Overseer's view: yes.
-   - (c) Rename 0693760101's section to a NGC 7793 ULX-4 name before anything unskips it. Overseer's
-     view: yes.
-   - (d) The 16 skipped bare sections that are list targets: decide per observation in your #17
-     review, where they'll appear.
-3. **#30** ("A1, the NGC 6946 X-1 check", ObsID 0401360301, 22.5 ks): the candidate's details (frequency,
-   fdot, epoch and origin) and what "A1" means. Only you hold these.
-4. **Nudge #38** in its window: `#38: run bash ~/pulx-board/board.sh show 38, carry out instruction 3,
-   then start bash ~/pulx-board/board.sh wait 38 in the background.`
-5. **#18's pilot (#11's window)**: approve the exact sbatch command in its terminal (2 CPUs, 4 h cap,
-   8 core-h), as already priced under D26. Overseer's view: yes. Note: #18 names non-pulsar tags
-   `<host>-<tag>` (DR14 SRCID), and #15 proposes `<HOST>-<Jname>`. Item 2(b) should set one rule for both.
-6. **Option A (#44)**: the long part on the full span above 80 ks. Never measured; a pricing bracket
-   of 416–991 core-h, plus new long-part calibration above 80 ks. B, the 80 ks window version, found
-   0 extra binaries in 93. Overseer's view: close A.
-7. **Retire finished worktrees**, with wt_retire.sh, keeping the branches: wt_p14a (#25), wt_q41 (#41)
-   and wt_regrev (#15's merged tools branch). Overseer's view: yes.
-8. **#17**: your review of batch 1's PNGs and flags table, once #15 has run the regions (after item 2).
-   Rough guess: 1–2.5 hours per 50-ObsID batch.
-9. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue. Nothing else waits on
-   it.
+1. **#18's pilot**: type your yes in #11's window to `sbatch slurm/submit_targets18_pilot.sh` (D50).
+2. **The 16 skipped targets**: your keep-or-unskip review, once #18 has built the list and PNGs (D48).
+3. **#17**: your review of batch 1's PNGs and flags table, once #15 has run the regions under D47.
+4. **#30**: details given to the overseer on 27 Nov and kept off the board. A generic coverage check
+   is running with #42. #30 itself starts later, in a COSMA session.
+5. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
 
 ## For overseer
 - Silent since their last instructions: merge (last report 23:52; instructions 5 and 6 unread),

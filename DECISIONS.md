@@ -18,6 +18,10 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 27 Nov 12:48: (d)'s ADOPTED lines approved on conditions (D46). Bare slots, names and the
+  0693760101 rename (D47). The 16 skipped targets go to a review list (D48). Retire wt_p14a and
+  wt_regrev (D49). #18's pilot yes (D50; his yes is also needed in #11's terminal). Option A closed
+  (D51). #30's candidate details were given to the overseer in chat; they're kept off the board.
 - 26 Nov 18:52: the overseer's morning wake moves to 09:00 (D40).
 - 26 Nov 18:50: run #44's confirming simulation on (d)'s merged code (D39).
 - 26 Nov 18:45: B futility check after (d) (D36). Review PNGs and a region override tool for #17
@@ -182,6 +186,30 @@ The next overseer wake acts on them.
 
 - **D45** (27 Nov, overseer): #44 adds the validation figure for B's futility result (B is NO-GO,
   §15.225 (15)(d); batch 2 isn't run, which saves about 270–280 core-h). Option A goes to Alistair.
+
+- **D46** (27 Nov, Alistair): approve the ADOPTED lines for stacked46d, option (d): octave_thresholds.py,
+  and survey_pipeline.py at its combined hash on top of a95cut. Conditions: the merge session's
+  golden on the merged tree passes as predicted (19/19 coherent bit-identical, orbit identical,
+  the 0791010101 slot identical to stacked46d's own run), and the live hashes match. If anything
+  differs, it comes back to Alistair.
+- **D47** (27 Nov, Alistair):
+  - (a) known pulsars take the bare slot in their ObsIDs: P13, and NGC 1313 X-2 (X-1 becomes a tag
+    there);
+  - (b) a section's name is the host plus the literature name where the survey list gives one
+    (e.g. HolmbergIX-X1), otherwise the host plus the Jname (e.g. UGC05336-J095753.3+690348). The
+    name is the stacking key and never changes between epochs. The DR14 ID may stay as the
+    internal [obsid:tag] key;
+  - (c) rename 0693760101's section (named NGC7793P13, but its circle is on NGC 7793 ULX-4) to a
+    ULX-4 name, keeping skip = 1 until reviewed.
+- **D48** (27 Nov, Alistair): the 16 skipped bare sections that are survey targets go into a review
+  list for his #17 review: each with its original skip reason and date, counts, catalogue a95 and a
+  review PNG. He decides keep or unskip one by one.
+- **D49** (27 Nov, Alistair): retire wt_p14a and wt_regrev, with the usual checks and no --force,
+  keeping the branches. Any run records only in those trees are copied to the root tree first.
+- **D50** (27 Nov, Alistair): #18's 2-tag pilot goes ahead (2 CPUs, 4 h cap, 8 core-h). The cluster
+  policy also needs his own yes in #11's terminal.
+- **D51** (27 Nov, Alistair): option A (the long part on the full span above 80 ks) is closed. It is
+  recorded as a known limitation, alongside B's NO-GO.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and
