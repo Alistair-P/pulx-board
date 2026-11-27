@@ -18,6 +18,7 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 27 Nov 19:50, in the dispatcher's session, on #13's golden: "Let's wait until D63 is in then." (D65)
 - 27 Nov 16:59: "go ahead with the changes" after the labelled-photon study (D63). Read as v1.0,
   since the search layer freezes at the tag (rule 11).
 - 27 Nov 16:28: yes to the QA rule (D62). Asked whether approvals can be given remotely, and for ideas
@@ -302,6 +303,10 @@ The next overseer wake acts on them.
   stage 1, because D63 may change the region products. 0111800101's shrunk<60" flag is accepted
   under D61 (Alistair judged the whole PNG fine). 0150280101 X-2's detect FAIL stands for now; it
   is below the 17 ks floor anyway.
+
+- **D65** (27 Nov 19:50, Alistair): no c13 golden now. cert13 stays queued, and one golden runs
+  after D63 is on main, covering both. The Z1/Z3 max rule and the survey_pipeline.py ADOPTED line
+  are still his.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and

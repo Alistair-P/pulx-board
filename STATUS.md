@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 27 Nov 2026 21:46, by the dispatcher
+Updated: 27 Nov 2026 22:05, by the overseer
 
 ## Today (27 Nov, to 18:10)
 - **On main:** (d) (stacked46d, 57974c9; ADOPTED ab3e3264 and 9b8ce8b0) and targets18 (6db5e1f).
@@ -30,12 +30,21 @@ Updated: 27 Nov 2026 21:46, by the dispatcher
 ## Needs Alistair
 1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ (9 FAIL, 4 REVIEW, 37 PASS, 1 held,
    3 unchecked), with verdicts and light curves. Also #18's 20 D48 PNGs in stats/targets18/d48_review/png/.
-2. **D63's scope** (raised 27 Nov). Against the survey's actual weights, the joint fit lowers a95 by
-   6-23% beside a neighbour 3x brighter at 5-25", and by about 0 elsewhere. Options: (i) every target
-   in v1.0; (ii) only targets with a neighbour within 30", in v1.0; (iii) after the tag, as a
-   separately registered stage. #15's stage 1 prices (i) and (ii) and counts the targets affected.
-   Overseer's lean: (ii) if it is cheap, otherwise (iii). Decide once stage 1 reports. The overseer
-   also offered an independent second look first (OVERSEER.md step 7).
+2. **D63's scope** (raised 27 Nov; #15's stage 1 at 18:40, full report at
+   wt_intake15/logs/intake15/d63_stage1_20261127.md). Census: 56 of 127 targets have a neighbour
+   within 30", mostly faint at 20-30"; 13 have one at 0.3x the target or brighter; only 2 have one
+   at 1x or brighter within 15". On 7 real geometries the joint fit lowers a95 by 25%, 21%, 12%, 8%,
+   6%, 1.5% and 0%. (i) Every target: 210-300 billed core-h, 3-5 days, but most of the extra goes if
+   D63 lands before the intake list's sensitivity pass. (ii) Neighbour fields only (0.1x or brighter
+   within 30"): 40-100 core-h, 2-3 days; selection needs eboxdetect plus known pairs (the catalogue
+   blends M82 X-1 into X-2). (iii) After the tag. #15 and the overseer recommend (ii). The
+   validation rule is pre-registered (about 25-50 core-h, included).
+   - D63 (2), QA rules: the fov check on the background circles only, exposed-area scaling, and the
+     aperture's exposure as a correction, with REVIEW below 90%. Batch 1: the 6 fov FAILs become
+     REVIEW; nothing else changes. Recommend yes.
+   - #13's question: the Z1/Z3 max(transfer, direct) rule above 120 ks (your 25 Nov rule) isn't in
+     the code under (d). It would raise thresholds by up to 1.71 (Z1) and 1.61 (Z3) at a few octaves,
+     above 120 ks only. Recommend applying it, with its code going in before the one D63 golden (D65).
 3. **0150280101 NGC1313-X2** fails the new detect check (nothing within 10" in 7.9 ks). It is below
    the 17 ks floor, so v1.0 doesn't search it either way. Recommend leaving it out, with no
    override. Raised 27 Nov.
@@ -44,35 +53,10 @@ Updated: 27 Nov 2026 21:46, by the dispatcher
 5. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
 
 ## For overseer
-- merge (report 21:23, idle): pickfix ef7f106 on main 30f1961 (15.229, merge 6) and #41's addendum
-  2818a4f on main e68c2fb (15.223, merge 5); suite 829/0/3, validation_check 0 MISSING. All three #15
-  entries are on main. Queue has no ready entries: figidx46 waits for longpext (#44), cert13 waits for
-  its golden. The session still believes cert13's golden waits on Alistair's yes; it hasn't been told of
-  his deferral (item below). Held: merge.1 still names the D42 order. No plan steps triggered.
-- #44: instruction 15 (18:03) unanswered for 3.7 h (last report 17:53, seq 14). longpext not yet
-  queued, so figidx46 and the merge queue are stalled on it. The D39 pilot is also at Alistair's terminal.
-- #41: addendum on main (2818a4f; 41.2 names 26cca25), so #41 is fully settled.
-- **Alistair's answer (27 Nov 19:50, live in the dispatcher session), on #13's golden:** "Let's wait
-  until D63 is in then." Read as: no c13 golden now, on cert13 or on the merged tree; the golden runs
-  once D63 is on main. Please record it in DECISIONS.md and tell #13 (it is waiting on the board) and
-  the merge session (cert13 stays queued and isn't merged until then). His other #13 items, the
-  Z1/Z3 max rule and the ADOPTED line, are still open.
-- #15 (report 18:40, plan 15.4): regfix merged with main, re-queued at 4a2f274; D63 stage 1 report at
-  wt_intake15/logs/intake15/d63_stage1_20261127.md. Scope (i) every target about 210-300 core-h,
-  (ii) neighbour fields (>= 0.1x within 30") about 40-100 core-h; also asks Alistair about D63 (2)'s
-  fov/area rules (REVIEW below 90% exposed). Needs Alistair 2 can now be decided.
-- #13 (report 18:24, plan 13.3): cert13 rebased and queued at 173fd0e, suite 820/0/5, draft --check
-  CONSISTENT. NEEDS YOU for Alistair: the golden (above), the Z1/Z3 max(transfer, direct) rule above
-  120 ks under (d) (retire or apply; recommends apply), and the survey_pipeline.py ADOPTED line.
-- #11 (report 18:34, 11.3): batch 1 tag list and script prepared, not submitted. Asked the overseer to
-  record D64 (it is in DECISIONS.md now, 18:10). The swap sbatch is still at Alistair's terminal.
-- merge (report 19:30): targets18 5d45f76 on main 6dd6232, suite 802/0/3; regfix next. merge.1's
-  wording (D42 order: a95cut, stacked46d) is out of date now that D64 sets the order, so it was not
-  sent; the session carries on under instruction 10. Please revise merge.1.
-- #41 (report 19:44): tmp/ backlog cleared (50,028 inodes), quota 121,644; addendum 2818a4f queued.
-  Held under 41.2.
-- #38 hasn't posted its rebuild report (instruction 3, sent 26 Nov 18:01). It did the rebuild (88/88)
-  but was interrupted while recording it. Alistair has the paste line. #37's list rerun waits on it.
+- #44: instruction 15 (18:03) unread. It is most likely stopped at the D39 pilot's terminal ask,
+  which board_watch rightly leaves alone. longpext, and so figidx46, wait on it.
+- #38 hasn't posted its rebuild report (instruction 3, sent 26 Nov 18:01). Its next step waits for
+  D63 anyway.
 
 ## Items
 
@@ -96,10 +80,8 @@ The dispatcher may send only these steps, when their conditions are clearly met.
 goes to "For overseer". A step that starts with "trigger:" is set off by another item's report.
 
 - **merge**:
-  - `merge.1`: after each merge it reports, send: "Carry on with the next entry in the D42 order
-    (a95cut, then stacked46d's trial and golden, stopping before ADOPTED and the fast-forward unless
-    DECISIONS.md records Alistair's approval)." Also send the plan steps that merge triggers for
-    other items.
+  - `merge.1`: after each merge it reports, hold if it is carrying on with its queue (D64 order;
+    cert13 waits for D63, D65). Send only the plan steps that the merge triggers for other items.
   - Any failed suite, conflict it can't resolve, or golden difference: for overseer.
 - **11** (now #18):
   - `11.2`: its swap-job report: if all 6 targets check out as the pilot did, hold; otherwise for
