@@ -1,40 +1,40 @@
-seq: 7
+seq: 8
 state: needs-you
-date: 2026-11-27T12:17Z
+date: 2026-11-27T13:27Z
 host: login7c
 ---
-#18 (#11's session): did instruction 7: step 2's tooling is built, tested and queued; the 2-tag pilot is ready but NOT submitted, because the cluster policy now needs Alistair's own yes to the exact sbatch command.
+#18 (#11's session): did instruction 8 (D47, D48, D50). Names, P13 and 0693760101 are done and queued; the NGC 1313 X-2 swap is blocked; D48's list is built without PNGs; and my finding (a) was wrong.
 
-RESTART CHECK. The edit to preprocess.sh cut off on 26 Nov never ran: no backup existed, and the file matched HEAD. Nothing to restore; redone cleanly.
+CORRECTION FIRST. Finding (a) said skipped bare sections "never reach #19 unless the skip is lifted". That is wrong. survey_list() reads every params.conf section and never looks at `skip`; preprocess.sh skips a section only in a run given no obsid. D48 was decided on that premise. Lifting a skip changes almost nothing for the survey.
 
-STEP 2 (15.235 (2); targets18 rebased on main df0a6f9; queued at 992696d):
-- Analysis-only switch (D28): `preprocess.sh -a`, or `analysis_only = 1` in a section, stops right after run_analysis. No HENDRICS or weighted search, no qa_obs, no survey run. It writes one ANALYSIS_ONLY row to the summary, because the survey's CONFIG is built only from summary rows, and D27 needs every tag ready for survey_sensitivity. Only the survey's placeholder mode reads that row; every other reader drops it. A later real search is not mistaken for already done.
-- Staging (D30, D37): tag results go to data/params_new_targets.conf (not params.conf), through the same HOLD_SOURCES and MIN_COUNTS gates and the same region_review overrides as bare targets. Every section has analysis_only = 1. Tags also get rows in the flags, low-count and held tables, keyed by target ID.
-- Batch: `new_obs_regions.py --targets FILE` runs the region tool per tag and draws each #17 review PNG. The target table writes FILE: 170 tags, 46 ready on disk today.
-- Names: a known pulsar keeps its name; any other source is <host>-<tag>, the same in every epoch.
-- Tests: test_targets18 9/0/0. Suite 791/0/3. Neither changed file is a manifest or orbit module, so no golden.
-Interface note for #15: new_obs_regions.stage() now also writes tag rows into new_obs_flags.tsv, params_new_obs_lowcounts.tsv and params_new_obs_held.tsv.
+DONE (targets18 b75e098, queued; suite 792/0/3; 15.235 (4)-(5)):
+- D47 (b) names: one shared rule, new_obs_regions.stack_name, for #15's bare targets and #18's tags. A known pulsar keeps its name; a "LIT:" list name becomes galaxy plus designation (HolmbergIX-X1); otherwise host plus Jname (UGC05336-J095753.3+690348 style). #15's run_regions.target_name has no literature-name rule yet; it should call stack_name. One list name ends in a Jname (LIT:W26 1eRASS J120242.5+015809), so it falls to host plus Jname.
+- D47 (a) P13: no edit needed. In all four ObsIDs the bare section already is P13 (src within 1"). Step 1 missed it because #15's position table lacks those packed rows; the table now matches a bare by its own src.
+- D47 (c): [0693760101] renamed NGC7793P13 -> NGC7793-J235747.9-323457, skip = 1 kept. Before and after: logs/targets18/params_0693760101_{before,after}.txt. Not changed (data): its production summary row and stats/NGC7793P13__0693760101.npz still use the P13 name. Harmless: the gate already holds 0693760101 out (15.100).
 
-PILOT (15.235 (3), pre-registered before anything ran).
-- Deviation: the planned ObsID 0830191601 was packed by #41 on 19 Nov, after the inventory the table read. 14 of the 22 "ready" tags were packed since. The `ready` column now checks the disk itself. The pilot moved to 0830191401: tags D201128402010003 and D201128402010012 (prep stage, unpacked).
-- Done on the login node, about 1 min: both regions OK, both review PNGs drawn (no failing check), preflight 0 errors, shared directory hashed beforehand (81 files).
-- Job script: slurm/submit_targets18_pilot.sh. 2 CPUs x 4 h cap = 8 core-h. It writes a pilot summary, never production signal_summary.csv.
-- New in this pilot: a tag run where the bare target hasn't had run_analysis yet.
+BLOCKED, D47 (a), NGC 1313 X-2 in 0405090101, 0693850501, 0693851201: their bare is X-1, all three are packed, and dir/ holds X-1's products. A params-only swap would make preprocess.sh pair X-2 with X-1's products silently. It needs: #41 to unpack; an X-2 region run; Alistair's OK to overwrite dir/'s X-1 products (preprocess -f), or to leave X-1 bare there. Also, NGC1313-X2 is still in new_obs_regions.HOLD_SOURCES although Alistair released it on 18 Nov (15.229 (8)), so under D30 it would not be staged. That is #15's code.
+
+D48 LIST: /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting/stats/targets18/d48_review/review_list.tsv, 20 rows (the 16 plus the 4 P13 bares that step 1 mis-tagged). Reasons:
+- 7: "QPO test only; NOT in the survey sample" (recorded 30 Oct, 15.185).
+- 2: no reason, only a production result line.
+- 11: no reason anywhere (P13 x9, M51 ULX-7 x2), recorded on or before the 21 Oct snapshot.
+No PNGs: region_review needs the region tool's result and SAS cache, which none of the 20 has (14 packed).
+
+PILOT (D50): not submitted; it waits for Alistair's yes in this terminal. Its regions were rerun under the D47 names (both OK, PNGs drawn); new params file stats/targets18/pilot/pilot_params_d47.conf (preflight 0 errors); the script points to it.
 
 Jobs: none.
 Core-h: 0 this step; #18 0.
-Files: lfs quota 172,545 (27 Nov; up from 145,712 on 26 Nov, mostly #15's batch 1). The pilot adds about 26 per tag.
+Files: about +20 (regions, PNGs, list).
 
 SETTLED:
-- #18 step 2: tooling queued (targets18 992696d); 15.235 (2)-(3).
+- #18: D47 (b) and (c) done, P13 confirmed already bare, D48 list built; targets18 b75e098 queued; 15.235 (4)-(5).
 
 NEEDS YOU:
-1. Alistair: submit the pilot? This needs your own yes in the terminal, per the cluster policy. Exact command, from /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting_wt_mt:
-   sbatch slurm/submit_targets18_pilot.sh
-   Resources: cosma5, account durham, 1 task, 2 CPUs, 12000M, 4:00:00 (cap 8 core-h). No modules or conda; the venv comes from bashrc.
-   Output and error: stats/targets18/pilot/t18pilot_<jobid>.out and .err in the root tree. Stop it with: scancel <jobid>.
-   Recommend yes.
-2. Findings a-c (skip lifts, bare slots for P13 and X-2, the 0693760101 rename) are still with Alistair. No params.conf change until then.
+1. Alistair: the pilot yes, in this terminal. From /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting_wt_mt: sbatch slurm/submit_targets18_pilot.sh. cosma5/durham, 2 CPUs, 12000M, 4 h, cap 8 core-h; out/err in stats/targets18/pilot/. Recommend yes.
+2. D48 PNGs: (i) a params-section mode for region_review, drawn from the loose pn_clean (fov check from event occupancy), about 1 h on the login node, no SAS; or (ii) #41 unpacks and SAS runs. Recommend (i).
+3. NGC 1313 X-2 in the 3 processed ObsIDs: overwrite X-1's dir/ products after #41 unpacks, or leave X-1 bare there? Recommend overwrite (D47 (a)), after unpacking.
+4. OK to delete my two pilot region folders under the old names (stats/new_obs_regions/0830191401/NGC5194-D201128402010003, NGC5195-D201128402010012)? They would be staged under stale names. Recommend yes.
+5. Given the correction, is D48's keep/unskip review still wanted? Recommend keep it as a #17 regions check only.
 
 NEXT:
-- If submitted: wait for the job's sha256 file before touching wt_mt; then check the pre-registered PASS rule on the login node and report. Nothing started.
+- On a yes: submit the pilot, wait for its sha256 file, check the pre-registered PASS rule. Nothing started.
