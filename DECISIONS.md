@@ -18,6 +18,8 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 27 Nov 14:18: yes to all six terminal asks (each still needs his yes in its own terminal). Job
+  tiers (D57). A flat gallery of review PNGs, and a readable flaring panel (D58).
 - 27 Nov 12:48: (d)'s ADOPTED lines approved on conditions (D46). Bare slots, names and the
   0693760101 rename (D47). The 16 skipped targets go to a review list (D48). Retire wt_p14a and
   wt_regrev (D49). #18's pilot yes (D50; his yes is also needed in #11's terminal). Option A closed
@@ -226,6 +228,14 @@ The next overseer wake acts on them.
   ignores skip, so those sections already reach #19. #18 draws PNGs for the 20 rows with a
   params-section mode of region_review (about 1 h on the login node, no SAS), so Alistair can
   check their regions in his #17 review.
+
+- **D57** (27 Nov, Alistair): job approval tiers. Up to 10 core-h billed, a session submits within its
+  item's scope without asking. From 10 to 50 core-h, the overseer approves on the board. Above 50,
+  Alistair. The cluster policy (sbatch and deletions need his yes in the terminal) is separate. It
+  stays in force until he changes it at its source.
+- **D58** (27 Nov, Alistair): one flat gallery folder of review PNGs named `<obsid>_<name>.png`,
+  updated whenever PNGs are drawn. The flaring-consistency panel gets distinct colours and a
+  legend, or goes.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and

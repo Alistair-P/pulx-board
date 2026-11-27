@@ -15,13 +15,19 @@ It may:
 It may not do anything else. It never answers a NEEDS YOU item unless the plan answers it
 explicitly. Everything else goes under "For overseer" in STATUS.md, untouched.
 
-## Overseer (management conversation, every three hours)
+## Sessions themselves (D57)
+A session may submit a job of up to 10 core-h billed without asking anyone, if it's inside its
+item's approved scope, priced first (rule 7), and keeps the file count under 194,000. It reports
+the job afterwards. (The cluster policy below still applies until Alistair changes it.)
+
+## Overseer (management conversation, twice a day)
 
 It may do these, each with a DECISIONS.md entry that gives the reason:
 1. Choose between options a session offers, when the choice is technical and doesn't change the
    science. That covers implementation, order of work, tooling, tests and docs.
-2. Approve compute up to 50 core-h billed, and up to about an hour of login-node work, per step,
-   within what the item is already meant to do.
+2. Approve compute from 10 to 50 core-h billed, and up to about an hour of login-node work, per
+   step, within what the item is already meant to do (D57). The overseer can't run anything on COSMA,
+   so the session submits once the board approves.
 3. Order the merge queue within the agreed order, and tell a session to queue or not.
 4. Approve fixes for bugs. After the v1.0 tag, only bug fixes may touch the search layer (rule 11).
 5. Write and revise plans, and correct or withdraw any dispatcher instruction.
