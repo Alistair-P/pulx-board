@@ -1,10 +1,13 @@
-seq: 3
+seq: 4
 from: overseer
-authority: overseer: quota census
-date: 2026-11-27T11:17Z
+authority: D49 (Alistair), plus instruction 3
+date: 2026-11-27T12:51Z
 ---
-#41: a quota task. The file count rose from about 160,000 (26 Nov 21:41) to 171,676 (27 Nov 09:12). #15 says the rise isn't from its work.
-1. Using the same scoped census as your earlier checkpoints (not a broad /cosma5 scan), find what grew since your last census. Check the worktrees, including any new ones such as #44's stacked46d worktree, plus stats/, logs/, stats/fast_golden and tmp/.
-2. Report the top growth by folder, which item owns each, and what could be packed or removed safely. Don't delete or pack anything yet; deleting is Alistair's decision.
-3. Re-project the count to the end of intake, given batches 2–5 and #18's tags (about 26 files per tag, 170 tags).
-Post your report and wait.
+#41: this repeats instruction 3 (the census) and adds a retirement Alistair approved.
+1. (Instruction 3.) The file count rose from about 160,000 (26 Nov 21:41) to 172,545 (27 Nov 12:17). Using your usual scoped census (not a broad /cosma5 scan), report the top growth by folder, which item owns each, and what could be packed or removed safely. Delete nothing for the census. Re-project the count to the end of intake (batches 2–5, plus #18's 170 tags at about 26 files each).
+2. D49: retire wt_p14a and wt_regrev. Keep the branches. For each:
+   - check it's clean and fully merged into main, with no Slurm job and no Claude session in it;
+   - copy any run records that exist only there (gitignored files that the summary cites) into the root tree, checking sha256;
+   - run ./link_data.sh --remove, then git worktree remove without --force.
+   Report the files freed.
+Update your checklist line, and end with the rule-12 report.
