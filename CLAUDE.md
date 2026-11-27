@@ -1,7 +1,8 @@
 # PULX board
 
 This repo is the message board for Alistair's PULX survey. The survey itself runs on COSMA, in the
-z_sq_weighting repo. This repo holds messages and status only.
+z_sq_weighting repo. This repo holds messages and status, plus the overseer's simulation studies in
+studies/ (code and simulated results only, added at Alistair's request on 27 Nov).
 
 ## What must never be here
 - Data, event files, ODFs, or anything from /cosma5.
@@ -20,6 +21,7 @@ A report that would need any of these points to a file path on COSMA instead.
 | STATUS.md, DIGEST.md | the dispatcher and the overseer |
 | BRIEF.md, POLICY.md, DISPATCHER.md, OVERSEER.md, DECISIONS.md, RULE15.md | the overseer (Alistair's answers go in DECISIONS.md too) |
 | board.sh, CLAUDE.md, .claude/ | the overseer, with Alistair's agreement |
+| studies/* | the overseer. Sessions read them and run them only from outside the board clone |
 
 Use `board.sh` for every message. Never edit report.md or next.md by hand.
 

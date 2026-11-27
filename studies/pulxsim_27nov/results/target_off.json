@@ -1,0 +1,92 @@
+{
+ "scenario": "Target off, bright neighbour at 14\" (no. 4, D60)",
+ "nreal": 80,
+ "threshold": 41.44653167389282,
+ "methods": {
+  "hard 20\"": {
+   "K_mean": 2.0481077435597665,
+   "K_sd": 0.3568744703631895,
+   "a50": null,
+   "a95": null,
+   "target_photons_in_region": 108.75,
+   "leak_fraction": [
+    0.3218315989993712
+   ]
+  },
+  "weighted 20\"": {
+   "K_mean": 4.7628292565827435,
+   "K_sd": 0.8908806366300147,
+   "a50": null,
+   "a95": null,
+   "target_photons_in_region": 108.75,
+   "leak_fraction": [
+    0.2184974709789699
+   ]
+  },
+  "weighted 60\"": {
+   "K_mean": 4.491893248745539,
+   "K_sd": 0.8239384532698408,
+   "a50": null,
+   "a95": null,
+   "target_photons_in_region": 134.1375,
+   "leak_fraction": [
+    0.2801956132243658
+   ]
+  },
+  "joint fit 60\"": {
+   "K_mean": 6.30481034173691,
+   "K_sd": 1.3056378783138103,
+   "a50": null,
+   "a95": null,
+   "target_photons_in_region": 136.0875,
+   "leak_fraction": [
+    0.07799604880313075
+   ]
+  },
+  "oracle": {
+   "K_mean": 6.30463353880277,
+   "K_sd": 1.3026719213455296,
+   "a50": null,
+   "a95": null,
+   "target_photons_in_region": 140.825,
+   "leak_fraction": [
+    0.07804897642652517
+   ]
+  }
+ },
+ "neighbour_own_K": [
+  2327.605301334609
+ ],
+ "seconds": 16.1,
+ "params": {
+  "Nt": 150,
+  "beta": 3.0,
+  "nbrs": [
+   [
+    0.0,
+    14.0,
+    5000
+   ]
+  ],
+  "planes": [],
+  "diffuse": null,
+  "energy": false,
+  "bkg_annulus": [
+   60.0,
+   120.0
+  ],
+  "masks": [
+   [
+    0.0,
+    14.0,
+    4.0
+   ]
+  ],
+  "psf_true": [
+   5.5,
+   1.5,
+   1.0,
+   1.0
+  ]
+ }
+}

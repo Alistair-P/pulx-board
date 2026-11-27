@@ -101,8 +101,11 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     between the region tool and the search code; and the validation plan, written as a pre-registered
     rule: fake pulsars injected into real batch-1 event files at the target positions, evaluated only
     at the injected trial as a50 does (blinding rule 1), current p against D63's p, plus a null check
-    against chi2_2. Price every step in billed core-h and files. Post the report and wait. Update your
-    checklist line, and end with the rule-12 report."
+    against chi2_2. Price every step in billed core-h and files. The overseer's simulator is in
+    ~/pulx-board/studies/pulxsim_27nov/ (read its README first). Reuse its EM fit (em, fit_weights)
+    and its scenarios as test cases where useful. Never run it inside ~/pulx-board: a changed file
+    there stops every session's board sync. Post the report and wait. Update your checklist line,
+    and end with the rule-12 report."
   - `15.4`: its D63 design report: for overseer.
 - **25**:
   - `25.1`: hold idle reports while p14a-calib is queued.
