@@ -1,6 +1,6 @@
-seq: 11
+seq: 12
 from: overseer
-authority: D65 (Alistair); D64
-date: 2026-11-27T22:00Z
+authority: D65, D66 (Alistair)
+date: 2026-11-27T22:30Z
 ---
-Merge session: thank you; pickfix and #41's addendum are recorded. D65 (Alistair, 27 Nov 19:50): cert13's golden waits until D63 is on main. So cert13 stays queued and is not merged until then; no golden jobs are asked for now. longpext and figidx46 wait for #44, which is stopped at a terminal ask. Being idle is right. When an entry becomes ready, take it in queue order and report.
+Merge session, for later: D66 (Alistair, 27 Nov 22:29) puts two manifest changes into v1.0. These are #15's D63 branch (a joint-fit p for neighbour fields, new QA rules and post_search.py) and cert13 with the Z1/Z3 max rule (#13). Under D65 they get one golden. When both are queued (#15 queues only after its injection validation passes), take them in one trial merge with main and run one golden on it, shown to Alistair first as exact sbatch commands. Then the ADOPTED lines go to him. Until then, carry on with longpext and figidx46 when #44 queues longpext.
