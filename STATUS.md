@@ -37,14 +37,17 @@ Updated: 27 Nov 2026 09:47, by the dispatcher
    fdot, epoch and origin) and what "A1" means. Only you hold these.
 4. **Nudge #38** in its window: `#38: run bash ~/pulx-board/board.sh show 38, carry out instruction 3,
    then start bash ~/pulx-board/board.sh wait 38 in the background.`
-5. **Option A (#44)**: the long part on the full span above 80 ks. Never measured; a pricing bracket
+5. **#18's pilot (#11's window)**: approve the exact sbatch command in its terminal (2 CPUs, 4 h cap,
+   8 core-h), as already priced under D26. Overseer's view: yes. Note: #18 names non-pulsar tags
+   `<host>-<tag>` (DR14 SRCID), and #15 proposes `<HOST>-<Jname>`. Item 2(b) should set one rule for both.
+6. **Option A (#44)**: the long part on the full span above 80 ks. Never measured; a pricing bracket
    of 416–991 core-h, plus new long-part calibration above 80 ks. B, the 80 ks window version, found
    0 extra binaries in 93. Overseer's view: close A.
-6. **Retire finished worktrees**, with wt_retire.sh, keeping the branches: wt_p14a (#25), wt_q41 (#41)
+7. **Retire finished worktrees**, with wt_retire.sh, keeping the branches: wt_p14a (#25), wt_q41 (#41)
    and wt_regrev (#15's merged tools branch). Overseer's view: yes.
-7. **#17**: your review of batch 1's PNGs and flags table, once #15 has run the regions (after item 2).
+8. **#17**: your review of batch 1's PNGs and flags table, once #15 has run the regions (after item 2).
    Rough guess: 1–2.5 hours per 50-ObsID batch.
-8. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue. Nothing else waits on
+9. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue. Nothing else waits on
    it.
 
 ## For overseer
@@ -59,7 +62,7 @@ Updated: 27 Nov 2026 09:47, by the dispatcher
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
 | merge | merge session | root tree | high | active | a95cut merged (df0a6f9, ADOPTED f9f49373); stacked46d trial running | 27 Nov 11:29 |
-| 11 | #18 (multi-target), was #11 | wt_mt | medium | active | step 2 tooling on targets18 (instruction 7) | 26 Nov 21:32 |
+| 11 | #18 (multi-target), was #11 | wt_mt | medium | waiting | tooling queued (targets18 992696d); pilot needs Alistair's sbatch yes | 27 Nov 12:17 |
 | 13 | certificate | wt_cert13 | high | waiting | draft builder done; waits for a95cut and (d) | 26 Nov 18:18 |
 | 15 | survey intake | wt_intake15 | medium | needs-you | D43 fix proposed (not applied); intake15 queued 0ada393; regions wait on Alistair's naming answer | 27 Nov 09:12 |
 | 25 | artefact battery rev3 | root tree | medium | settled | p14a-calib on main (15285f7) | 26 Nov 21:50 |
@@ -67,7 +70,7 @@ Updated: 27 Nov 2026 09:47, by the dispatcher
 | 37 | a95 cut | root tree | high | waiting | D41 acknowledged; a95cut READY at 6b015e2; waits for 37.3 triggers | 27 Nov 09:05 |
 | 38 | red noise | wt_rednoise | high | ? | rebuild instruction 3 (18:01) not yet picked up; needs a nudge | 26 Nov 17:06 |
 | 41 | quota and packing | root tree | medium | settled | addendum on main (4f4386e) | 27 Nov 00:56 |
-| 42 | methods paper (#43, #45) | root tree | medium | active | survey-list fill-in (42.2 sent) | 26 Nov 21:31 |
+| 42 | methods paper (#43, #45) | root tree | medium | waiting | cut filled in (5264663, queued); 2 OPEN markers left | 27 Nov 11:58 |
 | 44 | long-period part (#44, #46) | wt_longpext | medium | active | B NO-GO (futility); figure (D45); Option A with Alistair | 27 Nov 11:41 |
 | 47 | β study | - | high | not started | no conversation found | - |
 
