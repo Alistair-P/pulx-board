@@ -18,6 +18,7 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 27 Nov 14:21: he approves every Slurm job himself, in the terminal (D59).
 - 27 Nov 14:18: yes to all six terminal asks (each still needs his yes in its own terminal). Job
   tiers (D57). A flat gallery of review PNGs, and a readable flaring panel (D58).
 - 27 Nov 12:48: (d)'s ADOPTED lines approved on conditions (D46). Bare slots, names and the
@@ -236,6 +237,10 @@ The next overseer wake acts on them.
 - **D58** (27 Nov, Alistair): one flat gallery folder of review PNGs named `<obsid>_<name>.png`,
   updated whenever PNGs are drawn. The flaring-consistency panel gets distinct colours and a
   legend, or goes.
+
+- **D59** (27 Nov, Alistair): he approves every Slurm job (and every deletion) himself, with his yes in
+  the session's terminal, as the cluster policy requires. D57's tiers decide who approves the plan
+  and price before that. The dispatcher alerts him for each new terminal ask.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and

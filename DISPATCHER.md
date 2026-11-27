@@ -56,6 +56,11 @@ Never send a step whose condition isn't clearly met. Never change a plan.
 - Commit STATUS.md and DIGEST.md together as "dispatcher: N items", then push.
 
 ## 4. Alerts
+**Terminal asks.** If a report says the session is waiting for Alistair's yes in its terminal (an
+sbatch, a deletion, or anything else the cluster policy reserves), add or update its line under
+"Waiting at your terminals" in STATUS.md, with the window, the exact command and the billed core-h.
+Remove the line once a later report shows it done. Each new terminal ask is an alert.
+
 Raise an alert when:
 - the overseer's heartbeat is stale (step 1);
 - a report says a job failed, a quote is overrun, the file quota is above 190,000, or data may be

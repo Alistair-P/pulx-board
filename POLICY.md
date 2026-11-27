@@ -15,10 +15,10 @@ It may:
 It may not do anything else. It never answers a NEEDS YOU item unless the plan answers it
 explicitly. Everything else goes under "For overseer" in STATUS.md, untouched.
 
-## Sessions themselves (D57)
-A session may submit a job of up to 10 core-h billed without asking anyone, if it's inside its
-item's approved scope, priced first (rule 7), and keeps the file count under 194,000. It reports
-the job afterwards. (The cluster policy below still applies until Alistair changes it.)
+## Sessions themselves (D57, D59)
+A session may decide on its own a job of up to 10 core-h billed, if it's inside its item's approved
+scope, priced first (rule 7), and keeps the file count under 194,000. Alistair still says yes to
+every sbatch in the terminal (D59, below), so the session then asks him there.
 
 ## Overseer (management conversation, twice a day)
 
@@ -49,11 +49,13 @@ It may do these, each with a DECISIONS.md entry that gives the reason:
 - Starting a new checklist item or session.
 - Anything a session addresses to Alistair by name, and his own items.
 
-## Jobs and deletions (cluster policy, 27 Nov)
+## Jobs and deletions (cluster policy, 27 Nov; accepted by Alistair, D59)
 On COSMA, every `sbatch` and every deletion now needs Alistair's own yes in that session's terminal,
 for the exact command shown. A board instruction can approve a job's price and scope. The session
 then prepares the exact command and asks him in its terminal. The overseer lists these waiting asks
 under "Waiting at your terminals" in STATUS.md. Never ask a session to get around this.
+When a session is waiting for his yes, its report says so under NEEDS YOU, with the exact command
+and its billed core-h. The dispatcher lists it and alerts him.
 
 ## Every instruction
 - Names its authority. Covers one item. Plain text, under about 4,000 characters.
