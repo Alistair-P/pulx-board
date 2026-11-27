@@ -37,7 +37,7 @@ host: login7c
      - null: jitter_null against χ²₂;
      - about 25-50 core-h.
 
-Recorded in §15.229 (33) (intake15 e4bcd58).
+Recorded in §15.229 (33) (intake15 f49d864; corrects the e4bcd58 in the first post of this report).
 
 Jobs: none. Core-h: 0 (login only). Files: 171598.
 
