@@ -1,32 +1,33 @@
-seq: 8
-state: idle
-date: 2026-11-27T01:04Z
+seq: 9
+state: needs-you
+date: 2026-11-27T11:41Z
 host: login7c
 ---
-#44/#46, seq 8, final report: I finished the (d) golden check and queued branch stacked46d for merge. It is the top line of the merge queue, and #13 is not queued yet, so it lands ahead of #13.
+#44, seq 9 (D36), report: I ran B's futility check on batch 1. B CLOSES AS NO-GO without batch 2.
 
-Seq 8 step by step:
-1. DONE: the add-on raises thresholds only above 120 ks. Checked in the code; output is byte-identical to main at 120 ks and below, and above 120 ks with the switch off.
-2. DONE: the union (K_eff) check passed. 2 of 400 synthetic nulls crossed any threshold, against 3.80 expected (P = 0.89; the rule was k <= 7). It billed 22.8 core-h. Already reported in full.
-3. DONE: (d) is implemented on stacked46d, off main 6b0b68f in its own worktree, now at 6a030a7. wt_longpext is untouched and still frozen at 1cbad1c.
-   - Golden PASS at 960bfab; the manifest modules have not changed since.
-     - 19 of 19 coherent inputs are bit-identical to main's last golden.
-     - The orbit golden is identical, and its (b) recovery check passes.
-     - New slot 0791010101: two runs in separate processes are IDENTICAL. The window rule's choice is recorded in the slot's output.
-   - Golden billed 26.8 core-h in total (cap 46.5).
-   - Queued with `checklist.py queue add stacked46d 46`, manifest octave_thresholds.py and survey_pipeline.py.
-   - No ADOPTED line written. Proposed hashes: octave_thresholds.py ab3e3264, survey_pipeline.py 1250fa50.
-   - On adoption, the merge session also freezes the window-slot reference from stats/fast_golden/otcheck_A3w_w46d_r1 into speedup_reference.
-4. NOT STARTED: the confirming simulation; it is with Alistair.
-Batch 2 is still held. Checklist line #46 is updated.
+Steps:
+1. DONE: the rule went into summary 15.225 (15), committed with its scorer logs/longpext/futility_B.py (b500aa9) BEFORE any B record was read.
+   - The detection, the McNemar test, the cost bars (N 80 / 66 ObsIDs, C 392.5 / 286.3 core-h) and the both-cuts requirement are all unchanged from the pre-registration.
+   - "Most favourable batch 2": WITH-only draws at the one-sided 95% Clopper-Pearson upper bound of batch 1's rate, and WITHOUT-only at the 95% lower bound, rounded in B's favour.
+   - Batch 2's size per cut comes from the seeds alone: 107 / 64 binary draws.
+2. DONE: scored B's arm on batch 1 (synthetic injections only, on the login node, no new runs).
+   - Cut a95: 93 binaries; detected 16.1% without the extension and 16.1% with it.
+     - 0 WITH-only, 0 WITHOUT-only: no draw changes either way. B's extension arm alone crosses its threshold on 0 of 93.
+     - Isolated controls: 7, 0 discordant.
+     - Best case: batch 2 adds 4 WITH-only and 0 against, giving 4 vs 0 of 200, McNemar p 0.0625. The cost bar would pass, but p does not, so GO is unreachable.
+   - Cut a95_orb: 63 binaries; 17.5% / 17.5%.
+     - 0 / 0 discordant, extension alone 0 of 63; controls 5, 0 discordant.
+     - Best case 3 vs 0 of 127, p 0.125. GO unreachable.
+   - A GO would need at least 5 WITH-only draws in batch 2 with none against under each cut. Batch 1 gave 0 of 93.
+   - VERDICT: NO-GO (futility). Batch 2 (~270-280 core-h) is not run. v1.0 keeps the 57.5-80 ks window.
+3. Checklist #44 updated. wt_longpext's code is frozen at 1cbad1c; only summary.txt and logs/ scripts were committed since.
 
-Jobs: none running. 12438661 (window slot) finished: 5 CPUs x 3:04, 15.3 core-h.
-Core-h: this step 15.3. Since seq 8 on #46 (d): 50.7 = union 22.8 + cancelled first design 1.1 + golden 26.8. That is spread over two pre-priced runs, each under its own cap (40 and 46.5). Before seq 8, #44/#46 had used batch 1's 552.6 plus small scoring runs.
-Files: no quota reading taken.
+Jobs: none.
+Core-h: this step 0, login node only (seconds). Since the item began: batch 1 552.6, plus the earlier pilot and C1 runs recorded in 15.225.
+Files: no quota reading taken (+1 json, +1 script).
 
-SETTLED: (d) is implemented and tested; union check PASS; golden PASS, including the new slot's two-run determinism check; queued ahead of #13.
-NEEDS ALISTAIR (not blocking me):
-- the ADOPTED line for the two manifest modules;
-- the go or no-go on the confirming simulation;
-- batch 2 of #44, which is held (~270-280 core-h re-projected).
-Records: summary.txt 15.236 (1)-(5) on branch stacked46d; stats/stacked46d/union46d_score.json; logs/stacked46d/golden_diff_s46d.json.
+SETTLED: B is NO-GO on futility (rule fixed first, b500aa9; result 15.225 (15)(d), 33cc0fe; stats/longpext/futility_B.json). C1 NO-GO, C2 closed.
+NEEDS ALISTAIR:
+- Option A, the long part on the full span. It was never measured, because its bracket on B's draws is 416-991 core-h and was waiting on B. Close A, or price a bracket on batch 1's draws alone?
+- No validation figure for this result yet (CLAUDE.md asks for one per result). I can add it on request: login node, minutes.
+- #46: stacked46d is still queued ahead of #13, waiting on the ADOPTED line and on the confirming simulation decision.
