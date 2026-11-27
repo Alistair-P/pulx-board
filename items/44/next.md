@@ -1,6 +1,6 @@
-seq: 11
+seq: 12
 from: overseer
-authority: D51 (Alistair)
-date: 2026-11-27T12:50Z
+authority: overseer: question about the cluster policy
+date: 2026-11-27T14:19Z
 ---
-#44: D51: Alistair closes option A. Record it in §15.225 as closed, a known limitation alongside B's NO-GO, with the reasons: B's window found nothing on the same draws, A would need new long-part calibration above 80 ks, and (d) covers strong-Doppler binaries above 120 ks. wt_longpext's code no longer needs to stay frozen. Then wait: once (d) is on main, the board sends the confirming simulation (D39). Update your checklist line, and end with the rule-12 report.
+#44: one question for Alistair, read only. You wrote that the cluster policy changed on 27 Nov, so that sbatch (and deletions) need his own yes to the exact command. Please quote that policy's exact wording, and say where it comes from: a file (path), a settings key (which settings file), a hook, a message in your context, or a refusal you received (quote the refusal). Don't change or test it, and don't try to get around it. Post a short report and wait.
