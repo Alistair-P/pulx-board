@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 27 Nov 2026 19:50, by the dispatcher
+Updated: 27 Nov 2026 21:46, by the dispatcher
 
 ## Today (27 Nov, to 18:10)
 - **On main:** (d) (stacked46d, 57974c9; ADOPTED ab3e3264 and 9b8ce8b0) and targets18 (6db5e1f).
@@ -44,6 +44,14 @@ Updated: 27 Nov 2026 19:50, by the dispatcher
 5. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
 
 ## For overseer
+- merge (report 21:23, idle): pickfix ef7f106 on main 30f1961 (15.229, merge 6) and #41's addendum
+  2818a4f on main e68c2fb (15.223, merge 5); suite 829/0/3, validation_check 0 MISSING. All three #15
+  entries are on main. Queue has no ready entries: figidx46 waits for longpext (#44), cert13 waits for
+  its golden. The session still believes cert13's golden waits on Alistair's yes; it hasn't been told of
+  his deferral (item below). Held: merge.1 still names the D42 order. No plan steps triggered.
+- #44: instruction 15 (18:03) unanswered for 3.7 h (last report 17:53, seq 14). longpext not yet
+  queued, so figidx46 and the merge queue are stalled on it. The D39 pilot is also at Alistair's terminal.
+- #41: addendum on main (2818a4f; 41.2 names 26cca25), so #41 is fully settled.
 - **Alistair's answer (27 Nov 19:50, live in the dispatcher session), on #13's golden:** "Let's wait
   until D63 is in then." Read as: no c13 golden now, on cert13 or on the merged tree; the golden runs
   once D63 is on main. Please record it in DECISIONS.md and tell #13 (it is waiting on the board) and
@@ -70,7 +78,7 @@ Updated: 27 Nov 2026 19:50, by the dispatcher
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
-| merge | merge session | root tree | high | active | targets18 5d45f76 merged (main 6dd6232, 802/0/3); regfix next, then intake15, pickfix | 27 Nov 19:30 |
+| merge | merge session | root tree | high | idle | pickfix and #41 addendum merged (main e68c2fb, 829/0/3); no ready entries; figidx46 waits for longpext, cert13 for golden | 27 Nov 21:23 |
 | 11 | #18 (multi-target), was #11 | wt_mt | medium | needs-you | batch 1 prepared, not run; targets18 on main (6dd6232); swap sbatch at Alistair's terminal; tag runs wait for D63 | 27 Nov 18:34 |
 | 13 | certificate | wt_cert13 | high | needs-you | cert13 rebased, queued at 173fd0e (820/0/5); golden sbatch, max rule and ADOPTED with Alistair | 27 Nov 18:24 |
 | 15 | survey intake | wt_intake15 | medium | needs-you | regfix re-queued (4a2f274); D63 stage 1 reported, scope with Alistair | 27 Nov 18:40 |
@@ -78,7 +86,7 @@ Updated: 27 Nov 2026 19:50, by the dispatcher
 | 27 | detection policy draft | wt_policy27 | high | waiting | policy27 on main (077a2eb); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | waiting | D41 acknowledged; a95cut READY at 6b015e2; waits for 37.3 triggers | 27 Nov 09:05 |
 | 38 | red noise | wt_rednoise | high | ? | rebuild instruction 3 (18:01) not yet picked up; needs a nudge | 26 Nov 17:06 |
-| 41 | quota and packing | root tree | medium | settled | tmp/ cleared, quota 121,644; addendum 2818a4f queued | 27 Nov 19:44 |
+| 41 | quota and packing | root tree | medium | settled | tmp/ cleared, quota 121,644; addendum 2818a4f on main (e68c2fb) | 27 Nov 19:44 |
 | 42 | methods paper (#43, #45) | root tree | medium | waiting | coverage questions answered; 2 OPEN markers left | 27 Nov 12:55 |
 | 44 | long-period part (#44, #46) | wt_longpext | medium | needs-you | figidx46 queued; told to queue longpext; D39 pilot at Alistair's terminal | 27 Nov 17:53 |
 | 47 | β study | - | high | not started | no conversation found | - |

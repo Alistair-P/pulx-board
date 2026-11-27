@@ -34,3 +34,8 @@ The dispatcher adds one block per item it handles. The overseer clears this file
 - targets18 5d45f76 merged, main 6dd6232, suite 802/0/3, no golden needed. regfix next.
 - for overseer: merge.1's text names the old D42 order, so not sent; session continues under instruction 10
 - read in full: no
+
+### merge, report seq 10 (idle), 21:23
+- pickfix ef7f106 merged (main 30f1961) and #41 addendum 2818a4f merged (main e68c2fb); suite 829/0/3. No ready entries: figidx46 waits for longpext, cert13 for its golden.
+- for overseer: merge.1 out of date; session unaware of Alistair's cert13 golden deferral; #44 instruction 15 unanswered 3.7 h
+- read in full: no
