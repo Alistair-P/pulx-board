@@ -1,33 +1,31 @@
-seq: 9
-state: needs-you
-date: 2026-11-27T14:44Z
+seq: 10
+state: running
+date: 2026-11-27T16:12Z
 host: login7c
 ---
-#18 (#11's session): did instruction 9 (D56). The 20 review PNGs are drawn and the mode that draws them is queued. Three actions wait for Alistair's yes in this terminal.
+#18 (#11's session): did instruction 10 and Alistair's terminal yes. The pilot is running, the stale folders are deleted, and the X-2 swap is prepared; it waits for Alistair's yes to the exact sbatch.
 
-DONE (targets18 3e561ba, queued; suite 793/0/3; 15.235 (6)):
-- region_review.py has a params-section mode: `python3 region_review.py params TID [...] --out DIR`. It draws a params.conf section's HAND-SET regions through the unchanged draw(), with no SAS. It builds a 4" counts image from the loose pn_clean.fits, plus an exposure stand-in from where the events fall. So its fov check uses event occupancy, not an exposure map; every PNG says so in its Flags line. The caption says the regions are hand-set and that no region-tool counts exist. It writes only to --out, never to the region tool's store.
-- Interface note for #15: this is your module. I added a subcommand and one caption branch, read only when a result has `regions_from`. Automatic results draw exactly as before; test_region_review is still 7/0/0.
-- PNGs: all 20 rows, 46 s on the login node, 0 errors, 0 failing checks. They are at /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting/stats/targets18/d48_review/png/<obsid>/<name>/review.png, beside the list (review_list.tsv, 20 rows). I looked at three (P13, M82 X-2, ULX-4); the regions are on the source.
-- For the #17 review: in 0693760101, background circle A2 sits just outside P13's catalogue position. It passes the P30 check, and P13 looks faint in that epoch.
+ALISTAIR'S YES, IN THIS TERMINAL (27 Nov): "Go for the pilot sbatch (8 core-h), deleting the 2 stale pilot folders, and later the X-2 swap commands".
+- Pilot: job 12448511, submitted from wt_mt at bc0ef53 (clean tree), running on m5002 since 16:10; cap 8 core-h. Before-hashes of 0830191401's shared dir/ taken first (81 files).
+- Deleted: the two pre-D47 pilot region folders, after checking their contents. The D47-named results stay.
 
-WAITING FOR ALISTAIR'S YES IN THIS TERMINAL (cluster policy):
-a. The pilot (D50). From /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting_wt_mt: `sbatch slurm/submit_targets18_pilot.sh`. Resources: cosma5/durham, 2 CPUs, 12000M, 4 h, cap 8 core-h. Output and error go to stats/targets18/pilot/ (root tree).
-b. Deleting my two stale pilot region folders (old names, before D47):
-   rm -r /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting/stats/new_obs_regions/0830191401/NGC5194-D201128402010003 /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting/stats/new_obs_regions/0830191401/NGC5195-D201128402010012
-c. The NGC 1313 X-2 swap in 0405090101, 0693850501 and 0693851201 (D47 (a); the overseer recommends overwriting). Order: #41 unpacks the three; then I run the region tool for X-2 and show the params.conf before and after; then, after Alistair's yes, preprocess.sh -f -a on the X-2 bare (overwrites dir/'s X-1 products) and -a on the new X-1 tag. I will show the exact commands once they are unpacked.
+BUG FOUND AND FIXED (bc0ef53, 15.235 (7)). preprocess.sh's #41 guard (kept in #11's merge) stopped whenever <folder>.tar and SHA256SUMS.txt existed. But a pack restored as the guard's own message says ("tar -xf") keeps both files, so the guard refused every restored observation, including these three. It now stops only when the pack is there AND no epproc event list is loose. test_multitarget 17/0/0, including the restored case.
 
-Jobs: none.
-Core-h: 0 this step; #18 0.
-Files: about +80 (20 x result.json, review.png, img.fits, exp.fits).
+X-2 SWAP, PREPARED (targets18 50836e4):
+- Regions: the region tool ran for NGC 1313 X-2 in 0405090101, 0693850501 and 0693851201, all OK, with review PNGs drawn (so they appear in the gallery). In 0405090101 the aperture is on X-2, and X-1 is about 3' away, in no background circle.
+- params.conf: [obsid] becomes X-2 (the tool's section, analysis_only = 1). X-1's section moves unchanged to [obsid:D201068601010001]; its name stays NGC1313-X1 (the stacking key) and it gains analysis_only = 1. Before and after for each: logs/targets18/ngc1313/params_<obsid>_{before,after}.txt. Preflight on the six sections: 0 errors.
+- Run script: slurm/submit_targets18_ngc1313.sh. For each ObsID: preprocess.sh -f -a <obsid> (X-2; overwrites dir/'s loose X-1 products, whose originals stay in #41's hash-checked .tar), then -a <obsid>:D201068601010001 (X-1 tag). It never runs the tag after a failed bare. It writes one ANALYSIS_ONLY row per target to production signal_summary.csv. Cap: 2 CPUs x 16 h = 32 core-h.
+
+Jobs: 12448511 (pilot), running.
+Core-h: up to 8 this step (pilot); #18 up to 8.
+Files: about +30 (3 region results and PNGs, pilot logs).
+Full suite: rerun in progress after the guard fix. The result goes in the next report.
 
 SETTLED:
-- #18: D56 review PNGs for the 20 rows; region_review params mode; targets18 3e561ba queued; 15.235 (6).
+- #18: pilot submitted (12448511) and stale folders deleted, both on Alistair's yes; guard bug fixed; X-2 swap prepared (targets18 50836e4); 15.235 (7).
 
 NEEDS YOU:
-1. Alistair, in this terminal: yes to (a), the pilot sbatch? Recommend yes.
-2. Alistair, in this terminal: yes to (b), deleting the two stale folders? Recommend yes.
-3. Overseer: ask #41 to unpack 0405090101, 0693850501 and 0693851201 for (c)? Recommend yes.
+1. Alistair, in this terminal: yes to `sbatch slurm/submit_targets18_ngc1313.sh`, from /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting_wt_mt (cosma5/durham, 2 CPUs, 12000M, 16 h, cap 32 core-h; out/err in stats/targets18/ngc1313/)? Recommend yes, but only after the pilot passes its PASS rule.
 
 NEXT:
-- On (a): submit, wait for the sha256 file, check the pre-registered PASS rule. On (b): delete, then confirm with ls. On (c): the X-2 regions and the params.conf before/after. Nothing started.
+- When the pilot ends: check the pre-registered PASS rule (15.235 (3)) and report. Then, on Alistair's yes, submit the swap job. Nothing else started.
