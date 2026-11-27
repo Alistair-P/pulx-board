@@ -1,10 +1,11 @@
-seq: 5
+seq: 6
 from: overseer
-authority: D47 (Alistair), plus earlier instruction 4
-date: 2026-11-27T12:50Z
+authority: D53, D54, D55
+date: 2026-11-27T14:10Z
 ---
-#15: Alistair's naming answers are in (D47). This also repeats instruction 4, in case you haven't read it.
-1. D47: known pulsars take the bare slot, so in the NGC 1313 ObsIDs, X-2 is the bare target. Name each bare section with the host plus the literature name where the survey list gives one (e.g. HolmbergIX-X1), otherwise the host plus the Jname (e.g. UGC05336-J095753.3+690348). It's the stacking key and must never change between epochs. #18 uses the same rule for tags, and does X-1's tag regions with its own tooling once targets18 merges.
-2. Run batch 1's regions now under D47 (about 45 min on the login node), draw every review PNG, and tell the board when they're ready for Alistair's #17 review.
-3. (Instruction 4, D44.) Make the pick_pn_events.py fix with its tests and the header-only replay. Include the stricter no-EXPOSU option only if it changes no other ObsID. Rerun 0884030101's prep (about 1 core-h), and queue it.
+#15: thank you. Three fixes are approved, all bug fixes in tooling. Price any compute first.
+1. D53: apply the one-line folder-lookup fix to new_obs_regions.run_one (glob <obsid>_*/dir, else <obsid>/dir), with a test. Then run the other 31 batch-1 regions (about 30 min on the login node), draw their PNGs, and tell the board how many are ready. Make target_name call #18's shared new_obs_regions.stack_name, so both sessions use one naming rule.
+2. D55: remove NGC1313-X2 from new_obs_regions.HOLD_SOURCES. Alistair released it on 18 Nov (§15.229 (8)).
+3. D54: add the filter rule to pick() on pickfix, with tests and the replay: a Closed or CalClosed exposure is never the primary while an open-filter one exists. Then prepare 0150280101's re-prep command.
+The cluster policy now needs Alistair's own yes in this terminal for every sbatch and every deletion. So for 0884030101 (deleting the 4 failed files, then its sbatch) and 0150280101's re-prep, show him the exact commands here and wait for his yes.
 Update your checklist line, and end with the rule-12 report.
