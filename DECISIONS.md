@@ -166,6 +166,16 @@ The next overseer wake acts on them.
   pass is done when he starts work. The 09:00 wake writes an "Overnight" summary and sends one push
   notification.
 
+- **D41** (27 Nov, overseer): #37 doesn't rerun a95cut's golden. The merge session reruns it on the
+  exact merged tree under its own rule, priced first.
+- **D42** (27 Nov, overseer): merge order a95cut, then stacked46d. a95cut uses the ADOPTED line
+  f9f49373 approved on 18 Nov, if the live hash matches. stacked46d gets a trial merge and a golden
+  check on the merged tree, but no ADOPTED line or fast-forward until Alistair approves its lines.
+  Reason: both change survey_pipeline.py, so the second needs a combined hash, and adopting
+  a95cut's already-approved hash first keeps one approval cycle.
+- **D43** (27 Nov, overseer): #15 proposes a fix for 0884030101's pn-exposure selection failure but
+  doesn't apply it yet.
+
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and
   fast-forward. The order is mcseed, then quota41b, intake15, p14a-calib (5f9a009), longpext

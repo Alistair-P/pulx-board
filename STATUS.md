@@ -2,45 +2,67 @@
 
 Updated: 27 Nov 2026 07:48, by the dispatcher
 
+## Overnight (to 27 Nov 09:05)
+- **Merges:** 9 branches merged overnight. main is at 6cd77d3, with the suite at 782/0/3. Rule 15 is in
+  STANDING_RULES, and the CLAUDE.md fixes are in.
+- **a95cut (#37):** golden PASS (coherent 19/19 bit-identical, orbit 4/4). It's merging now, with a
+  golden rerun on the merged tree.
+- **(d) (#44/#46):** built on stacked46d. Union check PASS (2 of 400 nulls against 3.8 expected).
+  Golden PASS, including the new 0791010101 slot. 50.7 core-h. It merges after a95cut and needs
+  your ADOPTED approval (item 1).
+- **B:** the futility check on batch 1 has started (D36).
+- **#15:** the review tools (region_review.py) are on main. Batch 1's regions wait on your naming
+  answers (item 2).
+- **#18:** target table done: 170 new tags on 122 ObsIDs. Step 2's tooling is starting.
+- **#25 and #41:** settled. **#42:** all 8 methods subsections drafted.
+- **#38:** hasn't picked up its rebuild instruction (sent 18:01). It needs a nudge (item 4).
+- **Files:** about 160,000.
+
 ## Needs Alistair
-1. (Decided: B gets a futility check on batch 1 after (d) is queued, D36.) **B (#44 batch 2)** was: decide whether to switch on the long-period orbit part for spans above
-   80 ks, on one 80 ks window each (134 targets on 80 ObsIDs). It's a post-tag stage by design and
-   can't change v1.0. Batch 2 costs about 270–280 core-h billed (cap 448). A GO would add 120–390
-   core-h of survey compute after the tag. C1, the same idea at 40–57.5 ks, found no gain.
-   Options: run now, defer to after the tag (wt_longpext frozen until then), or drop. Overseer's
-   view: defer, or let #44 propose a futility check on batch 1 first.
-2. **#17**: your review of the flags table for each batch, between regions and run_analysis. #15 is
-   building one review PNG per observation and a region override script (D37). Batch 1 comes
-   after its last 12 ObsIDs are prepped.
-3. **#30**: the A1 candidate details. (Raised before 25 Nov.) #42 is reading what's needed.
-4. **#35**: your edit of the frame-alignment note. (Raised before 25 Nov.)
-- Later: #13 will ask you to approve survey_pipeline.py's ADOPTED line after cert13's golden check.
-- Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
+1. **ADOPTED lines for (d)** (stacked46d): octave_thresholds.py (ab3e3264), and survey_pipeline.py at the
+   combined hash after it merges on top of a95cut. Conditions: the merge session's golden on the
+   merged tree passes as predicted (coherent 19/19 bit-identical, orbit identical, the new slot
+   identical to stacked46d's run), and the live hashes match. Overseer's view: yes.
+2. **Bare slots and names** (one decision for #15 and #18):
+   - (a) Known pulsars take the bare slot: P13 in 4 ObsIDs, and NGC 1313 X-2 in 3, plus the 15 NGC 1313
+     ObsIDs, where X-1 would become the tag. Overseer's view: yes, because ORBITS, OVERRIDES and the
+     gate read the bare slot. Make both targets' regions in batch 1.
+   - (b) Names for non-PULX targets: literature names where one is established (for example
+     HolmbergIX-X1), and `<HOST>-<Jname>` otherwise. Overseer's view: yes.
+   - (c) Rename 0693760101's section to a NGC 7793 ULX-4 name before anything unskips it. Overseer's
+     view: yes.
+   - (d) The 16 skipped bare sections that are list targets: decide per observation in your #17
+     review, where they'll appear.
+3. **#30** ("A1, the NGC 6946 X-1 check", ObsID 0401360301, 22.5 ks): the candidate's details (frequency,
+   fdot, epoch and origin) and what "A1" means. Only you hold these.
+4. **Nudge #38** in its window: `#38: run bash ~/pulx-board/board.sh show 38, carry out instruction 3,
+   then start bash ~/pulx-board/board.sh wait 38 in the background.`
+5. **Retire finished worktrees**, with wt_retire.sh, keeping the branches: wt_p14a (#25), wt_q41 (#41)
+   and wt_regrev (#15's merged tools branch). Overseer's view: yes.
+6. **#17**: your review of batch 1's PNGs and flags table, once #15 has run the regions (after item 2).
+   Rough guess: 1–2.5 hours per 50-ObsID batch.
+7. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue. Nothing else waits on
+   it.
 
 ## For overseer
-- **25:** done report (seq 1): p14a-calib on main (15285f7, §15.228, suite 772/0/3), checklist line settled. No plan step after 25.2. Housekeeping for Alistair: remove worktree z_sq_weighting_wt_p14a and branch p14a-calib (./link_data.sh --remove first, never --force).
-- **merge / 44 (merge order):** merge.1 sent (seq 5) after its report of the quota41b addendum (4f4386e) and regionreview (6cd77d3). D18 now has only a95cut left. #44 has since queued stacked46d (#46 (d)) at the top of the merge queue "ahead of #13"; it isn't in D18, so its place relative to a95cut needs your call. Merge also asks #15 to write the summary entry for regionreview, citing D37 (no plan step for 15).
-- **37 (urgent for the merge order):** a95cut golden PASS (coherent 19/19 bit-identical, orbit 4/4 identical), queued READY at 6b015e2 after merging main 6b0b68f. NEEDS YOU 1: rerun its golden on main + a95cut before it merges (about 11 core-h), since rednoise changed red_noise_floor.py and re-froze the orbit reference after the check? 37.2 held it; the question isn't in the plan. The merge session may reach a95cut soon.
-- **11:** target table done (43d8ccf, 15.235), but with new NEEDS YOU 2–4 (findings a–c: 16 skipped bare sections that are list targets; P13 / NGC 1313 X-2 bare slot in 7 ObsIDs; rename 0693760101's section to ULX-4). Recommends all go to Alistair. 11.1 needs "no new NEEDS YOU", so not applied.
-- **15:** D37 tools built and queued (regionreview f8cf10b, test 7/0/0). Batch 1's regions wait on NEEDS YOU 1 (also make X-2 tag regions in the 15 NGC 1313 ObsIDs?), 2 (params.conf naming for non-PULX targets, `<HOST>-<Jname>` vs literature names) and 3 (0884030101 pn-exposure failure: fix or drop). Report doesn't say whether the second array was submitted (instruction 2). Files about 160,000.
-- **42:** read-only summary of #30, #35, #17 posted for Alistair (seq 8). "A1" in #30 is not defined in any readable record; needs Alistair. No time measured for a #17 batch review (guess 1–2.5 h, inferred).
-- **44 (noted, held as running under 44.2):** report says "answers seq 7", though seq 8 is the latest; its work matches seq 8 (add-on budgeting, new branch stacked46d, wt_longpext frozen). Differences from seq 8: union check uses 600 nulls (seq 8 said 400), job 12438600 pending, about 30 core-h (cap 40); add-on gain quoted as +0.77/+0.83/+0.86–0.90, not +0.71; tables at 17–120 ks byte-identical to main (covers seq 8 step 1).
+- #38's rebuild (D12), once Alistair has nudged it.
+- (d)'s ADOPTED approval, then tell the merge session (D42).
 
 ## Items
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
-| merge | merge session | root tree | high | active | D18 queue done except a95cut; quota41b addendum (4f4386e) and regionreview (6cd77d3, suite 782/0/3) merged; idle for a95cut (merge.1 sent, seq 5) | 26 Nov 23:52 |
-| 11 | #18 (multi-target), was #11 | wt_mt | medium | needs-you | #18 step 1 target table done (43d8ccf, 15.235); step 2 waits for Alistair; new findings a–c | 26 Nov 21:32 |
-| 13 | certificate | wt_cert13 | high | waiting | v1.0 draft builder done (baa7e20, suite 751/0/5); waits for a95cut and #46 | 26 Nov 18:18 |
-| 15 | survey intake | wt_intake15 | medium | needs-you | D37 tools queued (regionreview f8cf10b); batch 1 regions wait on naming questions | 26 Nov 21:41 |
-| 25 | artefact battery rev3 | root tree | medium | done | settled; checklist line [x]; stopped (worktree/branch removal for Alistair) | 26 Nov 21:50 |
-| 27 | detection policy draft | wt_policy27 | high | waiting | REV. 3 at 101b486, unchanged (D16); waits for C1–C4 | 26 Nov 17:30 |
-| 37 | a95 cut | root tree | high | needs-you | golden PASS, a95cut READY at 6b015e2; asks whether to rerun golden on merged tree | 26 Nov 21:31 |
-| 38 | red noise | wt_rednoise | high | active | rebuilding production red-noise records (D12, 38.2 sent 18:05) | 26 Nov 17:06 |
-| 41 | quota and packing | root tree | medium | done | addendum 26cca25 on main (4f4386e); settled, nothing left | 27 Nov 00:56 |
-| 42 | methods paper (#43, #45) | root tree | medium | active | read-only #30/#35/#17 summary posted; waits for a95cut | 26 Nov 21:31 |
-| 44 | long-period part (#44, #46) | wt_longpext | medium | active | (d) queued (stacked46d 6a030a7, golden PASS); 44.4 sent: B futility check on batch 1 | 27 Nov 01:04 |
+| merge | merge session | root tree | high | active | a95cut now (D42), then stacked46d's trial + golden | 26 Nov 23:52 |
+| 11 | #18 (multi-target), was #11 | wt_mt | medium | active | step 2 tooling on targets18 (instruction 7) | 26 Nov 21:32 |
+| 13 | certificate | wt_cert13 | high | waiting | draft builder done; waits for a95cut and (d) | 26 Nov 18:18 |
+| 15 | survey intake | wt_intake15 | medium | active | review tools on main; regions wait on Alistair's naming answer | 26 Nov 21:41 |
+| 25 | artefact battery rev3 | root tree | medium | settled | p14a-calib on main (15285f7) | 26 Nov 21:50 |
+| 27 | detection policy draft | wt_policy27 | high | waiting | policy27 on main (077a2eb); waits for C1–C4 | 26 Nov 17:30 |
+| 37 | a95 cut | root tree | high | waiting | a95cut golden PASS, merging (D41); then a50/--list (D12) | 26 Nov 21:31 |
+| 38 | red noise | wt_rednoise | high | ? | rebuild instruction 3 (18:01) not yet picked up; needs a nudge | 26 Nov 17:06 |
+| 41 | quota and packing | root tree | medium | settled | addendum on main (4f4386e) | 27 Nov 00:56 |
+| 42 | methods paper (#43, #45) | root tree | medium | waiting | methods42 on main (2644692); fill-in after a95cut | 26 Nov 21:31 |
+| 44 | long-period part (#44, #46) | wt_longpext | medium | active | (d) queued (stacked46d 6a030a7); B futility check (44.4) | 27 Nov 01:04 |
 | 47 | β study | - | high | not started | no conversation found | - |
 
 ## Plans
@@ -48,8 +70,10 @@ The dispatcher may send only these steps, when their conditions are clearly met.
 goes to "For overseer". A step that starts with "trigger:" is set off by another item's report.
 
 - **merge**:
-  - `merge.1`: after each merge it reports, send: "Carry on with the next entry in the D18 order."
-    Also send the plan steps that merge triggers for other items.
+  - `merge.1`: after each merge it reports, send: "Carry on with the next entry in the D42 order
+    (a95cut, then stacked46d's trial and golden, stopping before ADOPTED and the fast-forward unless
+    DECISIONS.md records Alistair's approval)." Also send the plan steps that merge triggers for
+    other items.
   - Any failed suite, conflict it can't resolve, or golden difference: for overseer.
 - **11** (now #18):
   - `11.1`: when it reports the target table done, with no new NEEDS YOU, hold until Alistair has
@@ -76,8 +100,7 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
   - `27.1`: hold. It waits for C1–C4, or for #19 to freeze N.
 - **37**:
   - `37.1`: while the golden jobs run, hold.
-  - `37.2`: if both golden comparisons are bit-identical and a95cut is marked ready, hold.
-    Anything else: for overseer.
+  - `37.2`: done (golden PASS; D41). Hold until 37.3's triggers are met.
   - `37.3`: trigger: #38 reports the production red-noise records rebuilt, AND a95cut and rednoise
     are both on main. Send: "D12: rerun a50 --all --thresholds applied and survey_pipeline --list
     on main, using #38's rebuilt records (folder in #38's report). Apply the near-cut rule (48

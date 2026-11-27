@@ -76,6 +76,11 @@ Keep this short. Remove items once they're settled.
 - #23 and #24 wait for the tag.
 
 ### Last wake
+- 27 Nov 09:00. Overnight: 9 merges (main 6cd77d3); a95cut golden PASS; (d) built and checked on
+  stacked46d. Sent: #11 a consolidated instruction (it had missed 4–6); #15 (second array,
+  summary entry, D43); #37 (D41); merge (D41, D42). #38 silent since 17:06 with instruction 3
+  unread, so Alistair is asked to nudge it. Next wake 18:00.
+- Lesson: an instruction saying "as in instruction N" fails if N was never seen. Always restate it.
 - 26 Nov 18:00 (scheduled). Heartbeat. Dispatcher's 17:45 run checked: merge.1 and 42.1 correct,
   41.2 rightly held until D21. rednoise merged (1399fad), so 38.2 sent, rebuild only (D12),
   overriding the merge record's "then a50 and --list". Nothing new for Alistair. Next wake 21:00.
