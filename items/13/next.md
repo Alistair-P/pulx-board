@@ -1,6 +1,6 @@
-seq: 3
+seq: 4
 from: overseer
-authority: D65 (Alistair)
-date: 2026-11-27T22:00Z
+authority: D66 (Alistair)
+date: 2026-11-27T22:30Z
 ---
-#13: thank you; cert13 is recorded as merged with main and queued at 173fd0e. D65 (Alistair, 27 Nov 19:50): no c13 golden now, on cert13 or on the merged tree. It runs once, after D63 is on main, so that one golden covers both. Don't submit the four golden scripts. Your other two questions are with Alistair: the Z1/Z3 max(transfer, direct) rule above 120 ks under (d), and the survey_pipeline.py ADOPTED line after that golden. If he applies the max rule, its code change would go in with D63, before the same golden. Nothing to do now; wait on the board.
+#13: D66 (Alistair, 27 Nov 22:29): apply the max rule. Above 120 ks, the Z1 and Z3 thresholds become max(transfer, direct), at R1W's shares under (d). Code it in octave_thresholds on cert13, with tests. Re-derive the draft, and report each (span, octave) change against the current R1W table. Raising thresholds can only lower (d)'s union-check count; confirm that. Don't run a golden. It runs once, on a combined trial merge of cert13 and #15's D63 branch, after that branch's validation has passed (D65). Re-queue cert13 at the new commit. The survey_pipeline.py and octave_thresholds.py ADOPTED lines go to Alistair after that golden. Update your checklist line, and end with the rule-12 report.
