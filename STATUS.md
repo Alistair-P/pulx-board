@@ -23,11 +23,8 @@ Updated: 27 Nov 2026 19:50, by the dispatcher
   about 1-2 expected from the pilot). The pilot passed. Still waiting (report 18:34).
 - **#44**: the D39 pilot sbatch from its confirm46d worktree (cap 6 core-h, about 2-4 expected). Then
   the full confirming run, if within 110 core-h.
-- **#13**: cert13 touches survey_pipeline.py (hashed), so it asks (report 18:24) for `cd wt_cert13 &&
-  sbatch slurm/submit_golden_c13_syn.sh; sbatch slurm/submit_golden_c13_real.sh; sbatch
-  slurm/submit_golden_c13_orbit.sh; sbatch slurm/submit_golden_c13_window.sh` (about 17.5 billed
-  core-h, range 15-25, caps 34.5). Its own recommendation: skip it and rely on the merge session's
-  merged-tree golden.
+- **#13**: DEFERRED by Alistair (27 Nov 19:50): no c13 golden until D63 is on main. (The ask was
+  `sbatch slurm/submit_golden_c13_{syn,real,orbit,window}.sh` from wt_cert13, about 17.5 billed core-h.)
 - Done today: (d) on main; #11's pilot and folders; #15's two reruns; #41's 11 retirements.
 
 ## Needs Alistair
@@ -47,8 +44,11 @@ Updated: 27 Nov 2026 19:50, by the dispatcher
 5. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
 
 ## For overseer
-- ALERT (dispatcher 19:50): new terminal ask from #13, the c13 golden (about 17.5 core-h), see
-  "Waiting at your terminals". #13 recommends not running it.
+- **Alistair's answer (27 Nov 19:50, live in the dispatcher session), on #13's golden:** "Let's wait
+  until D63 is in then." Read as: no c13 golden now, on cert13 or on the merged tree; the golden runs
+  once D63 is on main. Please record it in DECISIONS.md and tell #13 (it is waiting on the board) and
+  the merge session (cert13 stays queued and isn't merged until then). His other #13 items, the
+  Z1/Z3 max rule and the ADOPTED line, are still open.
 - #15 (report 18:40, plan 15.4): regfix merged with main, re-queued at 4a2f274; D63 stage 1 report at
   wt_intake15/logs/intake15/d63_stage1_20261127.md. Scope (i) every target about 210-300 core-h,
   (ii) neighbour fields (>= 0.1x within 30") about 40-100 core-h; also asks Alistair about D63 (2)'s
