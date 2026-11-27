@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 27 Nov 2026 15:50, by the dispatcher
+Updated: 27 Nov 2026 16:10, by the overseer
 
 ## Overnight (to 27 Nov 09:05)
 - **Merges:** 9 branches merged overnight. main is at 6cd77d3, with the suite at 782/0/3. Rule 15 is in
@@ -21,17 +21,19 @@ Updated: 27 Nov 2026 15:50, by the dispatcher
 ## Waiting at your terminals (cluster policy: your yes, in that window, to the exact command)
 - **merge**: write (d)'s two ADOPTED lines (octave_thresholds.py ab3e3264, survey_pipeline.py 9b8ce8b0),
   freeze the window slot, fast-forward. The golden passed as predicted, so D46's conditions are met.
-- **#11**: (a) the pilot's sbatch (8 core-h); (b) delete 2 stale pilot folders; later (c) the X-2 swap.
+- **#11**: (a) the pilot's sbatch (8 core-h); (b) delete 2 stale pilot folders; (c) the X-2 swap's
+  preprocess commands, once its regions are drawn (the unpack is done).
 - **#15**: delete 0884030101's 4 failed files and sbatch its rerun; same for 0150280101 (1–3 core-h each).
 - **#41**: retire the 9 worktrees (copy-out done, 0 files left only in a worktree) plus wt_p14a and
   wt_regrev, about 16,300 inodes, commands shown in the #41 terminal; 0 core-h. Later: clear tmp/tmp* older
   than 1 h once testshim-tmp merges (about 37,000).
 
 ## Needs Alistair
-1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ holds 51 PNGs. Verdicts (REVIEW/FAIL)
-   and light-curve panels are being added. Also #18's 20 D48 PNGs in stats/targets18/d48_review/png/.
-2. **The cluster policy**: where it comes from (#44 is quoting it). If it's your own setting, you
-   can relax it to match D57's tiers.
+1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ holds 51 PNGs, with verdicts
+   (9 FAIL, 6 REVIEW, 36 PASS) and light-curve panels. Also #18's 20 D48 PNGs in
+   stats/targets18/d48_review/png/. 0400560301's target is excluded (D60).
+2. **QA rule**: should "not detected AND a neighbour outshines it" become a hard exclusion? In batch 1
+   it applies to 2 of 49 targets, and both are already out (D60, and 0674210601 fails the count gate).
 3. **#30**: starts later, in a COSMA session. 0200670401's section has timing = 0, so as it stands
    that ObsID isn't searched.
 4. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
@@ -39,17 +41,15 @@ Updated: 27 Nov 2026 15:50, by the dispatcher
 ## For overseer
 - #38 hasn't posted its rebuild report (instruction 3, sent 26 Nov 18:01). It did the rebuild (88/88)
   but was interrupted while recording it. Alistair has the paste line. #37's list rerun waits on it.
-- Open question for Alistair: make "not detected AND neighbour outshines" a hard QA rule (2 of 49 in
-  batch 1, both already excluded).
 
 ## Items
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
 | merge | merge session | root tree | high | active | a95cut merged (df0a6f9, ADOPTED f9f49373); stacked46d trial running | 27 Nov 11:29 |
-| 11 | #18 (multi-target), was #11 | wt_mt | medium | needs-you | targets18 b75e098 queued; finding (a) corrected; X-2 swap blocked; pilot needs Alistair's yes | 27 Nov 13:27 |
+| 11 | #18 (multi-target), was #11 | wt_mt | medium | needs-you | targets18 b75e098 queued; told the unpack is done, so (c) goes ahead; pilot needs Alistair's yes | 27 Nov 14:44 |
 | 13 | certificate | wt_cert13 | high | waiting | draft builder done; waits for a95cut and (d) | 26 Nov 18:18 |
-| 15 | survey intake | wt_intake15 | medium | needs-you | gallery done (51 PNGs, verdicts, light curves); QA-rule question for Alistair; 2 reruns wait at his terminal | 27 Nov 15:10 |
+| 15 | survey intake | wt_intake15 | medium | needs-you | gallery done; told to hold 0400560301's target (D60); 2 reruns wait at Alistair's terminal | 27 Nov 15:10 |
 | 25 | artefact battery rev3 | root tree | medium | settled | p14a-calib on main (15285f7) | 26 Nov 21:50 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | policy27 on main (077a2eb); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | waiting | D41 acknowledged; a95cut READY at 6b015e2; waits for 37.3 triggers | 27 Nov 09:05 |
