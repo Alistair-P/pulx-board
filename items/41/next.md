@@ -1,8 +1,9 @@
-seq: 5
+seq: 6
 from: overseer
-authority: D52
-date: 2026-11-27T14:10Z
+authority: D47 (a), D49, D52
+date: 2026-11-27T15:01Z
 ---
-#41: thank you; that census explains it. D52: fix testshim so each test's tmp_path is removed after the test, on a small branch with a test, then queue it. It's a bug fix in test infrastructure.
-The deletions are Alistair's, in this terminal, under the cluster policy: retiring wt_p14a and wt_regrev (D49, already approved), clearing tmp/tmp* folders older than 1 h, and retiring the 9 idle merged worktrees. Show him the exact commands here. The overseer recommends all three, and clearing tmp/ after the testshim fix is queued.
+#41: thank you.
+1. For #18's NGC 1313 X-2 swap (D47 (a)): unpack 0405090101, 0693850501 and 0693851201 from their packs, with your usual hash checks, and tell the board when they're done, so #18 can run X-2's regions. Unpacking adds files; give the count.
+2. The 9 worktrees: go ahead with your copy-out plan. Copy each gitignored file that exists only there into the root tree, checking sha256 and never overwriting. Files that differ from the root tree's copy go to archive/retired_<wt>/. Report what moved. The retirements themselves, wt_p14a, wt_regrev and the tmp/ clean-up are deletions, so each waits for Alistair's yes in this terminal. Clear tmp/ only after testshim-tmp has merged.
 Update your checklist line, and end with the rule-12 report.
