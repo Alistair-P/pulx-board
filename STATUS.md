@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 27 Nov 2026 18:10, by the overseer
+Updated: 27 Nov 2026 19:50, by the dispatcher
 
 ## Today (27 Nov, to 18:10)
 - **On main:** (d) (stacked46d, 57974c9; ADOPTED ab3e3264 and 9b8ce8b0) and targets18 (6db5e1f).
@@ -18,11 +18,16 @@ Updated: 27 Nov 2026 18:10, by the overseer
   1; #13 rebases cert13.
 
 ## Waiting at your terminals (cluster policy: your yes, in that window, to the exact command)
-- **#11**: `sbatch slurm/submit_targets18_ngc1313.sh` from wt_mt (the X-2 swap; cap 32 core-h, about
-  1-2 expected from the pilot). The pilot passed.
+- **#11**: `sbatch slurm/submit_targets18_ngc1313.sh` from wt_mt
+  (/cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting_wt_mt; the X-2 swap; 2 CPUs, 16 h, cap 32 core-h,
+  about 1-2 expected from the pilot). The pilot passed. Still waiting (report 18:34).
 - **#44**: the D39 pilot sbatch from its confirm46d worktree (cap 6 core-h, about 2-4 expected). Then
   the full confirming run, if within 110 core-h.
-- **#13** (maybe): a golden rerun, only if cert13 touches a hashed module.
+- **#13**: cert13 touches survey_pipeline.py (hashed), so it asks (report 18:24) for `cd wt_cert13 &&
+  sbatch slurm/submit_golden_c13_syn.sh; sbatch slurm/submit_golden_c13_real.sh; sbatch
+  slurm/submit_golden_c13_orbit.sh; sbatch slurm/submit_golden_c13_window.sh` (about 17.5 billed
+  core-h, range 15-25, caps 34.5). Its own recommendation: skip it and rely on the merge session's
+  merged-tree golden.
 - Done today: (d) on main; #11's pilot and folders; #15's two reruns; #41's 11 retirements.
 
 ## Needs Alistair
@@ -42,6 +47,22 @@ Updated: 27 Nov 2026 18:10, by the overseer
 5. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
 
 ## For overseer
+- ALERT (dispatcher 19:50): new terminal ask from #13, the c13 golden (about 17.5 core-h), see
+  "Waiting at your terminals". #13 recommends not running it.
+- #15 (report 18:40, plan 15.4): regfix merged with main, re-queued at 4a2f274; D63 stage 1 report at
+  wt_intake15/logs/intake15/d63_stage1_20261127.md. Scope (i) every target about 210-300 core-h,
+  (ii) neighbour fields (>= 0.1x within 30") about 40-100 core-h; also asks Alistair about D63 (2)'s
+  fov/area rules (REVIEW below 90% exposed). Needs Alistair 2 can now be decided.
+- #13 (report 18:24, plan 13.3): cert13 rebased and queued at 173fd0e, suite 820/0/5, draft --check
+  CONSISTENT. NEEDS YOU for Alistair: the golden (above), the Z1/Z3 max(transfer, direct) rule above
+  120 ks under (d) (retire or apply; recommends apply), and the survey_pipeline.py ADOPTED line.
+- #11 (report 18:34, 11.3): batch 1 tag list and script prepared, not submitted. Asked the overseer to
+  record D64 (it is in DECISIONS.md now, 18:10). The swap sbatch is still at Alistair's terminal.
+- merge (report 19:30): targets18 5d45f76 on main 6dd6232, suite 802/0/3; regfix next. merge.1's
+  wording (D42 order: a95cut, stacked46d) is out of date now that D64 sets the order, so it was not
+  sent; the session carries on under instruction 10. Please revise merge.1.
+- #41 (report 19:44): tmp/ backlog cleared (50,028 inodes), quota 121,644; addendum 2818a4f queued.
+  Held under 41.2.
 - #38 hasn't posted its rebuild report (instruction 3, sent 26 Nov 18:01). It did the rebuild (88/88)
   but was interrupted while recording it. Alistair has the paste line. #37's list rerun waits on it.
 
@@ -49,15 +70,15 @@ Updated: 27 Nov 2026 18:10, by the overseer
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
-| merge | merge session | root tree | high | active | targets18 merged (6db5e1f); regfix conflict sent back; D64 order next | 27 Nov 17:52 |
-| 11 | #18 (multi-target), was #11 | wt_mt | medium | needs-you | pilot PASS; targets18 3b851cc queued; swap sbatch at Alistair's terminal; tag runs wait for D63 | 27 Nov 17:51 |
-| 13 | certificate | wt_cert13 | high | told | 13.2 sent: rebase cert13 on main, golden only if a hashed module changed | 26 Nov 18:18 |
-| 15 | survey intake | wt_intake15 | medium | told | D60-D62 done, reruns done; told: fix regfix's conflict, then D63 stage 1 | 27 Nov 17:57 |
+| merge | merge session | root tree | high | active | targets18 5d45f76 merged (main 6dd6232, 802/0/3); regfix next, then intake15, pickfix | 27 Nov 19:30 |
+| 11 | #18 (multi-target), was #11 | wt_mt | medium | needs-you | batch 1 prepared, not run; targets18 on main (6dd6232); swap sbatch at Alistair's terminal; tag runs wait for D63 | 27 Nov 18:34 |
+| 13 | certificate | wt_cert13 | high | needs-you | cert13 rebased, queued at 173fd0e (820/0/5); golden sbatch, max rule and ADOPTED with Alistair | 27 Nov 18:24 |
+| 15 | survey intake | wt_intake15 | medium | needs-you | regfix re-queued (4a2f274); D63 stage 1 reported, scope with Alistair | 27 Nov 18:40 |
 | 25 | artefact battery rev3 | root tree | medium | settled | p14a-calib on main (15285f7) | 26 Nov 21:50 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | policy27 on main (077a2eb); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | waiting | D41 acknowledged; a95cut READY at 6b015e2; waits for 37.3 triggers | 27 Nov 09:05 |
 | 38 | red noise | wt_rednoise | high | ? | rebuild instruction 3 (18:01) not yet picked up; needs a nudge | 26 Nov 17:06 |
-| 41 | quota and packing | root tree | medium | waiting | 11 worktrees retired (files 157,359); tmp/ clean-up waits for testshim-tmp | 27 Nov 16:14 |
+| 41 | quota and packing | root tree | medium | settled | tmp/ cleared, quota 121,644; addendum 2818a4f queued | 27 Nov 19:44 |
 | 42 | methods paper (#43, #45) | root tree | medium | waiting | coverage questions answered; 2 OPEN markers left | 27 Nov 12:55 |
 | 44 | long-period part (#44, #46) | wt_longpext | medium | needs-you | figidx46 queued; told to queue longpext; D39 pilot at Alistair's terminal | 27 Nov 17:53 |
 | 47 | β study | - | high | not started | no conversation found | - |
