@@ -18,6 +18,8 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 27 Nov 16:08: #17 review of five gallery PNGs (D61). Asked why a neighbour that outshines a target
+  should matter (M82 X-2 was found blended with X-1), and whether anything corrects for off-axis sources.
 - 27 Nov 16:03: "happy with all decisions": exclude 0400560301's target for this epoch (D60); (d)'s
   merge goes ahead once he says yes in the merge terminal.
 - 27 Nov 14:21: he approves every Slurm job himself, in the terminal (D59).
@@ -249,6 +251,16 @@ The next overseer wake acts on them.
   diffuse emission is +323%. No region can separate it, so its net counts aren't source counts. The
   only other target with both "not detected" and "outshines" (0674210601) already fails the count
   gate. Whether that combination becomes a hard QA rule is still open.
+
+- **D61** (27 Nov, Alistair, #17 review): 0111800101 NGC3031-J095533.0+690034 passes, overriding its fov
+  FAIL. The fail is on the 40" count aperture at the Small Window's edge, not on the 20" timing circle,
+  and its counts are far above the gate. #15 records the override after checking the timing circle is
+  at least 90% exposed. 0504780101 NGC0703-J015239.6+361025: FAIL agreed. 0670950101
+  NGC0891-J022233.5+422027: passes (REVIEW flags seen). 0674210601 NGC0224-J004247.1+411615: FAIL
+  stands; it fails on non-detection and the count gate, not on the bright neighbour. 0763120401
+  NGC0224-J004545.6+413941: PASS stands; how the pipeline handles off-axis PSFs goes to #15 as a
+  question. Principle he raised: a brighter neighbour doesn't stop a detection (its photons act as
+  background), so "outshines" stays a REVIEW flag and is never a FAIL on its own.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and

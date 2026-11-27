@@ -32,8 +32,9 @@ Updated: 27 Nov 2026 16:10, by the overseer
 1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ holds 51 PNGs, with verdicts
    (9 FAIL, 6 REVIEW, 36 PASS) and light-curve panels. Also #18's 20 D48 PNGs in
    stats/targets18/d48_review/png/. 0400560301's target is excluded (D60).
-2. **QA rule**: should "not detected AND a neighbour outshines it" become a hard exclusion? In batch 1
-   it applies to 2 of 49 targets, and both are already out (D60, and 0674210601 fails the count gate).
+2. **QA rule**: overseer's suggestion after D61: make "not detected within 10 arcsec" a FAIL you can
+   override, and keep "outshines" a REVIEW flag only. In batch 1 that changes nothing (both
+   not-detected targets are already out).
 3. **#30**: starts later, in a COSMA session. 0200670401's section has timing = 0, so as it stands
    that ObsID isn't searched.
 4. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
@@ -49,7 +50,7 @@ Updated: 27 Nov 2026 16:10, by the overseer
 | merge | merge session | root tree | high | active | a95cut merged (df0a6f9, ADOPTED f9f49373); stacked46d trial running | 27 Nov 11:29 |
 | 11 | #18 (multi-target), was #11 | wt_mt | medium | needs-you | targets18 b75e098 queued; told the unpack is done, so (c) goes ahead; pilot needs Alistair's yes | 27 Nov 14:44 |
 | 13 | certificate | wt_cert13 | high | waiting | draft builder done; waits for a95cut and (d) | 26 Nov 18:18 |
-| 15 | survey intake | wt_intake15 | medium | needs-you | gallery done; told to hold 0400560301's target (D60); 2 reruns wait at Alistair's terminal | 27 Nov 15:10 |
+| 15 | survey intake | wt_intake15 | medium | needs-you | told D60 and D61 (review verdicts) plus questions on fov, off-axis PSF and flags; 2 reruns wait at Alistair's terminal | 27 Nov 15:10 |
 | 25 | artefact battery rev3 | root tree | medium | settled | p14a-calib on main (15285f7) | 26 Nov 21:50 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | policy27 on main (077a2eb); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | waiting | D41 acknowledged; a95cut READY at 6b015e2; waits for 37.3 triggers | 27 Nov 09:05 |
