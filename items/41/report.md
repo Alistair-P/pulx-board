@@ -1,37 +1,38 @@
-seq: 5
+seq: 6
 state: needs-you
-date: 2026-11-27T14:40Z
+date: 2026-11-27T15:06Z
 host: login7c
 ---
-#41 (file quota): carried out instruction 5 (D52): fixed the testshim tmp_path leak on branch testshim-tmp and queued it. The deletion commands are shown to Alistair in the #41 terminal, waiting for his yes.
+#41 (file quota): carried out instruction 6. Unpacked the three NGC 1313 observations for #18 and copied out the 9 idle worktrees. The deletions wait for Alistair in the #41 terminal.
 
-Instruction 5: the fix is done and queued. The deletions wait for Alistair (cluster policy). No terminal instruction since the last report.
+Instruction 6: parts 1 and 2 done. No terminal instruction since the last report.
 
-FIX (15.223 (15), commit 436eb0d, off main df0a6f9, 0 behind):
-- testshim/run_suite.py removes each run's tmp_path / tmpdir in a finally block, after pass, fail or skip. ZSQW_KEEP_TMP=1 keeps them.
-- tests/test_testshim_tmp.py (2 tests) is registered in run_all_tests.sh.
-- Suite 784/0/3. The first full run gave 783/1/3: the 1 was test_provenance's not-a-repository test, because my private TMPDIR sat inside the worktree. A rerun with TMPDIR outside any repository passed 3/0/0.
-- A full suite run now leaves 8 top-level entries (21 inodes) in TMPDIR, from 6 test files that make their own temp dirs (not changed here).
+1. UNPACK DONE for #18 (D47 (a)). #18 can run X-2's regions now:
+- 0405090101_NGC1313-X1: 83 files + 1 dir
+- 0693850501_NGC1313-X1: 83 + 1
+- 0693851201_NGC1313-X1: 82 + 1
+That adds 251 inodes. Each tar was checked against its SHA256SUMS first, and each file was sha256-checked as it was extracted, with nothing overwritten. quota_pack.check of the loose files against the sums finds 0 problems on all three. The tar + sums are kept, because removing them would be a deletion. Script: logs/q41/unpack_obs.py; log: logs/q41/unpack.jsonl.
 
-DELETIONS (shown to Alistair):
-1. D49 wt_p14a, wt_regrev: checks passed (26 Nov census). 2,917 inodes.
-2. tmp/tmp* older than 1 h: ~37,000 inodes. Recommended after testshim-tmp merges, since sessions keep leaking until then.
-3. The 9 idle merged worktrees: NOT ready as is. All are clean, merged, with no job and no process inside, but 8 of them hold gitignored files that exist only there:
-   a95 1, fig164 1, figs8 1, longp60 9, longpv1 29, lpfig 14, m82decay 43, valstore 5. Some are cited by the summary.
-   lpfig 11, valstore 1 and longpv1 1 also differ from the root tree's copies. wt_methods has none.
-   Each needs a copy-out step first (copy into the root tree with a sha256 check, never overwriting; files that differ go to archive/retired_<wt>/).
+2. COPY-OUT of the 9 worktrees (logs/q41/copyout_worktrees.py; log logs/q41/copyout.jsonl): every gitignored or untracked file found only in the worktree was copied, sha256-checked, never overwriting, nothing deleted. Links and __pycache__ were skipped.
+- Copied to the root tree: 103 (a95 1, fig164 1, figs8 1, longp60 9, longpv1 29, lpfig 14, m82decay 43, valstore 5).
+- Differing from the root tree's copy, so copied to archive/retired_wt_<name>/: 13 (longpv1 1, lpfig 11, valstore 1).
+- Already identical in the root tree: 16. wt_methods had none.
+- Re-check: every such file in all nine now has a byte-identical copy in the root tree or its archive folder; 0 missing.
+That adds 116 files (~7 MB).
+
+Recorded as 15.223 (16), commit daef6ba on testshim-tmp (queue line refreshed; summary + logs scripts only, so no suite rerun).
 
 Jobs: none of #41's.
-Core-h: 0 this step; 0 since the item began. Login: one full suite at nice 10.
-Files: lfs quota 173,589 / 200,000 (27 Nov, after the suite).
+Core-h: 0 this step; 0 since the item began.
+Files: lfs quota 175,025 / 200,000 (27 Nov ~15:40).
 
 SETTLED:
-- #41: the testshim tmp_path leak is fixed and queued (15.223 (15), 436eb0d, testshim-tmp, suite 784/0/3).
+- #41: three NGC 1313 observations unpacked for #18, all checks clean, 251 inodes (15.223 (16), daef6ba).
+- #41: copy-out of the 9 idle worktrees, 0 files left only in a worktree (15.223 (16), daef6ba).
 
 NEEDS YOU:
-1. (Alistair) Yes to the D49 removal of wt_p14a and wt_regrev? Recommend yes.
-2. (Alistair) Yes to clearing tmp/tmp* folders older than 1 h, once testshim-tmp merges? Recommend yes.
-3. (Alistair) Approve a copy-out plan for the 9 worktrees before retiring them (wt_methods needs none)? Recommend yes.
+1. (Alistair, #41 terminal) Retire the 9 worktrees plus wt_p14a and wt_regrev (about 16,300 inodes; commands shown there). Recommend yes.
+2. (Alistair) Clear tmp/tmp* older than 1 h once testshim-tmp merges (about 37,000). Recommend yes.
 
 NEXT:
-- On each yes, run that step, report the files freed, and update the checklist. Nothing has been started.
+- On each yes, run the step, report the files freed, and update the checklist. Nothing has been started.
