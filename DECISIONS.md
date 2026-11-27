@@ -180,6 +180,9 @@ The next overseer wake acts on them.
   prep, not the search layer), with tests and a header-only replay. The stricter no-EXPOSU option
   goes in only if the replay shows it changes no other ObsID.
 
+- **D45** (27 Nov, overseer): #44 adds the validation figure for B's futility result (B is NO-GO,
+  §15.225 (15)(d); batch 2 isn't run, which saves about 270–280 core-h). Option A goes to Alistair.
+
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and
   fast-forward. The order is mcseed, then quota41b, intake15, p14a-calib (5f9a009), longpext
