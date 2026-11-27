@@ -19,16 +19,16 @@ Updated: 27 Nov 2026 13:50, by the dispatcher
 - **Files:** about 160,000.
 
 ## Waiting at your terminals (cluster policy: your yes, in that window, to the exact command)
-All six are approved by Alistair on the board (27 Nov 14:18). Each session shows the command and waits.
-- #11: the pilot's sbatch (8 core-h).
-- #41: retire wt_p14a and wt_regrev; clear old tmp/tmp* folders (about 37,000 files); retire 9 idle,
-  merged worktrees (13,401 files).
-- #15: delete 0884030101's 4 failed files, then its sbatch (about 1 core-h).
-- #11: overwrite X-1's products with X-2's in 3 NGC 1313 ObsIDs (after #41 unpacks); delete 2 stale
-  pilot folders.
+- **merge**: write (d)'s two ADOPTED lines (octave_thresholds.py ab3e3264, survey_pipeline.py 9b8ce8b0),
+  freeze the window slot, fast-forward. The golden passed as predicted, so D46's conditions are met.
+- **#11**: (a) the pilot's sbatch (8 core-h); (b) delete 2 stale pilot folders; later (c) the X-2 swap.
+- **#15**: delete 0884030101's 4 failed files and sbatch its rerun; same for 0150280101 (1–3 core-h each).
+- **#41**: retire wt_p14a and wt_regrev; clear tmp/tmp* once testshim-tmp merges; later, the 9 worktrees
+  after their copy-out.
 
 ## Needs Alistair
-1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ (D58), once #15 has built it.
+1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ holds 51 PNGs. Verdicts (REVIEW/FAIL)
+   and light-curve panels are being added. Also #18's 20 D48 PNGs in stats/targets18/d48_review/png/.
 2. **The cluster policy**: where it comes from (#44 is quoting it). If it's your own setting, you
    can relax it to match D57's tiers.
 3. **#30**: starts later, in a COSMA session. 0200670401's section has timing = 0, so as it stands
