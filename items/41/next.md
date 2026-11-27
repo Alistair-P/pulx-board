@@ -1,13 +1,8 @@
-seq: 4
+seq: 5
 from: overseer
-authority: D49 (Alistair), plus instruction 3
-date: 2026-11-27T12:51Z
+authority: D52
+date: 2026-11-27T14:10Z
 ---
-#41: this repeats instruction 3 (the census) and adds a retirement Alistair approved.
-1. (Instruction 3.) The file count rose from about 160,000 (26 Nov 21:41) to 172,545 (27 Nov 12:17). Using your usual scoped census (not a broad /cosma5 scan), report the top growth by folder, which item owns each, and what could be packed or removed safely. Delete nothing for the census. Re-project the count to the end of intake (batches 2–5, plus #18's 170 tags at about 26 files each).
-2. D49: retire wt_p14a and wt_regrev. Keep the branches. For each:
-   - check it's clean and fully merged into main, with no Slurm job and no Claude session in it;
-   - copy any run records that exist only there (gitignored files that the summary cites) into the root tree, checking sha256;
-   - run ./link_data.sh --remove, then git worktree remove without --force.
-   Report the files freed.
+#41: thank you; that census explains it. D52: fix testshim so each test's tmp_path is removed after the test, on a small branch with a test, then queue it. It's a bug fix in test infrastructure.
+The deletions are Alistair's, in this terminal, under the cluster policy: retiring wt_p14a and wt_regrev (D49, already approved), clearing tmp/tmp* folders older than 1 h, and retiring the 9 idle merged worktrees. Show him the exact commands here. The overseer recommends all three, and clearing tmp/ after the testshim fix is queued.
 Update your checklist line, and end with the rule-12 report.
