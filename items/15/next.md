@@ -1,27 +1,23 @@
-seq: 12
+seq: 13
 from: overseer
-authority: D60, D61, D62 (Alistair)
-date: 2026-11-27T16:31Z
+authority: D61, D63, D64 (overseer)
+date: 2026-11-27T18:03Z
 ---
-#15: this replaces instruction 11 and repeats it in full, with one addition (item 3, D62) and two extra questions in 4a. If you have already done parts of 11, don't redo them; say which in your report.
+#15: thank you; instruction 12 is done. This is instruction 13.
 
-1. D60 (Alistair): exclude NGC4258-J121903.0+471722 in 0400560301 for this epoch. Hold it in the staging tables (not staged), with that reason and D60 cited, so it never enters params.conf from this run. Its PNG and index row should show it as held.
+1. regfix first, because it is blocking the merge queue. regfix (1a00ba7) conflicts with main 6db5e1f in region_review.py, because main now has 3e561ba's params-section mode (D56, #18). Merge main into regfix in your worktree. Keep both the params mode and your gallery, verdict, light-curve and detect code, and union run_all_tests.sh. Rerun test_regfix, test_targets18, test_region_review and the full suite, then re-queue regfix at the new commit. intake15 stays after regfix, and pickfix after intake15.
 
-2. D61, Alistair's #17 review of five gallery PNGs:
-   - 0111800101 NGC3031-J095533.0+690034: pass, overriding the fov FAIL. That fail is on the 40" count aperture at the Small Window's edge. First measure the exposed fraction of the 20" timing circle. If it is at least 90%, record the pass as an override citing D61. If not, don't override; report it.
-   - 0504780101 NGC0703-J015239.6+361025: FAIL stands.
-   - 0670950101 NGC0891-J022233.5+422027: pass (he has seen the REVIEW flags).
-   - 0674210601 NGC0224-J004247.1+411615: FAIL stands.
-   - 0763120401 NGC0224-J004545.6+413941: PASS stands.
-   Record these the way the review tool takes verdict overrides (say which), and redraw those PNGs and index rows.
+2. Your NEEDS YOU:
+   a. 0111800101: yes, record its shrunk<60" REVIEW flag as accepted too (D61). Alistair judged the whole PNG fine, and it showed that flag. It is a full PASS.
+   b. 0150280101 NGC1313-X2: leave the detect FAIL as it stands. Its 7.9 ks is below the 17 ks floor, so v1.0 doesn't search it either way. Whether to override it for the later sub-17 ks stage is with Alistair.
+   c. The fov check: no change yet; it is part of item 3d.
 
-3. D62 (Alistair): in the review tool, "not detected by eboxdetect within 10 arcsec" becomes a FAIL check of its own, which Alistair can override per observation. "outshines" stays a REVIEW flag and never fails on its own. Add a test for each. Redo batch 1's verdicts and report which change. Expected: 0400560301 goes from REVIEW to FAIL (consistent with D60), 0674210601 gains a second fail reason, and nothing else. Commit on regfix and refresh its queue entry.
+3. D63 stage 1 (Alistair, 27 Nov). Read DECISIONS.md D63 and the overseer's note under it. Your answers change the baseline. The survey already searches the whole aperture (masks cut) with w = p·g(E)^0.75 and the ELLBETA PSF. So the study's relevant comparison is its "weighted 60\"" (two-way weights, masks) against "joint fit 60\"". The gain is then in neighbour fields only (6-23% lower a95 beside a neighbour 3x brighter at 5-25"), and about zero for isolated targets. Design and price only; change no code. Report:
+   a. Where the aperture, the masks and p are computed now (modules, functions), and which hashed v1.0 modules and inputs D63 would change.
+   b. The size of the benefit. How many survey-list targets (batch 1, and the full list) have a catalogued or eboxdetect neighbour within 30"? Give each one's separation and neighbour-to-target count ratio, from region records and the catalogue only, with no search outputs. For a handful spanning the range, run the study's joint fit against its two-way weights in their geometry, and give the a95 change.
+   c. Two designs, each priced. (i) D63 as approved, for every target. (ii) The joint fit only where a neighbour lies within 30", with every other target's p unchanged, so their golden and records needn't change. For each, list what must be redone (golden, ADOPTED lines, #38's red-noise records, #37's a50 and list, #13's certificate, batch-1 regions and staging, #18's tag products, tests), in billed core-h, files and days.
+   d. D63 (2), now that there is no timing circle. The fov check would test the background circles only. The count check and the region tool would scale by exposed area, as BACKSCAL does. The aperture's exposed fraction would become a correction, with a REVIEW flag below a threshold you propose. Say what that changes in batch 1.
+   e. Where the attribution check belongs (likely post_search). Then the validation plan, written as a pre-registered rule: fake pulsars injected into real batch-1 event files at the target positions, evaluated only at the injected trial as a50 does (blinding rule 1), current p against D63's p, plus a null check against chi2_2.
+   The overseer's simulator is in ~/pulx-board/studies/pulxsim_27nov/; read its README first. Never run it inside ~/pulx-board, because a changed file there stops every session's board sync.
 
-4. Report on these from the code and batch 1's records, on the login node. No code changes beyond item 3.
-   a. Which events does the search take: those in the 20" timing circle, or the aperture's with weights? Is the timing radius 20" for every target, whatever the off-axis angle? Do the per-photon weights use an off-axis and energy-dependent PSF, or an on-axis one? Do they also weight by energy (source spectrum against background spectrum)? For 0763120401, give its off-axis angle and the fraction of its source counts inside 20". Say how many batch-1 targets are more than 10' off-axis, with the same fraction for each.
-   b. Which circles does the fov check test? Does background scaling use the exposed area or the full circle area? How many batch-1 fov FAILs would change if fov tested only the timing circle and the background circles, with the aperture's exposed fraction used as a correction?
-   c. 0670950101: what is its "outshines" flag based on? On the image the ULX dominates at its core. Its capped east mask overlaps the 20" timing circle; say how the weights handle that.
-   d. 0674210601: the tool's own ULX count is far above the aperture net count. Say where the tool's figure comes from (a catalogue rate times exposure, or a measurement).
-   Put per-source numbers in a file on COSMA and give its path. The board report carries only the answers and numbers of targets.
-
-5. The two reruns (0884030101, 0150280101) still wait for Alistair's yes in this terminal. Update your checklist line, and end with the rule-12 report.
+Post the report and wait. Update your checklist line, and end with the rule-12 report.
