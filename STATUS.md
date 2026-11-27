@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 27 Nov 2026 13:50, by the dispatcher
+Updated: 27 Nov 2026 15:50, by the dispatcher
 
 ## Overnight (to 27 Nov 09:05)
 - **Merges:** 9 branches merged overnight. main is at 6cd77d3, with the suite at 782/0/3. Rule 15 is in
@@ -23,8 +23,9 @@ Updated: 27 Nov 2026 13:50, by the dispatcher
   freeze the window slot, fast-forward. The golden passed as predicted, so D46's conditions are met.
 - **#11**: (a) the pilot's sbatch (8 core-h); (b) delete 2 stale pilot folders; later (c) the X-2 swap.
 - **#15**: delete 0884030101's 4 failed files and sbatch its rerun; same for 0150280101 (1–3 core-h each).
-- **#41**: retire wt_p14a and wt_regrev; clear tmp/tmp* once testshim-tmp merges; later, the 9 worktrees
-  after their copy-out.
+- **#41**: retire the 9 worktrees (copy-out done, 0 files left only in a worktree) plus wt_p14a and
+  wt_regrev, about 16,300 inodes, commands shown in the #41 terminal; 0 core-h. Later: clear tmp/tmp* older
+  than 1 h once testshim-tmp merges (about 37,000).
 
 ## Needs Alistair
 1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ holds 51 PNGs. Verdicts (REVIEW/FAIL)
@@ -36,6 +37,8 @@ Updated: 27 Nov 2026 13:50, by the dispatcher
 4. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
 
 ## For overseer
+- **ALERT (15:50): new terminal ask.** #41's retirement of the 9 worktrees plus wt_p14a and wt_regrev
+  (~16,300 inodes) now waits for Alistair's yes in the #41 terminal.
 - **Cluster policy change (27 Nov), reported by #11, #15, #41 and #44:** sessions now run sbatch only on
   Alistair's own yes to the exact command in their terminal, and delete files only on his OK there.
   Board approval isn't enough. This contradicts the "submit" wording in plans 15.2, 38.4 and 44.5.
@@ -43,13 +46,15 @@ Updated: 27 Nov 2026 13:50, by the dispatcher
   premise fails. D47 (b)/(c) done, targets18 b75e098 queued (suite 792/0/3). NGC 1313 X-2 swap blocked
   (packed, X-1's products in dir/; X2 still in HOLD_SOURCES). D48 list: 20 rows, no PNGs
   (stats/targets18/d48_review/review_list.tsv). Pilot waits for Alistair's yes. 5 NEEDS YOU.
-- **#15 (seq 5, needs-you):** 31 of batch 1's 43 region runs failed instantly (run_one folder-lookup bug;
-  one-line fix proposed). 16 PNGs ready for #17 (0830191401 fails the count check). pickfix 8b03189
-  queued NOT READY; doesn't fix 0884030101, whose rerun needs Alistair's yes and delete OK. New:
-  0150280101 prepped from a CalClosed exposure; rule proposed. 3 NEEDS YOU.
-- **#41 (seq 4, needs-you):** census done (logs/q41/quota_census_20261127.md). Files 169,781. Projected
-  peak ~199,700 during a 50-obs batch, over the 195,000 line, unless tmp/tmp* is cleared and the
-  testshim leak fixed. D49 checks pass; removal waits for Alistair's OK in the #41 terminal. 4 NEEDS YOU.
+- **#15 (seq 9, needs-you):** instruction 9 done: light-curve panel in review.png (regfix ba93f94), all 51
+  gallery PNGs redrawn; verdicts FAIL/REVIEW/PASS (regfix d0e20bf; gallery 9 FAIL, 6 REVIEW, 36 PASS);
+  flag counts over batch 1's 49 targets posted (8 with any flag). §15.229 (28)–(29), intake15 9f11bbb.
+  NEEDS YOU: (1) Alistair: should any of the five flags become a hard QA rule? (2) the two reruns' deletions
+  and sbatch wait at his terminal (already listed). Files 175,237.
+- **#41 (seq 6, needs-you):** instruction 6 done. Unpacked 0405090101, 0693850501, 0693851201 for #18's
+  X-2 swap (all hash checks clean, +251 inodes), so #18 can run X-2's regions; #18 hasn't been told.
+  Copy-out of the 9 worktrees done (+116 files; 15.223 (16), daef6ba on testshim-tmp). Files 175,025.
+  NEEDS YOU: Alistair's yes in the #41 terminal for the retirements; tmp/ clean-up after testshim-tmp merges.
 - **#42 (seq 10, done):** the three coverage answers and the two ObsIDs' modes and spans are in its
   report, for Alistair. #30 still needs "A1" and the candidate details.
 - **#44 (seq 11, idle):** D51 recorded (15.225 (16)); #44 settled. Waits for 44.5; it will ask Alistair
@@ -67,12 +72,12 @@ Updated: 27 Nov 2026 13:50, by the dispatcher
 | merge | merge session | root tree | high | active | a95cut merged (df0a6f9, ADOPTED f9f49373); stacked46d trial running | 27 Nov 11:29 |
 | 11 | #18 (multi-target), was #11 | wt_mt | medium | needs-you | targets18 b75e098 queued; finding (a) corrected; X-2 swap blocked; pilot needs Alistair's yes | 27 Nov 13:27 |
 | 13 | certificate | wt_cert13 | high | waiting | draft builder done; waits for a95cut and (d) | 26 Nov 18:18 |
-| 15 | survey intake | wt_intake15 | medium | needs-you | D47 names in; 12/43 regions OK, 31 need a lookup fix; pickfix 8b03189 queued NOT READY; 0884030101 rerun needs Alistair | 27 Nov 13:16 |
+| 15 | survey intake | wt_intake15 | medium | needs-you | gallery done (51 PNGs, verdicts, light curves); QA-rule question for Alistair; 2 reruns wait at his terminal | 27 Nov 15:10 |
 | 25 | artefact battery rev3 | root tree | medium | settled | p14a-calib on main (15285f7) | 26 Nov 21:50 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | policy27 on main (077a2eb); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | waiting | D41 acknowledged; a95cut READY at 6b015e2; waits for 37.3 triggers | 27 Nov 09:05 |
 | 38 | red noise | wt_rednoise | high | ? | rebuild instruction 3 (18:01) not yet picked up; needs a nudge | 26 Nov 17:06 |
-| 41 | quota and packing | root tree | medium | needs-you | census done (169,781); D49 removal waits for Alistair's OK | 27 Nov 13:41 |
+| 41 | quota and packing | root tree | medium | needs-you | NGC 1313 unpacked for #18; worktree copy-out done; retirements wait at Alistair's terminal | 27 Nov 15:06 |
 | 42 | methods paper (#43, #45) | root tree | medium | waiting | coverage questions answered; 2 OPEN markers left | 27 Nov 12:55 |
 | 44 | long-period part (#44, #46) | wt_longpext | medium | waiting | #44 settled (A closed, D51); waits for 44.5 | 27 Nov 12:53 |
 | 47 | β study | - | high | not started | no conversation found | - |

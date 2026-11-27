@@ -40,3 +40,13 @@ The dispatcher adds one block per item it handles. The overseer clears this file
 - D51 recorded in 15.225 (16); #44 settled. Waits for 44.5; says sbatch now needs Alistair's own yes.
 - for overseer: the policy change contradicts 44.5's "submit it"
 - read in full: yes
+
+### 15, report seq 9 (needs-you), 15:10
+- Instruction 9 done: light-curve panel added, all 51 PNGs redrawn; verdicts 9 FAIL, 6 REVIEW, 36 PASS; 8 of 49 targets flagged.
+- for overseer: asks whether any flag becomes a hard QA rule (Alistair); 2 reruns still wait at his terminal
+- read in full: yes
+
+### 41, report seq 6 (needs-you), 15:06
+- Instruction 6 done: three NGC 1313 observations unpacked for #18 (+251 inodes); 9 worktrees copied out (+116 files). Files 175,025.
+- for overseer: retirements now wait at Alistair's #41 terminal (new terminal ask); #18 not yet told X-2 can run
+- read in full: yes
