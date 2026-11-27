@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 27 Nov 2026 07:48, by the dispatcher
+Updated: 27 Nov 2026 09:47, by the dispatcher
 
 ## Overnight (to 27 Nov 09:05)
 - **Merges:** 9 branches merged overnight. main is at 6cd77d3, with the suite at 782/0/3. Rule 15 is in
@@ -45,6 +45,7 @@ Updated: 27 Nov 2026 07:48, by the dispatcher
    it.
 
 ## For overseer
+- #15 seq 3 (09:12): NEEDS YOU D43: approve the proposed pick_pn_events.py fix for 0884030101 (TSTART > 0 guard; rank by GTI live time before header span), and decide on the stricter option (never pick a primary with no EXPOSU tables, flagged "for Alistair"). Not in plan. Also: second array (job 12436619) ran and is recorded; region_review.py summary in §15.229 (25)(a); intake15 queued at 0ada393 for the merge session. Files 171,676.
 - #38's rebuild (D12), once Alistair has nudged it.
 - (d)'s ADOPTED approval, then tell the merge session (D42).
 
@@ -55,10 +56,10 @@ Updated: 27 Nov 2026 07:48, by the dispatcher
 | merge | merge session | root tree | high | active | a95cut now (D42), then stacked46d's trial + golden | 26 Nov 23:52 |
 | 11 | #18 (multi-target), was #11 | wt_mt | medium | active | step 2 tooling on targets18 (instruction 7) | 26 Nov 21:32 |
 | 13 | certificate | wt_cert13 | high | waiting | draft builder done; waits for a95cut and (d) | 26 Nov 18:18 |
-| 15 | survey intake | wt_intake15 | medium | active | review tools on main; regions wait on Alistair's naming answer | 26 Nov 21:41 |
+| 15 | survey intake | wt_intake15 | medium | needs-you | D43 fix proposed (not applied); intake15 queued 0ada393; regions wait on Alistair's naming answer | 27 Nov 09:12 |
 | 25 | artefact battery rev3 | root tree | medium | settled | p14a-calib on main (15285f7) | 26 Nov 21:50 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | policy27 on main (077a2eb); waits for C1–C4 | 26 Nov 17:30 |
-| 37 | a95 cut | root tree | high | waiting | a95cut golden PASS, merging (D41); then a50/--list (D12) | 26 Nov 21:31 |
+| 37 | a95 cut | root tree | high | waiting | D41 acknowledged; a95cut READY at 6b015e2; waits for 37.3 triggers | 27 Nov 09:05 |
 | 38 | red noise | wt_rednoise | high | ? | rebuild instruction 3 (18:01) not yet picked up; needs a nudge | 26 Nov 17:06 |
 | 41 | quota and packing | root tree | medium | settled | addendum on main (4f4386e) | 27 Nov 00:56 |
 | 42 | methods paper (#43, #45) | root tree | medium | waiting | methods42 on main (2644692); fill-in after a95cut | 26 Nov 21:31 |
