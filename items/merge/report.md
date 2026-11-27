@@ -1,26 +1,28 @@
-seq: 6
-state: running
-date: 2026-11-27T11:29Z
+seq: 7
+state: needs-you
+date: 2026-11-27T14:36Z
 host: login7c
 ---
-Merge session: a95cut (#37) merged under D42 step 1; starting stacked46d's trial (step 2, stop before ADOPTED / fast-forward).
+Merge session: stacked46d (#46) golden on the merged tree PASSED as predicted, but I stopped before writing the ADOPTED lines, freezing the window slot or fast-forwarding. Writing them was blocked by this session's permission check and needs Alistair in the terminal.
 
-a95cut 6b015e2 -> main df0a6f9 (trial-a95 merge 9c3ff8a, no conflicts; record commit df0a6f9). Root tree moved to df0a6f9.
-- Golden (D41, priced first): against #37's golden tree ed97357 the only manifest/orbit-path module that changed is red_noise_floor.py (rednoise; orbit path). Coherent not rerun: no manifest module differs (survey_pipeline.py f9f49373 in both) and fast_golden never calls red_noise_floor (15.201 (3)). Orbit rerun on the merged tree, pre-registered: GOLD_TAG a95m, GOLD_ORBIT_ACCEPT=survey_pipeline.py, predicted PASS. Job 12440001, 1 CPU, 5 min 23 s: all 4 IDENTICAL, (b) PASS, orbit golden PASS. As predicted.
-- Suite on the merged tree: 782 passed, 0 failed, 3 skipped. After the ADOPTED line: test_p14a_drev, test_golden_keys, test_orbit_golden pass again; check_reference passes.
-- ADOPTED: survey_pipeline.py f9f49373 appended (Alistair 18 Nov, 15.226 (11)(c); confirmed in this terminal 27 Nov; D42). Live hash = branch = golden commit. Backups archive/ADOPTED.sha256.pre_a95cut_20261127, archive/summary.txt.pre_a95cut_merge_20261127.
-- Record: summary 15.226 (merge 2); (16) is merge 1.
-- Live list logs/survey_full/obsids_longest_first.txt NOT rewritten (D12).
-- validation_check: 0 MISSING; UNINDEXED 175, 176 (stacked46, arrive with stacked46d).
-Inform: #37 (a95cut on main; your a50 + --list rerun on #38's red records is next, report before rewriting the list); #38 (a95cut on main, for your red-record rebuild); #42 (a95 cut now on main, methods text can cite 15.226); #13 (a95cut blocker cleared; survey_pipeline.py ADOPTED f9f49373 for the draft certificate; stacked46d still to come).
+stacked46d 6a030a7 trial-merged onto main df0a6f9 as trial-s46 649c935. Two conflicts: run_all_tests.sh (union, + test_stacked_window) and summary.txt (15.233 then 15.236, number order). No lines lost from either side.
+- Suite on the merged tree: 789 passed, 0 failed, 3 skipped (test_stacked_window 7/0/0).
+- Golden, GOLD_TAG s46m, pre-registered in logs/mergeq/golden_s46m/PREREG.txt; accept octave_thresholds.py, survey_pipeline.py (combined hash 9b8ce8b0):
+  - coherent 19/19 BIT-IDENTICAL to s46d and to ms (12445108 syn, 12445109 real);
+  - orbit 4/4 IDENTICAL to check_s46d and run 2, (b) PASS (12445110);
+  - window slot real_0791010101, one run (12445111, 2 CPUs, 3:02): IDENTICAL to w46d_r1 and w46d_r2, npz byte-identical.
+- Live hashes: octave_thresholds.py ab3e3264 and survey_pipeline.py 9b8ce8b0 equal the golden commit's. So D46's two conditions hold.
+- Not done: ADOPTED lines, window-slot freeze, record, fast-forward. The write was refused by the session's permission check, so main is still df0a6f9. Also, nothing in the code says how to freeze a window slot into speedup_reference. My proposal: speedup_reference/window_golden/ holding the json, SHA256SUMS for the json and the 286 MB npz (the npz stays in stats/, since git ignores *.npz), and _meta.json with module hashes.
+- Cluster policy (27 Nov): agents submit Slurm jobs only on Alistair's yes in the terminal (D59). The golden jobs 12445108-11 were submitted before I saw that change.
+- Queue after this: targets18 (#18), intake15 (0ada393), methods42 (5264663). None touches a manifest or orbit-path module, so no golden and no jobs. They wait behind stacked46d.
 
-Jobs: 12440001 (orbit golden, COMPLETED). Core-h: about 0.09 this step. Files: no new data files beyond stats/orbit_golden/check_a95m.
+Jobs: 12445108-12445111 (COMPLETED). Core-h: about 8.7 syn + 2.4 real + 0.2 orbit + 6.1 window = about 17.4 this step. Files: not taken.
 
 SETTLED:
-- #37: a95cut merged, main df0a6f9, 15.226 (merge 2), orbit golden PASS, suite 782/0/3, ADOPTED survey_pipeline.py f9f49373.
+- #46: merged-tree golden PASS as predicted; suite 789/0/3; D46's conditions met.
 
 NEEDS YOU:
-- none now (stacked46d's ADOPTED lines wait for Alistair, per D42).
+- Alistair, in the merge terminal: allow the merge session to write the two ADOPTED lines and freeze the window-slot reference (format above, or say another), then fast-forward.
 
 NEXT:
-- stacked46d (#46): trial merge on top of main df0a6f9, suite, golden on the merged tree incl. the 0791010101 window slot; priced first; stop before ADOPTED / fast-forward and report.
+- On that yes: ADOPTED lines, freeze, 15.236 (merge 1), fast-forward, report; then targets18, intake15, methods42.
