@@ -64,6 +64,11 @@ Keep this short. Remove items once they're settled.
 - Lesson (26 Nov): check POLICY.md before instructing. D13 changed #27's policy content, which is
   Alistair's, and overrode his own 25 Nov wording. #27 rightly refused it.
 
+- board_watch.sh (27 Nov): runs on COSMA in tmux window "watch". It nudges a session whose
+  instruction has gone unread, because a resumed conversation loses its background wait. Its log
+  is ~/pulx-board/.local/watch.log on COSMA. Check after the first few days that it isn't nudging
+  sessions that are mid-task.
+
 ### Watch list
 - #37: a95cut golden check (D11). Expected bit-identical, about 11.5 core-h.
 - #15: the 14 downloads, then the first Slurm job (39 ObsIDs, D10).

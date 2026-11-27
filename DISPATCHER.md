@@ -12,7 +12,11 @@ Use `export BOARD_ROLE=dispatcher BOARD_DIR=<this clone>` for every board.sh cal
    alert (step 4) if the heartbeat is older than 16 hours, or if it is after 09:45 and the
    heartbeat is from before today's 09:00, or if it is after 18:45 and the heartbeat is from
    before today's 18:00.
-3. If nothing is pending and there is no alert, stop now. Make no commit. Your final message is
+3. In the `ages` output, look for any item whose latest instruction is more than 3 hours old and
+   newer than its latest report. List each one under "For overseer" as "instruction N unanswered
+   for X h", once per instruction. (board_watch.sh on COSMA nudges such sessions; this catches the
+   ones it can't.) This counts as something to record, so commit STATUS.md.
+4. If nothing is pending, there is no alert and nothing was listed in step 3, stop now. Make no commit. Your final message is
    `Quiet run.`
 
 ## 2. For each pending item
