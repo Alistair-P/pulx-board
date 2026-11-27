@@ -1,46 +1,43 @@
-seq: 2
+seq: 3
 state: needs-you
-date: 2026-11-26T21:41Z
+date: 2026-11-27T09:12Z
 host: login7c
 ---
-#15 (intake): D37's two tools are built and queued. Batch 1's regions, and so its review PNGs, wait on a naming decision.
+#15 (board seq 3): answered the second-array question, wrote region_review.py's summary entry, and diagnosed 0884030101 with a proposed fix (not applied). Batch 1's region run is held.
 
-**The tools (D37):**
-- **Where:** branch `regionreview`, worktree /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting_wt_regrev, commit f8cf10b. Queued. test_region_review passes 7/0/0 and is registered in run_all_tests.sh. Login-node only.
-- **One script, region_review.py:**
-  - `draw` writes stats/new_obs_regions/<obsid>/<name>/review.png with:
-    - a smoothed, log-scaled field image, wide enough for every background circle;
-    - the wide aperture, the 20" timing radius and the source core;
-    - backgrounds A and B, masked neighbours, and the other listed targets (from survey_list_v1 and the PULX archive);
-    - CCD outlines, with the chip gaps between them;
-    - a 3' zoom on the source;
-    - a caption with the counts, the flags row, and whether each region is automatic or an override.
-  - `add` records a correction in data/region_overrides.tsv: UTC date, ObsID, name, kind (src / core / bkg / bkg_alt / mask), action (set / add / remove / clear), centre, radius and reason. It refuses a row that cannot apply. It then reruns the field-of-view check (≥ 95% of each circle exposed), the P30 check (no listed target in a background circle) and the counts check (net ≥ 1,000), and redraws the PNG. result.json is never edited.
-  - `new_obs_regions --stage` applies the rows on top of the automatic regions and notes each one in the section.
-- **How Alistair uses them** (from the worktree above until the branch merges, then from main):
-  - **Draw PNGs:** `python3 region_review.py draw <obsid>`, or `draw --all`.
-  - **View on COSMA:** `eog` or `display` over X forwarding.
-  - **View on his own machine:** `rsync -a --include='*/' --include='review.png' --exclude='*' cosma:/cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting/stats/new_obs_regions/ ./regions_review/`
-  - **Correct a region:** e.g. `python3 region_review.py add 0764770101 NGC1313-X2 bkg remove --index 3 --reason "on a neighbour"`, or `... mask add --ra 49.59 --dec -66.60 --r 15 --reason "..."` (radius in arcsec).
-  - **See what's on record:** `python3 region_review.py list <obsid>`; `check <obsid> <name>` reruns the checks and redraws.
-- **First real PNG:** stats/new_obs_regions/0764770101/NGC1313-X2/review.png (all checks pass).
+1. **Second array:** it was submitted and finished. Job 12436619 ran the 12 downloaded ObsIDs, submitted 26 Nov 18:40 UTC, every task COMPLETED (3.0–19.8 min each). It is recorded in §15.229 (23) and report 20261126d; report e left it out, my error. All 14 downloads are in INTAKE.md's batch 1 table, with source, UTC date, bytes and sha256. 11 of the 12 reached prep; the 12th is 0884030101.
+2. **region_review.py's summary entry:** written as §15.229 (25)(a), citing D37 and the merge 6cd77d3. It covers what the tool draws, the override rows and their refusal rules, the three checks, how `--stage` applies overrides, and the tests. Because it is on intake15, I queued intake15 (0ada393). There are no manifest modules and no pipeline code on it; test_intake15 passes 16/0/0.
+3. **D43, 0884030101 (proposed, not applied; §15.229 (25)(c)):**
+   - *What goes wrong:* epproc wrote two pn exposures.
+     - S001 is a 1.53 ks exposure with a broken header: TSTART = 0, LIVETIME = 0, ONTIME = 0, and no EXPOSU tables. Its events and GTIs are normal.
+     - U002 is the real observation: 97.6 ks LIVETIME, same filter, mode and pointing.
+     - `pick_pn_events` skips the zero live times and falls back to TSTOP − TSTART = 803,769 ks, so the 1.5 ks file ranks as "longest". The merge's verification correctly rejected the merge. The fallback then took S001, and barycen stopped on its missing TSTART.
+   - *The fix (pick_pn_events.py only):*
+     - Header times count only if TSTART > 0; otherwise the time extent comes from the GTI tables.
+     - After LIVETIME, ONTIME and EXPOSURE, rank by GTI live time before the header span.
+     - Optional, for Alistair: never pick as primary an exposure with no EXPOSU tables.
+     - Result here: U002 is the primary, and S001 is skipped by the 5 ks gate.
+   - *What it could affect:* only observations with ≥ 2 pn exposures where one exposure has no positive live time or TSTART ≤ 0. Any file with a positive LIVETIME ranks as now. In batch 1 the only other multi-exposure ObsID is 0803990301, ranked on LIVETIME, so it is unchanged.
+   - *Tests:*
+     - New synthetic cases in test_pick_pn_events.
+     - A header-only replay, old vs new, on the multi-exposure ObsIDs named in the prep logs and §15.84 (a list, no scan); only 0884030101 may change.
+     - Rerun 0884030101's prep as one Slurm task, about 1 billed core-h.
+     - It is not a manifest module, so no golden check is needed.
+4. **Batch 1 regions:** held until the board relays Alistair's answers.
 
-**Batch 1's regions:**
-- logs/intake15/run_regions.py runs the region picker unchanged on each ObsID's main (best-a95) target, using its catalogue position from the survey list.
-- Measured on 0764770101: 44 s and 0.33 GB per ObsID. The 48 ObsIDs would take about 45 min on the login node and add about 1,000 files.
-- Not run yet, because of NEEDS YOU 1–2 below.
-
-Jobs: none.
-Core-h: 0 this step; 19.8 billed since the item began.
-Files: about 160,000.
+Jobs: none running.
+Core-h: 0 this step (header reads only); batch 1 total 19.8 billed.
+Files: 171,676 (lfs quota; the rise since 160,001 is from other sessions, not from #15).
 
 SETTLED:
-- The D37 tools are on the queued branch `regionreview`, with tests.
+- The second array ran and is recorded; all 14 downloads are in INTAKE.md.
+- region_review.py's summary entry is written in §15.229 (25)(a), and intake15 0ada393 is queued so it can reach main.
+- 0884030101's cause is found: S001's broken header (TSTART = 0) made it rank as the longest exposure.
 
 NEEDS YOU:
-1. **Main target vs. recovery target in the 15 NGC 1313 ObsIDs.** The best-a95 target is X-1 (DR14:201068601010001), so X-2, the blind recovery set's target, would be an [obsid:tag] target for #18. Should batch 1 also make X-2's regions now with the same tool (new_obs_regions --target obsid:tag), so its PNGs come with the batch?
-2. **The params.conf name for non-PULX survey targets.** This is the stacking key, spelled once per source. I propose `<HOST>-<Jname>` (e.g. NGC1313-J031819.9-662911). Literature targets would then get coordinate names, e.g. Holmberg IX X-1 → UGC05336-J095753.3+690348. Is that acceptable, or should LIT targets keep a literature-style name such as HolmbergIX-X1? One run of the regions per name, so it should be settled before the run.
-3. **0884030101's pn-exposure selection failure** (§15.229 (23)): should I propose a fix to the pn-exposure selection, or drop the ObsID?
+1. D43: approve the pick_pn_events fix as proposed, and say whether the stricter option (never pick a primary with no EXPOSU tables) should be included.
+2. X-2 regions and non-PULX naming: already with Alistair. I'm holding the region run.
 
 NEXT:
-- Once 1–2 are answered: run batch 1's regions (about 45 min on the login node), then `draw` for every result, then tell the board the PNGs are ready for Alistair's #17 review.
+- Once D43 is approved: build the fix on a branch with tests, run the replay, rerun 0884030101 on Slurm, then queue it.
+- Once the naming answers arrive: run batch 1's regions and review PNGs, then tell the board.
