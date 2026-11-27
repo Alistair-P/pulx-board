@@ -31,9 +31,8 @@ Updated: 27 Nov 2026 16:25, by the overseer
 1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ holds 51 PNGs, with verdicts
    (9 FAIL, 6 REVIEW, 36 PASS) and light-curve panels. Also #18's 20 D48 PNGs in
    stats/targets18/d48_review/png/. 0400560301's target is excluded (D60).
-2. **QA rule**: overseer's suggestion after D61: make "not detected within 10 arcsec" a FAIL you can
-   override, and keep "outshines" a REVIEW flag only. In batch 1 that changes nothing (both
-   not-detected targets are already out).
+2. **Source-finding improvements**: the overseer's list is in the conversation (27 Nov 16:30). Waiting
+   for #15's answers on extraction, weights and off-axis PSFs before anything is scoped.
 3. **#30**: starts later, in a COSMA session. 0200670401's section has timing = 0, so as it stands
    that ObsID isn't searched.
 4. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.

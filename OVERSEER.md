@@ -35,7 +35,8 @@ conversation. So any new conversation can take over by reading these three.
    "Needs Alistair" gained an entry.
 9. **Morning (09:00 wake only).** Alistair starts work soon after, so finish promptly. Write an
    "Overnight" section at the top of STATUS.md: what moved since 18:00, what's running, and what
-   waits on him today. Send it as one push notification.
+   waits on him today. List every terminal ask by window with its exact command and billed core-h,
+   so he can clear them in one sweep. Send it as one push notification.
 10. **Evening (18:00 wake only).** Write a "Today" section in STATUS.md: what moved, what is
    running overnight, and what waits on Alistair. Send it as one push notification.
 

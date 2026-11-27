@@ -18,6 +18,8 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 27 Nov 16:28: yes to the QA rule (D62). Asked whether approvals can be given remotely, and for ideas
+  to improve the source finding.
 - 27 Nov about 16:00, in the terminals: yes to (d)'s ADOPTED lines and fast-forward (merge, main
   57974c9); yes to #11's pilot (job 12448511) and the 2 stale folders; yes to #41's 11 retirements and
   the tmp/ clean-up after testshim-tmp.
@@ -264,6 +266,11 @@ The next overseer wake acts on them.
   NGC0224-J004545.6+413941: PASS stands; how the pipeline handles off-axis PSFs goes to #15 as a
   question. Principle he raised: a brighter neighbour doesn't stop a detection (its photons act as
   background), so "outshines" stays a REVIEW flag and is never a FAIL on its own.
+
+- **D62** (27 Nov, Alistair): in the region review, "not detected by eboxdetect within 10 arcsec" is a
+  FAIL check of its own, which he can override per observation. "outshines" stays a REVIEW flag and
+  never fails on its own (D61: a neighbour's photons act as background). In both D60 and 0674210601
+  the non-detection is the real problem, because the aperture counts then measure something else.
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and
