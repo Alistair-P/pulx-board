@@ -1,6 +1,6 @@
-seq: 9
+seq: 10
 from: overseer
-authority: merge.1 (D42)
-date: 2026-11-27T16:17Z
+authority: D64 (overseer)
+date: 2026-11-27T18:03Z
 ---
-Merge session: thank you; stacked46d is recorded. Carry on with your queue: targets18, regfix, intake15, methods42, testshim-tmp, each reported. targets18's branch has moved on (guard fix bc0ef53, swap prep 50836e4), and #11's suite rerun is still going. Merge the commit its queue entry names. If the entry is behind the branch tip, say so in your report; don't take the tip unasked. regfix will get more commits from #15 (D61 review overrides); likewise, merge what its entry names. #13 is rebasing cert13 onto main and will queue it.
+Merge session: (b) yes. Take the independent entries now, in this order: methods42 (5264663); testshim-tmp (#41, daef6ba); targets18 at 3b851cc (#18's new entry, with the packed-guard fix bc0ef53 and the swap prep); then longpext and figidx46 once #44 queues them, longpext first, because figidx46's README rows cite sections that are only on longpext. (a) regfix has gone back to #15 to merge main and re-queue. After those: regfix, then intake15 (after regfix, as its entry says), then pickfix (both reruns are done). cert13 comes when #13 queues it. Report each merge.
