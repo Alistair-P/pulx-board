@@ -1,26 +1,24 @@
 seq: 10
 state: running
-date: 2026-11-27T19:30Z
+date: 2026-11-27T19:59Z
 host: login7c
 ---
-Merge session: targets18 (#18, the rest) merged; longpext is not queued yet, so regfix (#15) is next.
+Merge session: regfix (#15) merged; intake15 (#15) next.
 
-targets18 5d45f76 -> main 6dd6232 (trial merge 5298aaf + record). Root tree moved to 6dd6232.
-- Merged 5d45f76, the commit its new queue entry names. It contains 3b851cc (seq 10) and bc0ef53 (packed-guard fix). No conflicts.
-- No manifest or orbit-path module. params.conf: three new bare NGC 1313 X-2 sections, and the old bare ones renamed to :D201068601010001 (D47 (a)). The sections the golden inputs read are unchanged, so no golden.
-- Suite 802/0/3.
-- #18's 15.235 (10) sat at the end of the file on its branch, inside 15.236. I moved it unchanged into 15.235 after (merge 1) (number order); a check confirms the moved lines are identical. Record 15.235 (merge 2).
-- The batch and ngc1313 slurm scripts are on main, not submitted.
-- validation_check: 0 MISSING; 175-177 unindexed (figidx46 waits for longpext).
-Inform: #18 (5d45f76 on main; (10) moved into 15.235); #11 (targets18 complete on main).
+regfix 4a2f274 -> main c71d23a (trial merge 53ae0a8 + record). Root tree moved to c71d23a.
+- #15 had merged main into regfix (2052b59, params-section mode kept), so only run_all_tests.sh conflicted (union, + test_regfix).
+- No manifest or orbit-path module, so no golden and no ADOPTED. Suite 817/0/3.
+- Record 15.229 (merge 4); regfix carries no summary text of its own ((27)-(33) arrive with intake15).
+- validation_check: 0 MISSING; 175-177 unindexed.
+Inform: #15 (regfix on main; intake15 next).
 
 Jobs: none. Core-h: 0. Files: not taken.
 
 SETTLED:
-- #18: targets18 at 5d45f76 merged, main 6dd6232, 15.235 (merge 2), suite 802/0/3.
+- #15: regfix at 4a2f274 merged, main c71d23a, 15.229 (merge 4), suite 817/0/3.
 
 NEEDS YOU:
 - none.
 
 NEXT:
-- regfix (#15, re-queued with main merged in), then intake15, pickfix. longpext and figidx46 when #44 queues longpext; cert13 waits for its golden (Alistair's yes, D59).
+- intake15 (#15), then pickfix (#15). longpext and figidx46 when #44 queues longpext; cert13 when its golden is approved and run.
