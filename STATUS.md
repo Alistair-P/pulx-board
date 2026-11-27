@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 27 Nov 2026 16:25, by the overseer
+Updated: 27 Nov 2026 17:05, by the overseer
 
 ## Overnight (to 27 Nov 09:05)
 - **Merges:** 9 branches merged overnight. main is at 6cd77d3, with the suite at 782/0/3. Rule 15 is in
@@ -31,14 +31,8 @@ Updated: 27 Nov 2026 16:25, by the overseer
 1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ holds 51 PNGs, with verdicts
    (9 FAIL, 6 REVIEW, 36 PASS) and light-curve panels. Also #18's 20 D48 PNGs in
    stats/targets18/d48_review/png/. 0400560301's target is excluded (D60).
-2. **Source-finding improvements**: the overseer ran a labelled-photon simulation study (27 Nov,
-   its own workspace; King-profile stand-in PSF, white noise). a95 at a 1e-9 single-trial bar, against
-   20" PSF weights: a joint fit with three-way weights is 15-25% lower beside a neighbour 3x brighter at
-   5-15", and within 2% of the oracle with 1.5" position and PSF-shape errors. A 60" weighted radius is
-   4% lower on-axis and 8% off-axis for bright sources, but worse near neighbours without the fit.
-   Energy weights are 10% lower for faint sources (assumed spectra). Exposure bookkeeping changes
-   K by 0.5%. All methods' null rates match chi2_2. Open: do this for v1.0 or after the tag? A COSMA
-   confirming run waits for #15's answers on what the pipeline does now.
+2. **D63 (source selection and weights, v1.0)**: adopted 27 Nov. Stage 1 is #15's design and price
+   report (plan 15.3). The overseer suggested an independent second look before coding.
 3. **#30**: starts later, in a COSMA session. 0200670401's section has timing = 0, so as it stands
    that ObsID isn't searched.
 4. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
@@ -81,7 +75,7 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
   - `13.1`: when it reports the build_cert.py draft committed, with no new NEEDS YOU, hold. It
     waits for a95cut and #46.
   - `13.2`: sent 27 Nov 16:20.
-  - `13.3`: its rebase report: for overseer.
+  - `13.3`: its rebase report: for overseer. The final certificate waits for D63 on main.
 - **15**:
   - `15.1`: while downloads, the memory test or the Slurm job are running, hold.
   - `15.2`: when the first Slurm job has finished with every ObsID ok, and the file count is under
@@ -91,6 +85,25 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     stays under 194,000, prepare the job for the ObsIDs that need no download (D10), and ask
     Alistair for his yes in your terminal (D59)."
   - Any failed ObsID, a price over 50 core-h, or a file count over 190,000: for overseer.
+  - `15.3`: when its report answers instruction 12 (items 1-4), with no NEEDS YOU beyond the two
+    reruns, send: "D63 (Alistair, 27 Nov; read DECISIONS.md D63 in full): v1.0 changes how target
+    photons are selected and weighted. (1) The spatial factor p in w = p·g(E)^β comes from a joint fit
+    of the target, its catalogued neighbours within about 2' and the background: fixed PSF shapes at
+    fixed positions, amplitudes free (EM on the photons, like emldetect's multi-source fit). p is then
+    the photon's fitted target probability, three-way. Extraction goes out to 60", with no neighbour
+    masks. g(E)^β is unchanged. (2) Exposure-aware areas everywhere; the fov check tests the timing
+    and background circles only. (3) An attribution check where a fitted neighbour lies within 30".
+    Stage 1 is design and price only; change no code. Building on your answers to 12/4a, report:
+    where selection and p are computed now (modules, functions); which hashed v1.0 modules and inputs
+    change; what must be redone (golden, ADOPTED lines, #38's red-noise records, #37's a50 and list,
+    #13's certificate, batch-1 regions and staging, tests); the PSF model to use (the CCF's, by
+    off-axis angle and energy); where (3) belongs (likely post_search); the implementation split
+    between the region tool and the search code; and the validation plan, written as a pre-registered
+    rule: fake pulsars injected into real batch-1 event files at the target positions, evaluated only
+    at the injected trial as a50 does (blinding rule 1), current p against D63's p, plus a null check
+    against chi2_2. Price every step in billed core-h and files. Post the report and wait. Update your
+    checklist line, and end with the rule-12 report."
+  - `15.4`: its D63 design report: for overseer.
 - **25**:
   - `25.1`: hold idle reports while p14a-calib is queued.
   - `25.2`: trigger: a merge report says p14a-calib is on main. Send: "p14a-calib is on main.
@@ -102,14 +115,16 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
   - `37.1`: while the golden jobs run, hold.
   - `37.2`: done (golden PASS; D41). Hold until 37.3's triggers are met.
   - `37.3`: trigger: #38 reports the production red-noise records rebuilt, AND a95cut and rednoise
-    are both on main. Send: "D12: rerun a50 --all --thresholds applied and survey_pipeline --list
+    are both on main, AND a merge report says D63's weights are on main (D63 changes a50, so it is
+    run once, after D63). Send: "D12: rerun a50 --all --thresholds applied and survey_pipeline --list
     on main, using #38's rebuilt records (folder in #38's report). Apply the near-cut rule (48
     injections within ±20% of 0.25); price it first, and ask if it is above 50 core-h billed.
     Report the list changes before rewriting the live list file."
 - **38**:
   - `38.2`: sent 18:05 (rednoise is on main, 1399fad).
   - `38.3`: while the rebuild job runs, hold. That report is one of 37.3's triggers.
-  - `38.4`: when it reports the production records rebuilt, with folder and hashes, send: "D35:
+  - `38.4`: hold until a merge report says D63's weights are on main (the records and nulls depend
+    on the weights); then for overseer, who sends the rebuild for D63 together with this text: "D35:
     Alistair approves validating spans below 17 ks. Take it as a new item, and add a checklist line
     if none exists. Report first, then run. 1. From the record (D1, the floor configuration, and
     the random-field model's validated range of 17–136 ks), say what it needs: which spans (15 and
@@ -137,7 +152,8 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
   - `44.2`: while the K_eff check or the golden check runs, hold.
   - `44.3`: when it reports (d) queued with the golden check passed, hold. The ADOPTED line goes
     to Alistair, and 13.2 waits for it to merge.
-  - `44.5`: sent 27 Nov 16:20. Its reports while the pilot or full run go: hold. Results: for overseer.
+  - `44.5`: sent 27 Nov 16:20. Its reports while the pilot or full run go: hold. Results: for overseer
+    (who checks whether D63's weights could change the conclusion).
     Text sent: "D39: Alistair approves your
     confirming simulation for (d), on main's merged code. Write the decision rule of §15.230 (11)
     into the record before any draw, and commit it. Run the pilot (about 3 core-h, 8 draws across both

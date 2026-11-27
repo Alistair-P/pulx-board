@@ -18,6 +18,8 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 27 Nov 16:59: "go ahead with the changes" after the labelled-photon study (D63). Read as v1.0,
+  since the search layer freezes at the tag (rule 11).
 - 27 Nov 16:28: yes to the QA rule (D62). Asked whether approvals can be given remotely, and for ideas
   to improve the source finding.
 - 27 Nov about 16:00, in the terminals: yes to (d)'s ADOPTED lines and fast-forward (merge, main
@@ -271,6 +273,20 @@ The next overseer wake acts on them.
   FAIL check of its own, which he can override per observation. "outshines" stays a REVIEW flag and
   never fails on its own (D61: a neighbour's photons act as background). In both D60 and 0674210601
   the non-detection is the real problem, because the aperture counts then measure something else.
+
+- **D63** (27 Nov, Alistair): v1.0 changes how target photons are selected and weighted, from the
+  overseer's labelled-photon study (simulation; STATUS, Needs Alistair 2). (1) The spatial factor p
+  in w = p·g(E)^β comes from a joint fit of the target, its catalogued neighbours and the background
+  (fixed PSF shapes at fixed positions, amplitudes free, like emldetect's multi-source fit), so p is a
+  three-way probability. Extraction goes out to 60", with no neighbour masks. The energy factor
+  g(E)^β is unchanged (#47 owns β). (2) Exposure-aware areas everywhere, with the fov check on the
+  timing and background circles only. (3) An attribution check where a fitted neighbour lies within
+  30" of a target. In the study, (1) lowered a95 by 15-25% against 20" two-way weights beside a
+  neighbour 3x brighter at 5-15", stayed within 2% of the oracle with 1.5" position and PSF-shape
+  errors, and lowered a95 by 4% (on-axis) and 8% (off-axis) for bright isolated sources. (2) changed
+  K by 0.5%; it is a QA fix. Before ADOPTED: a design and price report (stage 1), then an injection
+  validation on real batch-1 event files evaluated only at the injected trial, a null check, the
+  golden, and rebuilt red-noise records (#38), a50 and list (#37) and certificate (#13).
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and

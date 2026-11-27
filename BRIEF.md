@@ -106,6 +106,9 @@ Last full revision: 26 Nov 2026 (first board reports read 17:20).
 5. #14, the tag.
 - After the tag: #23 and #24 (real-data jitter nulls, local whitening), #19 (the IN list; it needs
   #17, #18 and #37), and #20 and #21 (the pilot and the full run).
+- D63 (27 Nov): before the tag, p becomes a three-way joint-fit probability out to 60", with
+  exposure-aware areas and an attribution check. Stage 1 is #15's design and price report. It
+  means a new golden, ADOPTED lines, and rebuilt red-noise records, a50, list and certificate.
 - Separate study: #47, the β question. It is analytic only. Options (a)–(g), soft-spectrum sources,
   and whether a flat (β = 0) search could run as a separately registered stage after the tag.
 
