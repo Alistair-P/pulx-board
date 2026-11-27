@@ -39,3 +39,23 @@ The dispatcher adds one block per item it handles. The overseer clears this file
 - (d) add-on budgeting on new branch stacked46d (e37a247); union check job 12438600 pending (600 nulls, ~30 core-h, cap 40).
 - held: running (44.2); noted for overseer: report cites seq 7, and differs from seq 8 in null count
 - read in full: yes
+
+### 25, report seq 1 (done), 07:47
+- p14a-calib on main (15285f7, §15.228, suite 772/0/3); checklist line settled; session stopped.
+- for overseer: no plan step after 25.2; worktree wt_p14a and branch p14a-calib removal is Alistair's
+- read in full: yes
+
+### 41, report seq 2 (idle), 07:47
+- Addendum 26cca25 on main; nothing left under #41.
+- held: settled (41.2)
+- read in full: no
+
+### merge, report seq 4 (idle), 07:47
+- Merged quota41b addendum (main 4f4386e, suite 775/0/3) and regionreview (main 6cd77d3, suite 782/0/3); idle for a95cut, golden rerun on merged tree if needed.
+- sent: plan merge.1 (instruction seq 5); for overseer: stacked46d's place in the order (not in D18); #15 summary entry for regionreview
+- read in full: yes
+
+### 44, report seq 8 (idle), 07:47
+- (d) on stacked46d (6a030a7), union check PASS (2/400, 22.8 core-h), golden PASS (26.8 core-h), queued top of merge queue; no ADOPTED line.
+- sent: plan 44.4 (instruction seq 9)
+- read in full: yes

@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 26 Nov 2026 21:48, by the dispatcher
+Updated: 27 Nov 2026 07:48, by the dispatcher
 
 ## Needs Alistair
 1. (Decided: B gets a futility check on batch 1 after (d) is queued, D36.) **B (#44 batch 2)** was: decide whether to switch on the long-period orbit part for spans above
@@ -18,6 +18,8 @@ Updated: 26 Nov 2026 21:48, by the dispatcher
 - Optional now: the quota rise check (filemap.sh). The count is 144,000–146,000 and falling.
 
 ## For overseer
+- **25:** done report (seq 1): p14a-calib on main (15285f7, §15.228, suite 772/0/3), checklist line settled. No plan step after 25.2. Housekeeping for Alistair: remove worktree z_sq_weighting_wt_p14a and branch p14a-calib (./link_data.sh --remove first, never --force).
+- **merge / 44 (merge order):** merge.1 sent (seq 5) after its report of the quota41b addendum (4f4386e) and regionreview (6cd77d3). D18 now has only a95cut left. #44 has since queued stacked46d (#46 (d)) at the top of the merge queue "ahead of #13"; it isn't in D18, so its place relative to a95cut needs your call. Merge also asks #15 to write the summary entry for regionreview, citing D37 (no plan step for 15).
 - **37 (urgent for the merge order):** a95cut golden PASS (coherent 19/19 bit-identical, orbit 4/4 identical), queued READY at 6b015e2 after merging main 6b0b68f. NEEDS YOU 1: rerun its golden on main + a95cut before it merges (about 11 core-h), since rednoise changed red_noise_floor.py and re-froze the orbit reference after the check? 37.2 held it; the question isn't in the plan. The merge session may reach a95cut soon.
 - **11:** target table done (43d8ccf, 15.235), but with new NEEDS YOU 2–4 (findings a–c: 16 skipped bare sections that are list targets; P13 / NGC 1313 X-2 bare slot in 7 ObsIDs; rename 0693760101's section to ULX-4). Recommends all go to Alistair. 11.1 needs "no new NEEDS YOU", so not applied.
 - **15:** D37 tools built and queued (regionreview f8cf10b, test 7/0/0). Batch 1's regions wait on NEEDS YOU 1 (also make X-2 tag regions in the 15 NGC 1313 ObsIDs?), 2 (params.conf naming for non-PULX targets, `<HOST>-<Jname>` vs literature names) and 3 (0884030101 pn-exposure failure: fix or drop). Report doesn't say whether the second array was submitted (instruction 2). Files about 160,000.
@@ -28,17 +30,17 @@ Updated: 26 Nov 2026 21:48, by the dispatcher
 
 | ID | Item | Folder of its conversation | Effort | State | Doing | Last report |
 |---|---|---|---|---|---|---|
-| merge | merge session | root tree | high | active | p14a-calib merged (main 15285f7, suite 772/0/3), D22/D24 in; next longpext, methods42, policy27 (merge.1 sent) | 26 Nov 21:33 |
+| merge | merge session | root tree | high | active | D18 queue done except a95cut; quota41b addendum (4f4386e) and regionreview (6cd77d3, suite 782/0/3) merged; idle for a95cut (merge.1 sent, seq 5) | 26 Nov 23:52 |
 | 11 | #18 (multi-target), was #11 | wt_mt | medium | needs-you | #18 step 1 target table done (43d8ccf, 15.235); step 2 waits for Alistair; new findings a–c | 26 Nov 21:32 |
 | 13 | certificate | wt_cert13 | high | waiting | v1.0 draft builder done (baa7e20, suite 751/0/5); waits for a95cut and #46 | 26 Nov 18:18 |
 | 15 | survey intake | wt_intake15 | medium | needs-you | D37 tools queued (regionreview f8cf10b); batch 1 regions wait on naming questions | 26 Nov 21:41 |
-| 25 | artefact battery rev3 | root tree | medium | waiting | p14a-calib on main (15285f7); 25.2 sent: settle and stop | 26 Nov 17:11 |
+| 25 | artefact battery rev3 | root tree | medium | done | settled; checklist line [x]; stopped (worktree/branch removal for Alistair) | 26 Nov 21:50 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | REV. 3 at 101b486, unchanged (D16); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | needs-you | golden PASS, a95cut READY at 6b015e2; asks whether to rerun golden on merged tree | 26 Nov 21:31 |
 | 38 | red noise | wt_rednoise | high | active | rebuilding production red-noise records (D12, 38.2 sent 18:05) | 26 Nov 17:06 |
-| 41 | quota and packing | root tree | medium | waiting | quota41b on main (818b683); deletion waits for Alistair | 26 Nov 17:12 |
+| 41 | quota and packing | root tree | medium | done | addendum 26cca25 on main (4f4386e); settled, nothing left | 27 Nov 00:56 |
 | 42 | methods paper (#43, #45) | root tree | medium | active | read-only #30/#35/#17 summary posted; waits for a95cut | 26 Nov 21:31 |
-| 44 | long-period part (#44, #46) | wt_longpext | medium | running | (d) add-on on stacked46d (e37a247); union check job 12438600 pending | 26 Nov 21:46 |
+| 44 | long-period part (#44, #46) | wt_longpext | medium | active | (d) queued (stacked46d 6a030a7, golden PASS); 44.4 sent: B futility check on batch 1 | 27 Nov 01:04 |
 | 47 | β study | - | high | not started | no conversation found | - |
 
 ## Plans
