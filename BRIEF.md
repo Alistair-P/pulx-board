@@ -110,10 +110,9 @@ Last full revision: 26 Nov 2026 (first board reports read 17:20).
 5. #14, the tag.
 - After the tag: #23 and #24 (real-data jitter nulls, local whitening), #19 (the IN list; it needs
   #17, #18 and #37), and #20 and #21 (the pilot and the full run).
-- D63 (27 Nov): p becomes a three-way joint-fit probability out to 60", with exposure-aware areas
-  and an attribution check. Its gain is in neighbour fields only (6-23% in a95). Stage 1 is #15's
-  design and price report, including a neighbour-fields-only option. Scope and timing (v1.0 or
-  after the tag) are Alistair's once it is priced.
+- D63/D66 (27 Nov), in v1.0: a three-way joint-fit p only for targets with a neighbour at 0.1x or
+  brighter within 30"; new QA area rules; post_search.py attribution; the Z1/Z3 max rule above
+  120 ks. #15 builds and validates, then one combined trial merge with cert13 and one golden (D65).
 - Separate study: #47, the β question. It is analytic only. Options (a)–(g), soft-spectrum sources,
   and whether a flat (β = 0) search could run as a separately registered stage after the tag.
 

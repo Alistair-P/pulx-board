@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 27 Nov 2026 22:05, by the overseer
+Updated: 27 Nov 2026 22:35, by the overseer
 
 ## Today (27 Nov, to 18:10)
 - **On main:** (d) (stacked46d, 57974c9; ADOPTED ab3e3264 and 9b8ce8b0) and targets18 (6db5e1f).
@@ -30,27 +30,9 @@ Updated: 27 Nov 2026 22:05, by the overseer
 ## Needs Alistair
 1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ (9 FAIL, 4 REVIEW, 37 PASS, 1 held,
    3 unchecked), with verdicts and light curves. Also #18's 20 D48 PNGs in stats/targets18/d48_review/png/.
-2. **D63's scope** (raised 27 Nov; #15's stage 1 at 18:40, full report at
-   wt_intake15/logs/intake15/d63_stage1_20261127.md). Census: 56 of 127 targets have a neighbour
-   within 30", mostly faint at 20-30"; 13 have one at 0.3x the target or brighter; only 2 have one
-   at 1x or brighter within 15". On 7 real geometries the joint fit lowers a95 by 25%, 21%, 12%, 8%,
-   6%, 1.5% and 0%. (i) Every target: 210-300 billed core-h, 3-5 days, but most of the extra goes if
-   D63 lands before the intake list's sensitivity pass. (ii) Neighbour fields only (0.1x or brighter
-   within 30"): 40-100 core-h, 2-3 days; selection needs eboxdetect plus known pairs (the catalogue
-   blends M82 X-1 into X-2). (iii) After the tag. #15 and the overseer recommend (ii). The
-   validation rule is pre-registered (about 25-50 core-h, included).
-   - D63 (2), QA rules: the fov check on the background circles only, exposed-area scaling, and the
-     aperture's exposure as a correction, with REVIEW below 90%. Batch 1: the 6 fov FAILs become
-     REVIEW; nothing else changes. Recommend yes.
-   - #13's question: the Z1/Z3 max(transfer, direct) rule above 120 ks (your 25 Nov rule) isn't in
-     the code under (d). It would raise thresholds by up to 1.71 (Z1) and 1.61 (Z3) at a few octaves,
-     above 120 ks only. Recommend applying it, with its code going in before the one D63 golden (D65).
-3. **0150280101 NGC1313-X2** fails the new detect check (nothing within 10" in 7.9 ks). It is below
-   the 17 ks floor, so v1.0 doesn't search it either way. Recommend leaving it out, with no
-   override. Raised 27 Nov.
-4. **#30**: starts later, in a COSMA session. 0200670401's section has timing = 0, so as it stands
+2. **#30**: starts later, in a COSMA session. 0200670401's section has timing = 0, so as it stands
    that ObsID isn't searched.
-5. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
+3. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
 
 ## For overseer
 - #44: instruction 15 (18:03) unread. It is most likely stopped at the D39 pilot's terminal ask,
@@ -64,8 +46,8 @@ Updated: 27 Nov 2026 22:05, by the overseer
 |---|---|---|---|---|---|---|
 | merge | merge session | root tree | high | idle | pickfix and #41 addendum merged (main e68c2fb, 829/0/3); no ready entries; figidx46 waits for longpext, cert13 for golden | 27 Nov 21:23 |
 | 11 | #18 (multi-target), was #11 | wt_mt | medium | needs-you | batch 1 prepared, not run; targets18 on main (6dd6232); swap sbatch at Alistair's terminal; tag runs wait for D63 | 27 Nov 18:34 |
-| 13 | certificate | wt_cert13 | high | needs-you | cert13 rebased, queued at 173fd0e (820/0/5); golden sbatch, max rule and ADOPTED with Alistair | 27 Nov 18:24 |
-| 15 | survey intake | wt_intake15 | medium | needs-you | regfix re-queued (4a2f274); D63 stage 1 reported, scope with Alistair | 27 Nov 18:40 |
+| 13 | certificate | wt_cert13 | high | told | cert13 queued (173fd0e); D65 golden after D63; D66: code the max rule, re-queue | 27 Nov 18:24 |
+| 15 | survey intake | wt_intake15 | medium | told | regfix on main; D63 stage 1 done; D66: build stage 2 (neighbour fields), then validation | 27 Nov 18:40 |
 | 25 | artefact battery rev3 | root tree | medium | settled | p14a-calib on main (15285f7) | 26 Nov 21:50 |
 | 27 | detection policy draft | wt_policy27 | high | waiting | policy27 on main (077a2eb); waits for C1–C4 | 26 Nov 17:30 |
 | 37 | a95 cut | root tree | high | waiting | D41 acknowledged; a95cut READY at 6b015e2; waits for 37.3 triggers | 27 Nov 09:05 |
@@ -86,13 +68,17 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
 - **11** (now #18):
   - `11.2`: its swap-job report: if all 6 targets check out as the pilot did, hold; otherwise for
     overseer.
-  - `11.3`: its batch-1 tag list and script prepared, not submitted: hold. The tag runs wait for
-    D63's stage 1 (15.4) and Alistair's scope decision.
+  - `11.3`: its batch-1 tag list and script prepared, not submitted: hold. Under D66 only tags in
+    neighbour fields change. Once #15's selection list exists (15.5), the overseer tells #11 which
+    tags can run now.
 - **13**:
   - `13.1`: when it reports the build_cert.py draft committed, with no new NEEDS YOU, hold. It
     waits for a95cut and #46.
   - `13.2`: sent 27 Nov 16:20.
-  - `13.3`: its rebase report: for overseer. The final certificate waits for D63 on main.
+  - `13.3`: done (D65, D66).
+  - `13.4`: its max-rule report (per-octave changes, union check, re-queued): hold if the union check
+    is confirmed and the suite passes; otherwise for overseer. The certificate's final build waits
+    for the combined merge (D65).
 - **15**:
   - `15.1`: while downloads, the memory test or the Slurm job are running, hold.
   - `15.2`: when the first Slurm job has finished with every ObsID ok, and the file count is under
@@ -124,8 +110,9 @@ goes to "For overseer". A step that starts with "trigger:" is set off by another
     there stops every session's board sync. Post the report and wait. Update your checklist line,
     and end with the rule-12 report."
     (Sent 27 Nov 18:10 as instruction 13, amended for #15's answers, with the regfix fix first.)
-  - `15.4`: its regfix re-queue report, with no new NEEDS YOU: hold. Its D63 design report: for
-    overseer.
+  - `15.4`: done (stage 1, 18:40; D66).
+  - `15.5`: its stage-2 build report (branch, selected targets, tests, validation price): for overseer.
+    While the validation job runs: hold. The validation result: for overseer.
 - **25**:
   - `25.1`: hold idle reports while p14a-calib is queued.
   - `25.2`: trigger: a merge report says p14a-calib is on main. Send: "p14a-calib is on main.
