@@ -1,23 +1,25 @@
-seq: 10
+seq: 11
 state: idle
-date: 2026-11-27T11:48Z
+date: 2026-11-27T12:53Z
 host: login7c
 ---
-#44, seq 10 (D45), report: I added and indexed validation figure 177 for B's futility result.
+#44, seq 11 (D51), report: I recorded Alistair's closure of option A in summary 15.225 (16). #44 is now fully decided.
 
-1. DONE: figure 177 (177_longpext_Bfut.png, in the shared store), rendered and looked at, and indexed in validation/README.md (RECORDED, §15.225 (15)). Commit 2ff74a0 on wt_longpext.
-   - Left: B's 100 batch-1 draws, WITH against WITHOUT. They are all on the diagonal: 0 WITH-only and 0 WITHOUT-only.
-   - Middle: the combined McNemar p against batch 2's WITH-only count. The best case batch 1 allows is marked per cut: p 0.062 / 0.125, against the bar of 0.05.
-   - Right: B's arm alone, statistic over threshold. It is over on 0 of 93 binaries; the highest is 0.99. 64 draws had a candidate near the spin and 29 had none inside the matching window.
-   - The caption follows CLAUDE.md: WHAT IS PLOTTED, WHAT IT MEANS, then the source and summary section.
-   - validation_check.py: 0 indexed figures missing. The 14 PNGs with no row predate this figure and are not mine to index.
-2. Option A: not priced, as instructed; it is with Alistair. wt_longpext's pipeline code is unchanged since 1cbad1c (empty diff). Only summary.txt, validation_plots.py, validation/README.md and logs/ scripts were committed.
-3. #46: noted. stacked46d is in the merge session's trial. The confirming simulation (D39) waits for the board's instruction once (d) is on main.
-Checklist #44 updated.
+1. DONE: 15.225 (16), commits 5dcafb9 and ff1a73a on wt_longpext. A is closed, never measured, with D51's three reasons:
+   (a) B's window arm (the same orbit bank, long part included, on an 80 ks window) found nothing on the same kind of draws: 0 WITH-only of 93 binaries, and its arm was never over threshold (15.225 (15), figure 177).
+   (b) A needs a new long-part calibration above 80 ks: 600 null realisations at M 6-8, 2,171-5,178 core-h, the largest cost of any option.
+   (c) #46's option (d) covers strong-Doppler binaries above 120 ks.
+   - It is stated as a known v1.0 limitation alongside B's NO-GO: the long part runs only at 57.5-80 ks. Above that, long binaries are left to the coherent arm, the short orbit bank and, above 120 ks, (d)'s window arm.
+   - #44's options: A closed, B NO-GO, C1 NO-GO, C2 closed. D was never taken up, because the re-opening in (12) named A and B only.
+2. Checklist #44 is set to settled ([x]).
+3. wt_longpext's code is no longer frozen (D51). Nothing changed there apart from summary.txt.
+4. WAITING for the board's instruction on #46's confirming simulation (D39) once (d) is on main.
+   - Cluster policy changed on 27 Nov: I may run sbatch only when Alistair asks for that job in his own message and says yes to the exact command and resources I show him. A board approval alone is not enough.
+   - So when the instruction comes, I will price it and set it up, then ask Alistair in the terminal before submitting.
 
 Jobs: none.
-Core-h: this step 0, login node only (minutes). Since the item began: batch 1 552.6, plus the pilot and C1 runs recorded in 15.225.
-Files: +1 PNG in the shared store.
+Core-h: this step 0. #44 in total: batch 1 552.6, plus the pilot and C1 runs recorded in 15.225.
+Files: no change.
 
-SETTLED: B NO-GO on futility, with its figure (177).
-OPEN (with Alistair): option A; #46's ADOPTED lines.
+SETTLED: #44 is decided (A closed, B NO-GO, C1 NO-GO, C2 closed); known limitation recorded.
+OPEN: #46's confirming simulation, after (d) is on main; its sbatch needs Alistair's direct yes.
