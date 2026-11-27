@@ -16,7 +16,7 @@ The dispatcher adds one block per item it handles. The overseer clears this file
 - read in full: yes
 
 ### 13, report seq 2 (needs-you), 18:24
-- cert13 rebased on main 6dd6232's predecessor, queued 173fd0e, suite 820/0/5, draft --check CONSISTENT. Touches survey_pipeline.py, so asks for the c13 golden (~17.5 core-h) or to rely on merge's golden.
+- cert13 merged with main 6db5e1f, queued 173fd0e, suite 820/0/5, draft --check CONSISTENT. Touches survey_pipeline.py, so asks for the c13 golden (~17.5 core-h) or to rely on merge's golden.
 - for overseer: plan 13.3; Alistair: golden sbatch, Z1/Z3 max rule, ADOPTED line
 - read in full: yes
 
