@@ -18,13 +18,22 @@ Updated: 27 Nov 2026 13:50, by the dispatcher
 - **#38:** hasn't picked up its rebuild instruction (sent 18:01). It needs a nudge (item 4).
 - **Files:** about 160,000.
 
+## Waiting at your terminals (cluster policy: your yes, in that window, to the exact command)
+All six are approved by Alistair on the board (27 Nov 14:18). Each session shows the command and waits.
+- #11: the pilot's sbatch (8 core-h).
+- #41: retire wt_p14a and wt_regrev; clear old tmp/tmp* folders (about 37,000 files); retire 9 idle,
+  merged worktrees (13,401 files).
+- #15: delete 0884030101's 4 failed files, then its sbatch (about 1 core-h).
+- #11: overwrite X-1's products with X-2's in 3 NGC 1313 ObsIDs (after #41 unpacks); delete 2 stale
+  pilot folders.
+
 ## Needs Alistair
-1. **#18's pilot**: type your yes in #11's window to `sbatch slurm/submit_targets18_pilot.sh` (D50).
-2. **The 16 skipped targets**: your keep-or-unskip review, once #18 has built the list and PNGs (D48).
-3. **#17**: your review of batch 1's PNGs and flags table, once #15 has run the regions under D47.
-4. **#30**: details given to the overseer on 27 Nov and kept off the board. A generic coverage check
-   is running with #42. #30 itself starts later, in a COSMA session.
-5. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
+1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ (D58), once #15 has built it.
+2. **The cluster policy**: where it comes from (#44 is quoting it). If it's your own setting, you
+   can relax it to match D57's tiers.
+3. **#30**: starts later, in a COSMA session. 0200670401's section has timing = 0, so as it stands
+   that ObsID isn't searched.
+4. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
 
 ## For overseer
 - **Cluster policy change (27 Nov), reported by #11, #15, #41 and #44:** sessions now run sbatch only on
