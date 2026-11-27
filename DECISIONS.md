@@ -18,6 +18,7 @@ The next overseer wake acts on them.
 - 26 Nov 18:28: Q3 yes (D30). The union (K_eff) check for (d) is approved, 20–40 core-h (D31). No
   stacked calibration for longer segments, so (a), (b) and (c) are out; the choice is between (d)
   and keeping the gap (D32). Alistair leans towards including (d) as justifiable.
+- 27 Nov 22:29: "Yes to all 4" (D66).
 - 27 Nov 19:50, in the dispatcher's session, on #13's golden: "Let's wait until D63 is in then." (D65)
 - 27 Nov 16:59: "go ahead with the changes" after the labelled-photon study (D63). Read as v1.0,
   since the search layer freezes at the tag (rule 11).
@@ -307,6 +308,18 @@ The next overseer wake acts on them.
 - **D65** (27 Nov 19:50, Alistair): no c13 golden now. cert13 stays queued, and one golden runs
   after D63 is on main, covering both. The Z1/Z3 max rule and the survey_pipeline.py ADOPTED line
   are still his.
+
+- **D66** (27 Nov 22:29, Alistair), after #15's D63 stage 1:
+  (1) D63 scope (ii): the joint fit applies only to targets with a neighbour at 0.1x the target or
+  brighter within 30", selected from eboxdetect plus known pairs. Every other target keeps its p,
+  aperture and masks. Selected targets extract out to 60", or to the current aperture where that is
+  larger. Priced at 40-100 billed core-h and 2-3 days, validation included. (2) D63 (2)'s QA rules: fov
+  on the background circles only, exposed-area scaling, and the aperture's exposure as a correction
+  with REVIEW below 90%. (3) The Z1/Z3 max(transfer, direct) rule above 120 ks is applied under (d),
+  at R1W's shares (#13), before the one golden. (4) 0150280101 NGC1313-X2 stays out (below the
+  17 ks floor; detect FAIL). Stage 2: #15 builds on a new branch, then runs the pre-registered
+  injection validation on his yes. Then one combined trial merge with cert13 and one golden (D65),
+  then the ADOPTED lines (his).
 
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and
