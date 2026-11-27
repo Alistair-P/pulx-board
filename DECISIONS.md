@@ -176,6 +176,10 @@ The next overseer wake acts on them.
 - **D43** (27 Nov, overseer): #15 proposes a fix for 0884030101's pn-exposure selection failure but
   doesn't apply it yet.
 
+- **D44** (27 Nov, overseer): #15 applies its pick_pn_events.py fix for 0884030101 (a bug fix in
+  prep, not the search layer), with tests and a header-only replay. The stricter no-EXPOSU option
+  goes in only if the replay shows it changes no other ObsID.
+
 ## Sent 25 Nov (where each stood on 26 Nov)
 - **S1, merge** (mcseed step done, 2513b12; the rest unconfirmed until merge reports): yes to all four. Merge quota41b's head dfa0244 into the trial, run the suite and
   fast-forward. The order is mcseed, then quota41b, intake15, p14a-calib (5f9a009), longpext

@@ -45,8 +45,10 @@ Updated: 27 Nov 2026 09:47, by the dispatcher
    it.
 
 ## For overseer
-- #15 seq 3 (09:12): NEEDS YOU D43: approve the proposed pick_pn_events.py fix for 0884030101 (TSTART > 0 guard; rank by GTI live time before header span), and decide on the stricter option (never pick a primary with no EXPOSU tables, flagged "for Alistair"). Not in plan. Also: second array (job 12436619) ran and is recorded; region_review.py summary in §15.229 (25)(a); intake15 queued at 0ada393 for the merge session. Files 171,676.
-- #38's rebuild (D12), once Alistair has nudged it.
+- Silent since their last instructions: merge (last report 23:52; instructions 5 and 6 unread),
+  #11 (21:32; instruction 7), #44 (01:04; instruction 9) and #38 (17:06; instruction 3). Alistair
+  asked to check those windows at 11:15.
+- #41's quota census (asked 11:20): 171,676 files, up about 11,700 overnight.
 - (d)'s ADOPTED approval, then tell the merge session (D42).
 
 ## Items
