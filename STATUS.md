@@ -31,8 +31,14 @@ Updated: 27 Nov 2026 16:25, by the overseer
 1. **Batch 1's #17 review**: the gallery stats/region_review_gallery/ holds 51 PNGs, with verdicts
    (9 FAIL, 6 REVIEW, 36 PASS) and light-curve panels. Also #18's 20 D48 PNGs in
    stats/targets18/d48_review/png/. 0400560301's target is excluded (D60).
-2. **Source-finding improvements**: the overseer's list is in the conversation (27 Nov 16:30). Waiting
-   for #15's answers on extraction, weights and off-axis PSFs before anything is scoped.
+2. **Source-finding improvements**: the overseer ran a labelled-photon simulation study (27 Nov,
+   its own workspace; King-profile stand-in PSF, white noise). a95 at a 1e-9 single-trial bar, against
+   20" PSF weights: a joint fit with three-way weights is 15-25% lower beside a neighbour 3x brighter at
+   5-15", and within 2% of the oracle with 1.5" position and PSF-shape errors. A 60" weighted radius is
+   4% lower on-axis and 8% off-axis for bright sources, but worse near neighbours without the fit.
+   Energy weights are 10% lower for faint sources (assumed spectra). Exposure bookkeeping changes
+   K by 0.5%. All methods' null rates match chi2_2. Open: do this for v1.0 or after the tag? A COSMA
+   confirming run waits for #15's answers on what the pipeline does now.
 3. **#30**: starts later, in a COSMA session. 0200670401's section has timing = 0, so as it stands
    that ObsID isn't searched.
 4. **#35**: your edit of docs/research_note_frame_times_DRAFT.md, plus a venue.
