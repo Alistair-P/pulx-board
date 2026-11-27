@@ -1,49 +1,60 @@
-seq: 10
+seq: 11
 state: done
-date: 2026-11-27T12:55Z
+date: 2026-11-27T14:29Z
 host: login7c
 ---
-#42: three coverage questions for Alistair, answered from main's code (board seq 10). Read only; no search output opened.
+#42: frame-lattice questions for Alistair (board seq 11), from main's code, 15.224, 15.228, 15.97 R and the frame-times note. Read only; no search output opened. Lines are f = (j/m) f_frame.
 
-1. fdot at 1.6-1.75 Hz, spans 17-30 ks (floor configuration; stacked arm absent, M = 1)
-- Coherent Z1 (octave 0.85-1.7 Hz): |fdot| <= 2.28e-7 Hz/s, the same across the octave (pulx_recovery.z_range at the octave TOP). Binding term: the orbit ceiling f a (2pi/P)^2 with a sin i 25.3 lt-s and P 1 d. Spin-up f x 1.756e-8 = 3.0e-8 and the torque cap 3.6e-9 don't bind. That is 8 cells at 17 ks and 26 at 30 ks. Above 1.7 Hz, octave 1.7-3.4 is sized at 3.4 Hz (4.6e-7).
-- Coherent Z3, fundamental at 1.65 Hz (from the sweep topped at 6.8 Hz): |fdot| <= 3.0e-7 (a third of that sweep's range).
-- Orbit short bank (to 1.7 Hz; 17-30 ks gives M = 2, segments 8.5-15 ks): the orbit is modelled by explicit templates, P 0.05-0.7 d, a sin i up to a Roche-filling He donor (1.9-15.2 lt-s). Peak a(2pi/P)^2 = 4.4e-6 c, i.e. up to 7.2e-6 Hz/s at 1.65 Hz. Intrinsic spin-up on top: nudot_max at the octave's LOWER edge (0.85 Hz) = 3.6e-9 Hz/s, wind-limited, L_Edd/(6 pi^2 I nu); the S = 150 supply cap (4.3e-9) and the chirp limit don't bind. Per segment that is one fdot point (cap T_seg^2/8 <= 0.25 cells), plus a semi-coherent grid of +-3.6e-9 between segments. No long part at these spans.
+1. Z3 fundamentals in v1.0. Each sweep topped at hi gives Z3 fundamentals in [hi/6, hi/3], and harmonics are read only up to hi (pulx_recovery: fsw, z_n_fft_harmonic).
+- FF, LW, SW (top 6.8 Hz): fmin to 2.267 Hz.
+- EFF (top 1.7 Hz): fmin to 0.567 Hz.
+- fmin is 0.0066 Hz (floor) or 0.01 Hz (pre-floor).
+- So no mode tests a Z3 fundamental at f_frame/3 = 4.544 Hz. Z1 does search 4.544 Hz (FF octave 3.4-6.8).
+- FF's Z3 top, 2.267 Hz, sits 0.2% below f_frame/6 = 2.272 Hz.
 
-2. Frequency cap by pn mode (frame_times.search_fmax: Nyquist 1/(2 frame time), frame time read from EXPOSU; the survey then takes the largest octave top <= Nyquist):
-- Full Frame, 73.35 ms: Nyquist 6.816 Hz, cap 6.8 Hz.
-- Large Window, 47.66 ms: 10.49 Hz, cap 6.8.
-- Small Window, 5.672 ms: 88.2 Hz, cap 6.8.
-- Extended Full Frame, 199.17 ms: 2.510 Hz, survey cap 1.7.
-Coverage of 1.65-1.75 Hz:
-- Full Frame, Large Window, Small Window: Z1 everywhere (1.65-1.7 in 0.85-1.7, 1.7-1.75 in 1.7-3.4); Z3 everywhere; orbit arm 1.65-1.70 only, since --orbit-fmax is 1.7 in every mode.
-- Extended Full Frame: Z1 and orbit 1.65-1.70 only; no Z3 at 1.65 (Z3 fundamentals stop at 0.567 Hz, since they need a sweep topped at 3f).
-- Frame-integration loss r^2 at 1.65 Hz: FF 0.96, LW 0.98, EFF 0.70.
+2. Lattice lines inside the bands (bands from code; f_frame from 15.224 (9)):
+- m = 1 (every frame same phase, Z ~ N) and m = 2: no arm reads either, at any harmonic, in any mode.
+  - FF: f_frame 13.63 and f_frame/2 6.816, both above 6.8.
+  - LW: 20.98 and 10.49.
+  - EFF: 5.02 and 2.51, both above 1.7.
+  - SW: 176 Hz.
+- Lowest order read by Z1, Z3's harmonics and stacked:
+  - FF: m = 3, 4.544 Hz (Z1 directly; also Z3's 3rd harmonic of 1.515 Hz). m = 4, 3.408; m = 5, 2.726 / 5.452; m = 6, 2.272; denser above.
+  - EFF: m = 3, 1.674 Hz.
+  - LW: m = 4, 5.246 (m = 3 is 6.99, outside).
+  - SW: m = 26, 6.78.
+  - Every octave holds lines with m >= 3 (15.224 (9): m ~ 1000-2000 in FF's lowest octave).
+- An exact fold stays at chi^2_2 noise at every m (15.228 (0)); only a binned fold forges, strongest at m = 32j +- 1.
+- Orbit arm: trial orbits (a sin i >= 1.9 lt-s) demodulate the times, which breaks the lattice (15.93).
+- #25's 24 lines (15.228 (11)) are SIMULATED forgeries, not survey candidates. They were made from real FF event times on 0941150101 and 0693760101, thinned and folded with a 32-bin histogram. Statistic: Z1 at the forgery's own f (h = 1). All 24 are inside the FF Z1 band, and none is a Z3 harmonic:
+  - m = 31: k 1-13 (0.440-5.717 Hz)
+  - m = 33: k 1, 2, 4, 5, 7, 8, 10 (0.413-4.131 Hz)
+  - m = 63: k 1 (0.216 Hz); m = 65: k 2 (0.419 Hz)
+  - 0693760101 adds m = 31 k 1 and m = 33 k 1.
+  - (k) caught all 82 forgeries that reached Z^2 >= 30.
 
-3. Pulse mostly in the 2nd harmonic (rough: single-cell chi^2, false-alarm 1e-6 to 1e-9, 50% detection):
-- Z1 at f sees only the fundamental, so close to nothing.
-- Z1 at 2f sees the harmonic as a sinusoid and reports 2f. It needs ~0.89x the noncentrality of a dedicated Z2 at f (2 vs 4 degrees of freedom).
-- Z3 at f captures it but needs ~1.08x Z2's, and Z3 carries 10% of the non-orbit alpha against Z1's 90%, so its threshold is higher.
-- So Z1 at 2f is the main route, within ~5% in amplitude of Z2.
-- For f = 1.65 Hz, 2f = 3.3 Hz is outside the orbit arm. In FF/LW/SW it is inside the coherent band (r^2 0.84 FF). In EFF it is above Nyquist: not searched, r^2 0.20.
+3. f_frame/3 in Z3 in earlier versions: 15.97 ADDENDUM R (11 Oct 2026, readout_check.py, job 12130688), a DIAGNOSTIC check prompted by the user's question about Z3 harmonics near 4.5 Hz. Neither calibration nor threshold validation.
+- Its 48 null simulations (40 ks, 0.85-6.8 Hz, continuous and frame-snapped) give only the chance rate near readout lines (m <= 6), and nothing over threshold.
+- Its real-data part I don't quote (15e). As a design point it records that the one line is the frame rate itself, entering a Z3 read through a 6.816 Hz fundamental whose 2nd harmonic is 13.63 Hz, and that the survey's Z3 never reads a harmonic above 6.8 Hz.
+- I found no section recording a measured f_frame/3 Z3 line; 4.5 Hz appears only in the question.
 
-ObsIDs (pn_clean.fits headers):
-- 0401360301: PrimeFullWindow, span 22.5 ks.
-- 0200670401: PrimeFullWindow, span 19.3 ks.
-Both are on #15's target table (stats/intake15/survey_spans.csv). Neither is in logs/survey_full/obsids_longest_first.txt, the frozen pre-a95cut list. survey_list() now gives:
-- 0401360301: PENDING, no QA record.
-- 0200670401: PENDING, no CONFIG entry; its section is timing = 0, products only.
-Both params.conf sections carry skip = 1.
+4. Check (k) (p14a_lattice, 15.228 (1), (8)):
+- Applies only to a raw frame-centred fold (no orbit) with TIME_RAND present.
+- Candidate f within 1/T + B f of k/(mD), with gcd(k, m) = 1 and 2 <= m <= M_MAX = ceil(sqrt(2N/30)), N the photons folded; lowest m first. m = 1 is check (a)'s.
+- D is the source CCD's frame-table time, already barycentred. B = 1.25e-4 is the Doppler bound; in practice it absorbs the table-D bias of -6.0 to -6.6e-5 (15.228 (9)).
+- Harmonics: the candidate's own f only, a Z1 fold. Check (a) covers f, 2f, 3f only against m = 1 frame-rate lines and aliases.
+- Rule: p_k = ncx2.cdf(Z2_rand; 2, rho max(Z^2 - 2, 0)), with rho = sinc^2(f L D) and L the mode's live fraction. FAIL if p_k < 0.01.
+- INFERRED gap: a Z3 candidate whose 2nd or 3rd harmonic sits on an m >= 2 line is not windowed at h > 1. Exact folds make this a guard, not a live failure.
 
 Jobs: none.
 Core-h: 0 this step; 0 since #42 began.
 Files: none changed.
 
 SETTLED:
-- Coverage questions 1-3 answered from code; mode, span and list status of both ObsIDs given.
+- Lattice questions 1-4 answered from code and record.
 
 NEEDS YOU:
-- Nothing from #42. For Alistair: #30 still needs the meaning of "A1" and the candidate details. survey_list's out-reason "P12 (A1)" may be the referent; not checked further.
+- Nothing from #42. For Alistair: whether (k) should also window Z3 candidates at h = 2, 3 (#27's call).
 
 NEXT:
-- #42: waiting on the board. Two OPEN markers are left (#23 jitter-null result; v1.0 known-pulsar recovery at submission).
+- #42: waiting on the board.
