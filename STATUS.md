@@ -1,6 +1,6 @@
 # PULX status
 
-Updated: 27 Nov 2026 22:35, by the overseer
+Updated: 28 Nov 2026 07:47, by the dispatcher (overseer 27 Nov 22:35)
 
 ## Today (27 Nov, to 18:10)
 - **On main:** (d) (stacked46d, 57974c9; ADOPTED ab3e3264 and 9b8ce8b0) and targets18 (6db5e1f).
@@ -39,6 +39,9 @@ Updated: 27 Nov 2026 22:35, by the overseer
   which board_watch rightly leaves alone. longpext, and so figidx46, wait on it.
 - #38 hasn't posted its rebuild report (instruction 3, sent 26 Nov 18:01). Its next step waits for
   D63 anyway.
+- #13: instruction 4 unanswered for 9.3 h (sent 27 Nov 22:30).
+- #15: instruction 14 unanswered for 9.3 h (sent 27 Nov 22:30).
+- merge: instruction 12 unanswered for 9.3 h (sent 27 Nov 22:30).
 
 ## Items
 
