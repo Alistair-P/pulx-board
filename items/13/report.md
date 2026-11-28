@@ -1,43 +1,49 @@
-seq: 2
-state: needs-you
-date: 2026-11-27T18:24Z
+seq: 4
+state: done
+date: 2026-11-28T16:36Z
 host: login7c
 ---
-#13 — reply to board seq 2. Login node only, no compute. cert13 at 173fd0e, QUEUED.
+#13 — reply to board seq 4 (D66). Login node only. No golden, no compute. cert13 at 325eb1b, RE-QUEUED.
 
-1. MERGE + CHECK. main 57974c9 merged in (712b4ca), then the newer main 6db5e1f (targets18, 9631241). Conflicts were text only:
-- summary.txt and run_all_tests.sh: both sides kept.
-- CLAUDE.md "Known gaps": both clauses kept, mine (the gate) and main's (#12 closed, D22 (b)). That line stays Alistair's.
-build_cert.py now:
-- inclusion = main's a95_template_ref < 0.25 (the PRE-a95cut fallback removed);
-- above_120ks = (C) then #46's (d): stacked arm at M 4 on the first or last 120 ks by sum p², full-span M 5 not run, add-on R1W budgeting (non-orbit shares ×0.6897, Z1/Z3 at R1 +1.1, window row stw at R0's 120 ks K_eff +1.4), union check 2 vs 3.80.
-Re-derived tables show both parts:
-- 122 and 136 ks: all 10 octaves R1W, margin 1.1, stw finite at M 4, st NaN.
-- ≤120 ks: unchanged R0/R1, no window key.
-New tests cover this, and --check now catches a changed stw or window M. test_build_cert 11/0/0. Suite 820/0/5 = main's 800/0/3, every suite count unchanged, + test_certificate 9/0/2 + test_build_cert 11/0/0.
+1. MAX RULE CODED (commit 6849f7c). The rule is in octave_thresholds, a MANIFEST module. It acts only in the R1W table: spans of 120–136 ks with the window arm on.
+- Where: every usable Z1/Z3 octave at or above 0.053 Hz.
+- Threshold = max(transfer, direct) + R1's margin of 1.1.
+- The direct value is 15.133's t136 fit, evaluated at the same design alpha as the transfer.
+- Each row records direct_rule; each covered arm records z?_transfer, z?_direct and z?_rule.
+- If the fit's Z1 or Z3 validation is false, the code refuses (SystemExit).
+- Unchanged: spans ≤120 ks, the window-off path, and octaves below 0.053 Hz (the t136 nulls predate the torque floor).
+The fit parameters are frozen in a NEW file, stats/thresholds_15.106/rf_direct_136ks.json, holding A, p and c for 14 arm-octaves plus the sha256 of the source files. It is a gated certificate input, so the gate now has 10 inputs. Reproduced first: at R0's alpha it gives fit.json's design values exactly. The 136 ks fit also covers 120–136 ks, as candidate.json's scope did. At 122 ks that errs on the conservative side, because 136 ks has more cells.
 
-2. GOLDEN. cert13 vs main, by file: CLAUDE.md, docs/LESSONS.md, logs/p13/build_cert.py, run_all_tests.sh, summary.txt, survey_pipeline.py, tests/test_build_cert.py, tests/test_certificate.py, tests/test_survey_pipeline.py, tests/test_template_beta.py; in commit 173fd0e also slurm/submit_golden_c13_*.sh (new scripts, mode 755 like s46d's).
-survey_pipeline.py is in gate_block()'s list (a manifest module), so the 15.236 (merge 1) golden does not cover it. The change is gate code only, outside run_one: prediction = every output identical to s46m.
-Scripts are written, NOT submitted: slurm/submit_golden_c13_{syn,real,orbit,window}.sh, GOLD_TAG c13, accept lists as s46m.
-Price measured at s46m: syn 19 CPU × 0:28 = 8.9, real 4 × 0:36 = 2.4, orbit 0.2, window 2 × 3:02 = 6.1. Total ~17.5 billed core-h (range 15–25), caps 34.5.
+2. CHANGES vs the current R1W table, applied values, red scale 1 (0 means the transfer was already larger):
+- 122 ks Z1: 0.053 +2.26, 0.106 +0.80, 0.2125 +1.16, 0.425 0, 0.85 +0.54, 1.7 +0.30, 3.4 0
+- 122 ks Z3: +1.39, +1.69, +1.43, +2.15, +0.59, +1.03, +1.56 (same octaves)
+- 136 ks Z1: +1.71, +0.22, +0.50, 0, 0, 0, 0
+- 136 ks Z3: +1.00, +1.20, +0.86, +1.61, +0.002, +0.40, +1.00
+No threshold falls anywhere.
 
-3. DRAFT rebuilt at 173fd0e, --check CONSISTENT. Contents: 23 modules + 9 inputs, 9 span tables, 49 unusable (span, arm, octave) entries, 73 IN targets.
-READY: a95cut, mcseed (on main since 15.217 (12)), rednoise, #46, rev3 battery, signed margins, clean tree.
-PENDING:
-(i) 15.234 (1)(a) Z1/Z3 = max(transfer, direct) above 120 ks is not in the code under (d). The direct fit (design values) sits above the transfer at:
-- Z1: 0.053 Hz +1.71, 0.106 Hz +0.22, 0.2125 Hz +0.50
-- Z3: 0.053 Hz +1.00, 0.106 Hz +1.20, 0.2125 Hz +0.86, 0.425 Hz +1.61, 1.7 Hz +0.40, 3.4 Hz +1.00
-(d)'s union check passed on the transfer-only R1W table (Z1 1 vs 2.36, Z3 0 vs 0.26), but on the same t136 nulls the direct fit came from. candidate.json is R0 +1.4, so it no longer compares directly. Owner: Alistair (decision). If applied: #13 or #46 code in octave_thresholds (manifest), with golden and ADOPTED.
-(ii) survey_pipeline.py ADOPTED line for cert13's file. Owner: Alistair, after one golden.
+3. UNION CHECK — CONFIRMED. Every covered threshold is at or above its transfer, so the union count can only stay the same or fall. I re-scored #46's own 400 null realisations from their records, with no new realisations: old 2 (Z1 1, Z3 0, window 1), which matches 15.236 (5); new 2 (Z1 1, Z3 0, window 1). The new crossings are a subset of the old ones, so the PASS stands.
 
-4. QUEUED cert13 (#13) for the merge session. Golden NOT RUN, ADOPTED needed. The stamp waits on (i), not this merge. Checklist #13 updated.
+4. TESTS. tests/test_direct_max.py (new, registered): 7/0/0. It covers:
+- the rule equals max(transfer, direct), with the direct value recomputed independently;
+- thresholds only rise;
+- no change at ≤120 ks or with the window off;
+- the frozen file equals fit.json;
+- a failed validation is refused;
+- the file is gated and recorded in the survey JSON.
+tests/test_stacked_window.py: the share-rescale check now reads the transfer component (7/0/0).
+build_cert now records and checks the rule.
+Full suite: 827 passed, 0 failed, 5 skipped.
+
+5. DRAFT rebuilt at 325eb1b: --check CONSISTENT. Every blocker is READY except the ADOPTED lines for survey_pipeline.py and octave_thresholds.py. Those go to Alistair after D65's one golden.
+
+6. RE-QUEUED cert13 for the combined trial merge with #15's D63 branch. The golden accept list must name both modules. Note: the queue line's auto "manifest:" field still says only survey_pipeline.py; queue set can't change it, so its golden field names both. The slurm/submit_golden_c13_*.sh scripts are superseded by D65; do not submit them.
+Checklist #13 updated.
+
+Permissions: I set the new JSON read-only (444) by mistake, then put it back to 644 at once. No other permission change.
 
 Jobs: none. Core-h: 0.
-Files: logs/p13/build_cert.py, tests/test_build_cert.py, summary.txt 15.234 (5), run_all_tests.sh, CLAUDE.md (merge), slurm/submit_golden_c13_*.sh; draft stats/survey_thresholds/validated_DRAFT_v1.json; backups archive/*.pre_cert13_20261127.
+Files: octave_thresholds.py, survey_pipeline.py, logs/p13/build_cert.py, tests/test_direct_max.py, tests/test_stacked_window.py, run_all_tests.sh, summary.txt 15.234 (6); new stats/thresholds_15.106/rf_direct_136ks.json; draft stats/survey_thresholds/validated_DRAFT_v1.json; backups archive/*.pre_cert13max_20261128.
 
-SETTLED: merge, inclusion, (d) in the draft, suite 820/0/5, queued.
-NEEDS YOU (Alistair):
-1. Golden: yes to `cd wt_cert13 && sbatch slurm/submit_golden_c13_syn.sh; sbatch ..._real.sh; sbatch ..._orbit.sh; sbatch ..._window.sh` (~17.5 core-h)? Or let the merge session's merged-tree golden be the only one. Recommend: one golden only, the merge session's, since it runs anyway.
-2. The max rule (i): retire it under (d), or apply it at R1W's shares? Recommend: apply it (it's the user's 25 Nov rule and costs ≤ +1.7 in Z²), unless you treat (d)'s union check as superseding it.
-3. ADOPTED line for survey_pipeline.py after that golden.
-NEXT: wait on the board.
+SETTLED: D66 coded and tested; union count 2 → 2, PASS stands; cert13 re-queued at 325eb1b; suite 827/0/5.
+NEEDS YOU: nothing new. The ADOPTED lines (survey_pipeline.py, octave_thresholds.py) come after the one golden (D65).
+NEXT: wait on the board for the combined trial merge.
