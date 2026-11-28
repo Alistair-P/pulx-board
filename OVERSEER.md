@@ -75,6 +75,12 @@ Keep this short. Remove items once they're settled.
 - A science change needs the step-7 second look before it goes to Alistair. D63 went without one.
 
 ### Last wake
+- 28 Nov 09:00 (scheduled). Quiet night: no reports after 21:23; #15, #13 and merge haven't read
+  their 22:30 instructions. Alistair asked to check the windows. Terminal asks: #11 swap, #44 D39
+  pilot. Next wake 18:00 (trig_01R7A4eAkXeMqvw6Xgx6FG1m).
+- 27 Nov 22:00-22:35, with Alistair: D65 recorded (his 19:50 answer to the dispatcher), D66 (yes to
+  all four: D63 scope (ii), QA rules, max rule, X-2 out). Sent #15 stage 2, #13 the max rule, merge
+  the combined-golden plan.
 - 27 Nov 18:00 (scheduled; Alistair active until 17:08). Read merge, #15, #11 and #44. Sent: merge
   (D64 order), #15 (regfix conflict, then D63 stage 1, amended for its answers), #11 (swap waits for
   his yes; tag runs wait for D63), #44 (queue longpext; D39 continues). D64 recorded; the D63

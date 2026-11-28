@@ -1,21 +1,21 @@
 # PULX status
 
-Updated: 28 Nov 2026 07:47, by the dispatcher (overseer 27 Nov 22:35)
+Updated: 28 Nov 2026 09:05, by the overseer
 
-## Today (27 Nov, to 18:10)
-- **On main:** (d) (stacked46d, 57974c9; ADOPTED ab3e3264 and 9b8ce8b0) and targets18 (6db5e1f).
-  Suite 800/0/3.
-- **Merge queue:** regfix conflicts with main in region_review.py, so it went back to #15. methods42,
-  testshim-tmp, targets18 3b851cc, longpext and figidx46 go first (D64).
-- **Review (#17):** D60-D62 recorded and drawn. Gallery: 9 FAIL, 4 REVIEW, 37 PASS, 1 held, 3 unchecked.
-  The new detect check also fails 0150280101 X-2 (Needs Alistair 3).
-- **Source finding:** the labelled-photon study (studies/pulxsim_27nov) led to D63. #15's answers
-  show the survey already weights the whole aperture with the ELLBETA PSF, so D63's gain is in
-  neighbour fields only. Stage 1 (design and price, with a neighbour-fields-only option) is with #15.
-- **#18:** pilot PASS (0.23 core-h). **#44:** README rows queued (figidx46), D39's rule committed.
-  **#41:** 11 worktrees retired. Files 164,367.
-- **Overnight:** nothing on Slurm. merge works through D64's order; #15 fixes regfix, then D63 stage
-  1; #13 rebases cert13.
+## Overnight (27 Nov 22:35 to 28 Nov 09:05)
+- **Nothing moved.** No session has reported since merge at 21:23. #15 (D66 stage 2), #13 (the max
+  rule) and merge (the combined-golden plan) haven't read their 22:30 instructions. Please check
+  their windows (`pulx`, then Ctrl-b w) and the watch window's log (~/pulx-board/.local/watch.log).
+  If a window is idle, paste: `bash ~/pulx-board/board.sh show <ID>`, carry it out, then restart the
+  board wait.
+- **Waiting at your terminals** (the only two asks; nothing is on Slurm):
+  - **#11** (window 11): `sbatch slurm/submit_targets18_ngc1313.sh`, from
+    /cosma5/data/durham/dc-paga3/ODFs/z_sq_weighting_wt_mt. The X-2 swap: 2 CPUs, 16 h, cap 32 core-h,
+    about 1-2 expected.
+  - **#44** (window 44): the D39 pilot sbatch shown in its terminal, from its confirm46d worktree. Cap
+    6 core-h, about 2-4 expected. After it, #44 queues longpext, which unblocks the merge queue.
+- **State:** main e68c2fb, suite 829/0/3. Files 121,644. D63/D66 is next: #15 builds and validates,
+  then one combined golden with cert13 (D65).
 
 ## Waiting at your terminals (cluster policy: your yes, in that window, to the exact command)
 - **#11**: `sbatch slurm/submit_targets18_ngc1313.sh` from wt_mt
